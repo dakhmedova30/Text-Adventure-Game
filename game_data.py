@@ -172,10 +172,56 @@ class World:
 
         Return this list representation of the map.
         """
+        map_list = []
+        file = open(map_data)
+        for line in file:
+            line = line.strip()
+            map_list.append(line.split(" "))
+        return map_list
 
-        # TODO: Complete this method as specified. Do not modify any of this function's specifications.
 
     # TODO: Add methods for loading location data and item data (see note above).
+    def load_locations(self, locations_data: TextIO) -> list[list]:
+        temp_one_list = []
+        temp_two_list = []
+        locations_list = []
+        file = open(location_data)
+        file_data = file.read()
+        lines = file_data.split('END')
+        for x in range(0, len(lines)):
+            temp_one_list.append(lines[x].split('\n'))
+            temp_two_list.append(list(filter(None, temp_one_list[x])))
+        temp_two_list.pop()
+        for i in temp_two_list:
+            temp_three_list = []
+            temp_str = ''
+            for j in range(0, 3):
+                temp_three_list.append(i[j])
+            for k in range(3, len(i)):
+                temp_str += i[k]
+            temp_three_list.append(temp_str)
+            locations_list.append(temp_three_list)
+        return locations_list
+
+
+    def load_items(self, items_data: TextIO) -> list[list[int]]:
+        items_list = []
+        file = open(items_data)
+        for line in file:
+            temp_one_list = []
+            temp_two_list = []
+            temp_str = ''
+            line = line.strip()
+            temp_one_list = line.split(" ")
+            for i in range(0, 3):
+                temp_two_list.append(temp_one_list[i])
+            for j in range(3, len(temp_one_list)):
+                temp_str += temp_one_list[j] + ' '
+            temp_str = temp_str[0:len(temp_str)-1]
+            temp_two_list.append(temp_str)
+            items_list.append(temp_two_list)
+        return items_list
+
 
     # NOTE: The method below is REQUIRED. Complete it exactly as specified.
     def get_location(self, x: int, y: int) -> Optional[Location]:
