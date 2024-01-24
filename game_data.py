@@ -31,7 +31,7 @@ class Location:
         - # TODO
     """
 
-    def __init__(self) -> None:
+    def __init__(self, pos: int, brief: str, long: str, commands: list[str], items: str, visited: bool) -> None:
         """Initialize a new location.
 
         # TODO Add more details here about the initialization if needed
@@ -53,7 +53,12 @@ class Location:
         # The only thing you must NOT change is the name of this class: Location.
         # All locations in your game MUST be represented as an instance of this class.
 
-        # TODO: Complete this method
+        self.pos = pos
+        self.brief = brief
+        self.long = long
+        self.commands = commands
+        self.items = items
+        self.visited = visited
 
     def available_actions(self):
         """
@@ -180,7 +185,6 @@ class World:
         return map_list
 
 
-    # TODO: Add methods for loading location data and item data (see note above).
     def load_locations(self, locations_data: TextIO) -> list[list]:
         temp_one_list = []
         temp_two_list = []
@@ -231,3 +235,10 @@ class World:
         """
 
         # TODO: Complete this method as specified. Do not modify any of this function's specifications.
+        map_data = load_map(map.txt)
+        locations_data = load_locations(locations.txt)
+        
+        if location[x][y] == 0:
+            return None
+        else:
+            return Location(map_data[x][y], locations_data[2], locations_data[3])
