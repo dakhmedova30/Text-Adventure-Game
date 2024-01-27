@@ -1,9 +1,3 @@
-LOCATION -1
-0
-That way is blocked.
-That way is blocked.
-END
-
 Exam Centre
 0
 You are in the Exam Centre.
@@ -116,4 +110,10 @@ Ontario Institue for Studies in Education (OISE)
 0
 You are in the Ontario Institue for Studies in Education (OISE) building.
 You walk in to the Ontario Institue for Studies in Education (OISE) building, remembering the trek every Tuesday and Thursday from your computer science class to your Japanese tutorials. Upon entering, you see the OISE library and an elevator that leads to floors filled with various classrooms.
+END
+
+LOCATION -1
+0
+That way is blocked.
+That way is blocked.
 END

@@ -25,13 +25,24 @@ class Location:
     """A location in our text adventure game world.
 
     Instance Attributes:
-        - # TODO
+        - name: the name of the location
+        - pos: represents the position of the player
+        - brief: gives a brief description of the location if the player has already visited
+        - long: gives a long description of the location if the player hasn't already visited
+        - commands: gives a list of possible commands at the player's location
+        - items: lists the item(s) located in the location
+        - visited: states whether the player has already visited the location before
 
     Representation Invariants:
-        - # TODO
+        - self.name != ''
+        - self.pos > -1
+        - self.brief != ''
+        - self.long != ''
+        - self.commands != []
+
     """
 
-    def __init__(self, pos: int, brief: str, long: str, commands: list[str], items: str, visited: bool) -> None:
+    def __init__(self, name: str, pos: int, brief: str, long: str, commands: list[str], items: str, visited: bool) -> None:
         """Initialize a new location.
 
         # TODO Add more details here about the initialization if needed
@@ -53,14 +64,15 @@ class Location:
         # The only thing you must NOT change is the name of this class: Location.
         # All locations in your game MUST be represented as an instance of this class.
 
+        self.name = name
         self.pos = pos
         self.brief = brief
         self.long = long
-        self.commands = commands
+        self.commands = self.available_actions()
         self.items = items
         self.visited = visited
 
-    def available_actions(self):
+    def available_actions(self) -> list[str]:
         """
         Return the available actions in this location.
         The actions should depend on the items available in the location
@@ -70,18 +82,60 @@ class Location:
         # NOTE: This is just a suggested method
         # i.e. You may remove/modify/rename this as you like, and complete the
         # function header (e.g. add in parameters, complete the type contract) as needed
-
-        # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
+        if self.pos == 0:
+            return ['west', 'deposit']
+        if self.pos == 1:
+            return ['east', 'west']
+        if self.pos == 2:
+            return ['north', 'east']
+        if self.pos == 3:
+            return ['north', 'south']
+        if self.pos == 4:
+            return ['north', 'south']
+        if self.pos == 5:
+            return ['north', 'south', 'east', 'west']
+        if self.pos == 6:
+            return ['west']
+        if self.pos == 7:
+            return ['east', 'grab']
+        if self.pos == 8:
+            return ['north', 'south', 'deposit']
+        if self.pos == 9:
+            return ['north', 'south']
+        if self.pos == 10:
+            return ['north', 'south', 'east', 'west']
+        if self.pos == 11:
+            return ['west']
+        if self.pos == 12:
+            return ['west', 'grab']
+        if self.pos == 13:
+            return ['north', 'east']
+        if self.pos == 14:
+            return ['south', 'east', 'grab']
+        if self.pos == 15:
+            return ['north', 'south', 'west']
+        if self.pos == 16:
+            return ['north', 'south']
+        if self.pos == 17:
+            return ['south', 'east']
+        if self.pos == 18:
+            return ['west', 'grab']
 
 
 class Item:
     """An item in our text adventure game world.
 
     Instance Attributes:
-        - # TODO
+        - self.name: the item's name
+        - self.start_position: the position the item is initially at
+        - self.target_position: the position the item should be deposited to
+        - self.target_points: the points the item gives for obtaining and depositing it
 
     Representation Invariants:
-        - # TODO
+        - self.name != ''
+        - 0 <= self.start_position <= 18
+        - 0 <= self.target_position <= 18
+        - self.target_points > 0
     """
 
     def __init__(self, name: str, start: int, target: int, target_points: int) -> None:
@@ -108,10 +162,14 @@ class Player:
     A Player in the text advanture game.
 
     Instance Attributes:
-        - # TODO
+        - self.x: the player's position on the x-axis
+        - self.y: the player's on the y-axis
+        - self.inventory: items that the player is holding
+        - self.victory: indicates if the player has won
 
     Representation Invariants:
-        - # TODO
+        - 0 <= self.x <= 18
+        - 0 <= self.y <= 18
     """
 
     def __init__(self, x: int, y: int) -> None:
@@ -133,11 +191,14 @@ class World:
     """A text adventure game world storing all location, item and map data.
 
     Instance Attributes:
-        - map: a nested list representation of this world's map
-        - # TODO add more instance attributes as needed; do NOT remove the map attribute
+        - map: a nested list representation of this world's map using numbers from -1 to 18
+        - location: the location data for the world, including the locations's name, descriptions, and points allotted
+        - items: a list of items, the location they are found and deposited it, and the points they give
 
     Representation Invariants:
-        - # TODO
+        - self.map != [[]]
+        - self.location != [[]]
+        - self.items != [[]]
     """
 
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
@@ -159,6 +220,8 @@ class World:
 
         # The map MUST be stored in a nested list as described in the load_map() function's docstring below
         self.map = self.load_map(map_data)
+        self.location = self.load_locations(location_data)
+        self.items = self.load_items(items_data)
 
         # NOTE: You may choose how to store location and item data; create your own World methods to handle these
         # accordingly. The only requirements:
@@ -178,14 +241,16 @@ class World:
         Return this list representation of the map.
         """
         map_list = []
+        temp = []
         file = open(map_data)
         for line in file:
             line = line.strip()
-            map_list.append(line.split(" "))
+            temp.append(line.split(" "))
+        map_list = [[int(i) for i in lst] for lst in temp]
         return map_list
 
 
-    def load_locations(self, locations_data: TextIO) -> list[list]:
+    def load_locations(self, location_data: TextIO) -> list[list]:
         temp_one_list = []
         temp_two_list = []
         locations_list = []
@@ -235,10 +300,17 @@ class World:
         """
 
         # TODO: Complete this method as specified. Do not modify any of this function's specifications.
-        map_data = load_map(map.txt)
-        locations_data = load_locations(locations.txt)
-        
-        if location[x][y] == 0:
+        map_data = self.map
+        locations_data = self.location
+        items_data = self.items
+        pos = map_data[y][x]
+        item = None
+
+        if pos == -1:
             return None
         else:
-            return Location(map_data[x][y], locations_data[2], locations_data[3])
+            for i in items_data:
+                if i[0] == pos:
+                    item = i[3]
+            return Location(locations_data[pos][0], pos, locations_data[pos][2], locations_data[pos][3], [], item, False)
+        # TODO: Fix the visited method
