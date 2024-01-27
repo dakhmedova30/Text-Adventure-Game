@@ -6,7 +6,7 @@ END
 
 Exam Centre
 0
-Brief
+You are in the Exam Centre.
 Detail
 END
 
@@ -37,36 +37,36 @@ END
 Sir Daniel Wilson Residence
 0
 You are in front of the Sir Daniel Wilson Residence.
-You wake up at the Sir Daniel Wilson residence in your dorm. You look at your phone to see that the time is 8AM. You remember that you have an exam today at 6PM, but you can't seem to find any of the things that you need for your exam, namely your TCard, lucky pen, a cheat sheet and a water bottle. You walk down to the basement passage.
+You wake up at the Sir Daniel Wilson residence in your dorm. You look at your phone to see that the time is 8AM. You remember that you have an exam today at 6PM, but you can't seem to find any of the things that you need for your exam, namely your TCard, lucky pen, a cheat sheet and a water bottle.
 END
 
 University College Library
 0
-Brief
+You are in the University College Library.
 Detail
 END
 
-Sidney Smith
+Sidney Smith Hall
 0
-Brief
+You are in the Sidney Smith Hall.
 Detail
 END
 
 Howard Ferguson Dining Hall
 0
-Brief
-Detail
+You are in the Howard Ferguson Dining Hall.
+You walk to the Howard Ferguson Dining Hall through the basement passage. The aroma of food envelops the area as you long for a bite. However, you realize that you need to find your missing items first. Be back at 12PM for lunch!
 END
 
 Morrison Hall
 0
-Brief
+You are in Morrison Hall.
 Detail
 END
 
 Robarts Library
 0
-Brief
+You are in the Robarts Library.
 Detail
 END
 
@@ -78,19 +78,19 @@ END
 
 Graham Library
 0
-Brief
+You are in the Graham Library.
 Detail
 END
 
 Robarts Commons
 0
-Brief
+You are in the Robarts Commons.
 Detail
 END
 
 Athletics Centre
 0
-Brief
+You are in the Athletics Centre.
 Detail
 END
 
@@ -102,7 +102,7 @@ END
 
 Woodsworth College
 0
-Brief
+You are in Woodsworth College.
 Detail
 END
 
@@ -114,6 +114,6 @@ END
 
 Ontario Institue for Studies in Education (OISE)
 0
-Brief
-Detail
+You are in the Ontario Institue for Studies in Education (OISE) building.
+You walk in to the Ontario Institue for Studies in Education (OISE) building, remembering the trek every Tuesday and Thursday from your computer science class to your Japanese tutorials. Upon entering, you see the OISE library and an elevator that leads to floors filled with various classrooms.
 END
