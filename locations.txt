@@ -18,14 +18,14 @@ END
 
 Scenery
 0
-Brief
+You pass by Bahen Centre for Information Technology and the UofT Bookstore.
 Detail
 END
 
 Scenery
 0
-Brief
-Detail
+You pass by Knox College and Myhal Centre for Engineering Innovation and Entrepreneurship.
+As you walk, you see Knox College, Nona Macdonald Visitors Centre, Myhal Centre for Engineering Innovation and Entrepreneurship, Lash Miller Chemical Laboratories and the department of Astronomy and Astrophysics as you walk. 
 END
 
 Sir Daniel Wilson Residence
@@ -90,7 +90,7 @@ END
 
 Scenery
 0
-Brief
+You pass by Rotman School of Management and the Innis College Residence.
 Detail
 END
 
@@ -102,7 +102,7 @@ END
 
 Scenery
 0
-Brief
+You pass by Rotman Commerce and the Bata Shoe Museum.
 Detail
 END
 
