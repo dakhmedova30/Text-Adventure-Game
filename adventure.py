@@ -114,8 +114,9 @@ if __name__ == "__main__":
     menu = ["look", "inventory", "score", "quit", "grab", "drop"] # TODO: Implement BACK if we have time
 
     location = w.get_location(p.x, p.y)
+    moves = 0
 
-    while not p.victory and not p.quit:
+    while not p.victory and not p.quit and moves < 25: # decide the number of moves later
         location = w.get_location(p.x, p.y)
         loc = location.pos
         
@@ -222,12 +223,16 @@ if __name__ == "__main__":
                             item.curr_position = curr_location.pos
                 else:
                     print("You don't have this item.")
+        moves += 1
 
     if p.quit:
         print("You have successfully quit the game!")
 
     if p.victory:
         print("Congrats! You won!")
+
+    if moves >= 25:
+        print("You've reached the maximum number of moves. Game over.")
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
