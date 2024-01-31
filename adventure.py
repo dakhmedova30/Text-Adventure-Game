@@ -37,6 +37,75 @@ def do_action(w: World, p: Player, location: Location, choice: str) -> None:
     else:
         print('This way is blocked.')
 
+
+# COLORS
+def black(skk):
+    print("\033[30m {}\033[00m" .format(skk))
+
+def darkRed(skk):
+    print("\033[31m {}\033[00m" .format(skk))
+
+def darkGreen(skk):
+    print("\033[32m {}\033[00m" .format(skk))
+
+def darkYellow(skk):
+    print("\033[33m {}\033[00m" .format(skk))
+
+def darkBlue(skk):
+    print("\033[34m {}\033[00m" .format(skk))
+
+def darkMagenta(skk):
+    print("\033[35m {}\033[00m" .format(skk))
+
+def darkCyan(skk):
+    print("\033[36m {}\033[00m" .format(skk))
+
+def lightGray(skk):
+    print("\033[37m {}\033[00m" .format(skk))
+
+def darkGray(skk):
+    print("\033[90m {}\033[00m" .format(skk))
+
+def red(skk):
+    print("\033[91m {}\033[00m" .format(skk))
+    # \u001b[38;2;180;180;180m
+
+def green(skk):
+    print("\033[92m {}\033[00m" .format(skk))
+
+def yellow(skk):
+    print("\033[93m {}\033[00m" .format(skk))
+
+def blue(skk):
+    print("\033[94m {}\033[00m" .format(skk))
+
+def magenta(skk):
+    print("\033[95m {}\033[00m" .format(skk))
+
+def cyan(skk):
+    print("\033[96m {}\033[00m" .format(skk))
+
+def white(skk):
+    print("\033[97m {}\033[00m" .format(skk))
+
+black("This is black.")
+darkRed("This is dark red.")
+darkGreen("This is dark green.")
+darkYellow("This is dark yellow.")
+darkBlue("This is dark blue.")
+darkMagenta("This is dark magenta.")
+darkCyan("This is dark cyan.")
+lightGray("This is light gray.")
+darkGray("This is dark gray.")
+red("This is red.")
+green("This is green.")
+yellow("This is yellow.")
+blue("This is blue.")
+magenta("This is magenta.")
+cyan("This is cyan.")
+white("This is white.")
+print("\n")
+
 # Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
     w = World("map.txt", "locations.txt", "items.txt")
