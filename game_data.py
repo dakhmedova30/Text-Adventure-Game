@@ -21,6 +21,43 @@ This file is Copyright (c) 2024 CSC111 Teaching Team
 from typing import Optional, TextIO
 
 
+class Item:
+    """An item in our text adventure game world.
+
+    Instance Attributes:
+        - self.name: the item's name
+        - self.start_position: the position the item is initially at
+        - self.target_position: the position the item should be deposited to
+        - self.target_points: the points the item gives for obtaining and depositing it
+
+    Representation Invariants:
+        - self.name != ''
+        - -1 <= self.curr_position <= 18
+        - 0 <= self.start_position <= 18
+        - 0 <= self.target_position <= 18
+        - self.target_points > 0
+    """
+
+    def __init__(self, name: str, curr: int, start: int, target: int, target_points: int) -> None:
+        """Initialize a new item.
+        """
+
+        # NOTES:
+        # This is just a suggested starter class for Item.
+        # You may change these parameters and the data available for each Item object as you see fit.
+        # (The current parameters correspond to the example in the handout).
+        # Consider every method in this Item class as a "suggested method".
+        #
+        # The only thing you must NOT change is the name of this class: Item.
+        # All item objects in your game MUST be represented as an instance of this class.
+
+        self.name = name
+        self.curr_position = curr
+        self.start_position = start
+        self.target_position = target
+        self.target_points = target_points
+
+
 class Location:
     """A location in our text adventure game world.
 
@@ -42,12 +79,12 @@ class Location:
 
     """
 
-    def __init__(self, name: str, pos: int, brief: str, long: str, commands: list[str], items: str, visited: bool) -> None:
+    def __init__(self, name: str, pos: int, brief: str, long: str, commands: list[str], visited: bool, **kwargs) -> None:
         """Initialize a new location.
 
         # TODO Add more details here about the initialization if needed
         """
-
+ 
         # NOTES:
         # Data that could be associated with each Location object:
         # a position in the world map,
@@ -69,7 +106,7 @@ class Location:
         self.brief = brief
         self.long = long
         self.commands = self.available_actions()
-        self.items = items
+        self.items = kwargs.get("items", [])
         self.visited = visited
 
     def available_actions(self) -> list[str]:
@@ -83,7 +120,7 @@ class Location:
         # i.e. You may remove/modify/rename this as you like, and complete the
         # function header (e.g. add in parameters, complete the type contract) as needed
         if self.pos == 0:
-            return ['west', 'deposit']
+            return ['west', 'drop']
         if self.pos == 1:
             return ['east', 'west']
         if self.pos == 2:
@@ -99,13 +136,13 @@ class Location:
         if self.pos == 7:
             return ['east', 'grab']
         if self.pos == 8:
-            return ['north', 'south', 'deposit']
+            return ['north', 'south', 'drop']
         if self.pos == 9:
             return ['north', 'south']
         if self.pos == 10:
             return ['north', 'south', 'east', 'west']
         if self.pos == 11:
-            return ['west']
+            return ['east', 'west']
         if self.pos == 12:
             return ['west', 'grab']
         if self.pos == 13:
@@ -120,41 +157,6 @@ class Location:
             return ['south', 'east']
         if self.pos == 18:
             return ['west', 'grab']
-
-
-class Item:
-    """An item in our text adventure game world.
-
-    Instance Attributes:
-        - self.name: the item's name
-        - self.start_position: the position the item is initially at
-        - self.target_position: the position the item should be deposited to
-        - self.target_points: the points the item gives for obtaining and depositing it
-
-    Representation Invariants:
-        - self.name != ''
-        - 0 <= self.start_position <= 18
-        - 0 <= self.target_position <= 18
-        - self.target_points > 0
-    """
-
-    def __init__(self, name: str, start: int, target: int, target_points: int) -> None:
-        """Initialize a new item.
-        """
-
-        # NOTES:
-        # This is just a suggested starter class for Item.
-        # You may change these parameters and the data available for each Item object as you see fit.
-        # (The current parameters correspond to the example in the handout).
-        # Consider every method in this Item class as a "suggested method".
-        #
-        # The only thing you must NOT change is the name of this class: Item.
-        # All item objects in your game MUST be represented as an instance of this class.
-
-        self.name = name
-        self.start_position = start
-        self.target_position = target
-        self.target_points = target_points
 
 
 class Player:
@@ -185,6 +187,8 @@ class Player:
         self.y = y
         self.inventory = []
         self.victory = False
+        self.score = 0
+        self.quit = False
 
 
 class World:
@@ -210,7 +214,7 @@ class World:
         """
 
         # NOTES:
-
+ 
         # map_data should refer to an open text file containing map data in a grid format, with integers separated by a
         # space, representing each location, as described in the project handout. Each integer represents a different
         # location, and -1 represents an invalid, inaccessible space.
@@ -270,6 +274,8 @@ class World:
                 temp_str += i[k]
             temp_three_list.append(temp_str)
             locations_list.append(temp_three_list)
+        for a in locations_list:
+            a[1] = int(a[1])
         return locations_list
 
 
@@ -283,7 +289,7 @@ class World:
             line = line.strip()
             temp_one_list = line.split(" ")
             for i in range(0, 3):
-                temp_two_list.append(temp_one_list[i])
+                temp_two_list.append(int(temp_one_list[i]))
             for j in range(3, len(temp_one_list)):
                 temp_str += temp_one_list[j] + ' '
             temp_str = temp_str[0:len(temp_str)-1]
@@ -292,25 +298,43 @@ class World:
         return items_list
 
 
-    # NOTE: The method below is REQUIRED. Complete it exactly as specified.
     def get_location(self, x: int, y: int) -> Optional[Location]:
         """Return Location object associated with the coordinates (x, y) in the world map, if a valid location exists at
          that position. Otherwise, return None. (Remember, locations represented by the number -1 on the map should
          return None.)
         """
-
-        # TODO: Complete this method as specified. Do not modify any of this function's specifications.
         map_data = self.map
         locations_data = self.location
-        items_data = self.items
+        # items_data = self.items
         pos = map_data[y][x]
-        item = None
 
         if pos == -1:
             return None
         else:
-            for i in items_data:
-                if i[0] == pos:
-                    item = i[3]
-            return Location(locations_data[pos][0], pos, locations_data[pos][2], locations_data[pos][3], [], item, False)
-        # TODO: Fix the visited method
+            # for i in items_data:
+            #     if i[0] == pos:
+            #         item = i[3]
+            if 
+            # if there is a location ex (19), then return a location object with the associated items
+            return Location(name=locations_data[pos][0], pos=pos, brief=locations_data[pos][2], long=locations_data[pos][3], commands=[], visited=False)
+
+    def get_item(self, name: str, curr: int) -> Optional[Item]:
+        """Return Item object associated with the coordinates (x, y) in the world map, if a valid item exists at
+         that position. Otherwise, return None.
+        """
+        # map_data = self.map
+        # locations_data = self.location
+        items_data = self.items
+        # pos = map_data[y][x]
+
+        # if pos == -1:
+        #     return None
+        # else:
+            # for i in items_data:
+            #     if i[0] == pos:
+            #         item = i[3]
+
+        for i in range(0, len(items_data)):
+            if name == items_data[i][3]:
+
+                return Item(items_data[i][3], curr, items_data[i][0], items_data[i][1], items_data[i][2])

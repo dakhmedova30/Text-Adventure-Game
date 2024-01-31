@@ -19,7 +19,7 @@ END
 Scenery
 0
 You pass by Bahen Centre for Information Technology and the UofT Bookstore.
-Detail
+On one side of street, you see Bahen Centre for Information Technology and the University of Toronto Bookstore along with a few smaller stores next to it.
 END
 
 Scenery
@@ -73,7 +73,7 @@ END
 Graham Library
 0
 You are in the Graham Library.
-Detail
+You are greeted by a gust of warm air rushing past as you enter Graham library. You walk past the reception and into the rows of bookshelves, headed for a table in the corner near the window.
 END
 
 Robarts Commons
