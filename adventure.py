@@ -46,23 +46,13 @@ if __name__ == "__main__":
 
     location = w.get_location(p.x, p.y)
 
-    location.items.append(Item("Cheat Sheet", 18, 18, 0, 5))
-    location.items.append(Item("Lucky Pen", 12, 12, 0, 5))
-    location.items.append(Item("TCard", 14, 14, 0, 5))
-    location.items.append(Item("Water Bottle", 7, 7, 8, 3))
-
     while not p.victory and not p.quit:
-        print(location.items)
-        print("before loc")
         location = w.get_location(p.x, p.y)
-        print(location.items)
         loc = location.pos
+        
         if places[loc] > 0:
             location.visited = True
         places[loc] += 1
-
-        # print(places[loc]) # TODO: DELETE THIS LATER
-        # print(location.pos) # TODO: DELETE THIS LATER
         
         print(location.name)
         if location.visited == True:
@@ -70,15 +60,9 @@ if __name__ == "__main__":
         else:
             print(location.long)
 
-        # TODO: ENTER CODE HERE TO PRINT LOCATION DESCRIPTION
-        # Depending on whether or not it's been visited before,
-        # print either full description (first time visit) or brief description (every subsequent visit)
-
         print("What to do? \n")
         print("[menu]")
         print("north\nsouth\nwest\neast")
-        # for action in location.available_actions():
-        #     print(action)
         choice = input("\nEnter action: ")
 
         if choice == "[menu]":
@@ -99,7 +83,7 @@ if __name__ == "__main__":
             else:
                 print("Inventory:")
                 for item in p.inventory:
-                    print("- " + str(item) + "\n")
+                    print("- " + str(item))
 
         if choice == "score":
             print("Score: " + str(p.score) + "\n")
@@ -111,50 +95,48 @@ if __name__ == "__main__":
             all_items = w.items
             curr_location = w.get_location(p.x, p.y)
             curr_items = []
+            
+            for item_info in all_items:
+                if item_info.curr_position == curr_location.pos:
+                    curr_items.append(item_info.name)
 
-            print("help thing")
-            print(location.items)
-            if all([item.curr == -1 for item in location.items]):
-                print("HELP")
+            if curr_items == [] or (w.items != [] and all([item.curr_position == -1 for item in w.items])):
+                print("There are no items in this area!\n")
             else:
-                for item_info in all_items:
-                    if item_info[0] == curr_location.pos:
-                        curr_items.append(item_info[3])
-
-                if curr_items == []:
-                    print("There are no items in this area!\n")
-                else:
-                    for item in curr_items:
-                        print("Items:")
-                        print("- " + item + "\n")
+                print("Items:")
+                for item in curr_items:
+                    print("- " + item)
+            
+                print("Which item do you want to grab?")
+                choice = input("\nChoose item: ")
+                temp_items = []
                 
-                    print("Which item do you want to grab?")
-                    choice = input("\nChoose item: ")
-                    temp_items = []
-                    
-                    for item in curr_items:
-                        temp_items.append(item.lower())
+                for item in curr_items:
+                    temp_items.append(item.lower())
 
-                    if choice.lower() in temp_items:
-                        chosen_item = choice.title()
-                        p.inventory.append(chosen_item)
-                        for i in range(0, len(location.items)):
-                            if chosen_item == location.items.name:
-                                location.items.curr = -1
-                        # w.items.append(w.get_item(choice.title(), -1))
-                    else:
-                        print("This item does not exist in this area.")
-        
+                if choice.lower() in temp_items:
+                    chosen_item = choice.title()
+                    p.inventory.append(chosen_item)
+                    for item in w.items:
+                        if chosen_item == item.name:
+                            item.curr_position = -1
+                else:
+                    print("This item does not exist in this area.")
+    
         if choice == "drop":
             all_items = p.inventory
             curr_location = w.get_location(p.x, p.y)
+            curr_items = []
+
+            for item_info in all_items:
+                curr_items.append(item_info)
 
             if all_items == []:
-                print("You have no items to drop.")
+                print("You have no items to drop!\n")
             else:
                 print("Inventory:")
                 for item in all_items:
-                    print("- " + str(item) + "\n")
+                    print("- " + str(item))
             
                 print("Which item do you want to drop?")
                 choice = input("\nChoose item: ")
@@ -166,10 +148,9 @@ if __name__ == "__main__":
                 if choice.lower() in temp_items:
                     chosen_item = choice.title()
                     p.inventory.remove(chosen_item)
-                    for i in range(0, len(location.items)):
-                        if chosen_item == location.items.name:
-                            location.items.curr = curr_location
-                    # w.location.curr = curr_location
+                    for item in w.items:
+                        if chosen_item == item.name:
+                            item.curr_position = curr_location.pos
                 else:
                     print("You don't have this item.")
 

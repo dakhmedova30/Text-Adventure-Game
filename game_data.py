@@ -79,7 +79,7 @@ class Location:
 
     """
 
-    def __init__(self, name: str, pos: int, brief: str, long: str, commands: list[str], visited: bool, **kwargs) -> None:
+    def __init__(self, name: str, pos: int, brief: str, long: str, commands: list[str], items: list[Item], visited: bool) -> None:
         """Initialize a new location.
 
         # TODO Add more details here about the initialization if needed
@@ -106,7 +106,7 @@ class Location:
         self.brief = brief
         self.long = long
         self.commands = self.available_actions()
-        self.items = kwargs.get("items", [])
+        self.items = items
         self.visited = visited
 
     def available_actions(self) -> list[str]:
@@ -120,43 +120,43 @@ class Location:
         # i.e. You may remove/modify/rename this as you like, and complete the
         # function header (e.g. add in parameters, complete the type contract) as needed
         if self.pos == 0:
-            return ['west', 'drop']
+            return ['west', 'grab', 'drop']
         if self.pos == 1:
-            return ['east', 'west']
+            return ['east', 'west', 'grab', 'drop']
         if self.pos == 2:
-            return ['north', 'east']
+            return ['north', 'east', 'grab', 'drop']
         if self.pos == 3:
-            return ['north', 'south']
+            return ['north', 'south', 'grab', 'drop']
         if self.pos == 4:
-            return ['north', 'south']
+            return ['north', 'south', 'grab', 'drop']
         if self.pos == 5:
-            return ['north', 'south', 'east', 'west']
+            return ['north', 'south', 'east', 'west', 'grab', 'drop']
         if self.pos == 6:
-            return ['west']
+            return ['west', 'grab', 'drop']
         if self.pos == 7:
-            return ['east', 'grab']
+            return ['east', 'grab', 'drop']
         if self.pos == 8:
-            return ['north', 'south', 'drop']
+            return ['north', 'south', 'grab', 'drop']
         if self.pos == 9:
-            return ['north', 'south']
+            return ['north', 'south', 'grab', 'drop']
         if self.pos == 10:
-            return ['north', 'south', 'east', 'west']
+            return ['north', 'south', 'east', 'west', 'grab', 'drop']
         if self.pos == 11:
-            return ['east', 'west']
+            return ['east', 'west', 'grab', 'drop']
         if self.pos == 12:
-            return ['west', 'grab']
+            return ['west', 'grab', 'drop']
         if self.pos == 13:
-            return ['north', 'east']
+            return ['north', 'east', 'grab', 'drop']
         if self.pos == 14:
-            return ['south', 'east', 'grab']
+            return ['south', 'east', 'grab', 'drop']
         if self.pos == 15:
-            return ['north', 'south', 'west']
+            return ['north', 'south', 'west', 'grab', 'drop']
         if self.pos == 16:
-            return ['north', 'south']
+            return ['north', 'south', 'grab', 'drop']
         if self.pos == 17:
-            return ['south', 'east']
+            return ['south', 'east', 'grab', 'drop']
         if self.pos == 18:
-            return ['west', 'grab']
+            return ['west', 'grab', 'drop']
 
 
 class Player:
@@ -255,6 +255,7 @@ class World:
 
 
     def load_locations(self, location_data: TextIO) -> list[list]:
+        ret_locations = []
         temp_one_list = []
         temp_two_list = []
         locations_list = []
@@ -276,10 +277,14 @@ class World:
             locations_list.append(temp_three_list)
         for a in locations_list:
             a[1] = int(a[1])
-        return locations_list
-
+        nums = len(locations_list) - 1
+        for b in range(0, nums):
+            ret_locations.append(Location(locations_list[b][0], b, locations_list[b][1], locations_list[b][2], [], [], False))
+        ret_locations.append(Location(locations_list[nums][0], -1, locations_list[nums][1], locations_list[nums][2], [], [], False))
+        return ret_locations
 
     def load_items(self, items_data: TextIO) -> list[list[int]]:
+        ret_items = []
         items_list = []
         file = open(items_data)
         for line in file:
@@ -295,7 +300,9 @@ class World:
             temp_str = temp_str[0:len(temp_str)-1]
             temp_two_list.append(temp_str)
             items_list.append(temp_two_list)
-        return items_list
+        for a in range(0, len(items_list)):
+            ret_items.append(Item(items_list[a][3], items_list[a][0], items_list[a][0], items_list[a][1], items_list[a][2]))
+        return ret_items
 
 
     def get_location(self, x: int, y: int) -> Optional[Location]:
@@ -305,36 +312,11 @@ class World:
         """
         map_data = self.map
         locations_data = self.location
-        # items_data = self.items
         pos = map_data[y][x]
 
         if pos == -1:
             return None
         else:
-            # for i in items_data:
-            #     if i[0] == pos:
-            #         item = i[3]
-            if 
-            # if there is a location ex (19), then return a location object with the associated items
-            return Location(name=locations_data[pos][0], pos=pos, brief=locations_data[pos][2], long=locations_data[pos][3], commands=[], visited=False)
-
-    def get_item(self, name: str, curr: int) -> Optional[Item]:
-        """Return Item object associated with the coordinates (x, y) in the world map, if a valid item exists at
-         that position. Otherwise, return None.
-        """
-        # map_data = self.map
-        # locations_data = self.location
-        items_data = self.items
-        # pos = map_data[y][x]
-
-        # if pos == -1:
-        #     return None
-        # else:
-            # for i in items_data:
-            #     if i[0] == pos:
-            #         item = i[3]
-
-        for i in range(0, len(items_data)):
-            if name == items_data[i][3]:
-
-                return Item(items_data[i][3], curr, items_data[i][0], items_data[i][1], items_data[i][2])
+            for location in locations_data:
+                if pos == location.pos:
+                    return location

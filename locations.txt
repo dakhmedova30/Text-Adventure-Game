@@ -13,7 +13,7 @@ END
 Scenery
 0
 You pass by Starbucks and a few university buildings.
-On one side of the street, you see a Starbucks location, while across the road are the Wallberg Memorial Building and the Department of Materials Science and Engineering
+On one side of the street, you see a Starbucks location, while across the road are the Wallberg Memorial Building and the Department of Materials Science and Engineering.
 END
 
 Scenery
@@ -66,7 +66,7 @@ END
 
 Closed Buildings
 0
-You see some buildings near Trinity College, but they all seem to be closed
+You see some buildings near Trinity College, but they all seem to be closed.
 You walk past Newman Centre, noticing that it is closed. A few more buildings ahead of you, you see, also seem to be closed, like the Massey College building, the Campbell Conference Facility and the Munk School of Global Affairs and Public Policy.
 END
 
