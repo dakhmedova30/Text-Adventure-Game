@@ -116,7 +116,7 @@ if __name__ == "__main__":
     location = w.get_location(p.x, p.y)
     moves = 0
 
-    while not p.victory and not p.quit and moves < 25: # decide the number of moves later
+    while not p.victory and not p.quit and moves < 40: # decide the number of moves later
         location = w.get_location(p.x, p.y)
         loc = location.pos
         
