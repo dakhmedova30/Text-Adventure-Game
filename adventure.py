@@ -223,7 +223,9 @@ if __name__ == "__main__":
                             item.curr_position = curr_location.pos
                 else:
                     print("You don't have this item.")
-        moves += 1
+       
+        if choice in ['north', 'south', 'east', 'west', 'grab', 'drop', 'look']:
+            moves += 1
 
     if p.quit:
         print("You have successfully quit the game!")
