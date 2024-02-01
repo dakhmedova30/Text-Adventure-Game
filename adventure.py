@@ -24,6 +24,84 @@ from game_data import World, Item, Location, Player
 # Note: You may add helper functions, classes, etc. here as needed
 places = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 0, 15: 0, 16: 0, 17: 0, 18: 0}
 
+
+class Beings:
+    """SCPs and NPCs
+
+    Instance Attributes:
+        - self.name: the beings' name
+        - self.curr_pos: the beings' current position
+        - self.points: the points being given to/taken away from the player
+        - self.moves: the moves being given to/taken away from the player
+
+    Representation Invariants:
+        - self.name != ''
+        - 0 <= self.curr_pos <= 18
+        - -5 <= self.points <= 5
+        - -5 <= self.moves <= 5
+    """
+
+    def __init__(self, name: str, curr_pos: int, points: int, moves: int) -> None:
+        """Initialize a new being.
+        """
+        self.name = name
+        self.curr_pos = curr_pos
+        self.points = points
+        self.moves = moves
+
+
+class SCP(Beings):
+    """SCPs
+
+    Instance Attributes:
+        - self.name: the beings' name
+        - self.curr_pos: the beings' current position
+        - self.points: the points being given to/taken away from the player
+        - self.moves: the moves being given to/taken away from the player
+
+    Representation Invariants:
+        - self.name != ''
+        - 0 <= self.curr_pos <= 18
+        - -5 <= self.points <= 5
+        - -5 <= self.moves <= 5
+    """
+
+    def __init__(self, name: str, curr_pos: int, points: int) -> None:
+        """Initialize a new being.
+        """
+        self.name = name
+        self.curr_pos = curr_pos
+        self.points = points
+
+    def puzzle():
+        return
+
+
+class NPC(Beings):
+    """NPCs
+
+    Instance Attributes:
+        - self.name: the beings' name
+        - self.curr_pos: the beings' current position
+        - self.points: the points the being gives to the player
+
+    Representation Invariants:
+        - self.name != ''
+        - 0 <= self.curr_pos <= 18
+        - -5 <= self.points <= 5
+    """
+
+    def __init__(self, name: str, curr_pos: int, points: int) -> None:
+        """Initialize a new being.
+        """
+        self.name = name
+        self.curr_pos = curr_pos
+        self.points = points
+
+    def dialogue():
+        return
+
+
 def do_action(w: World, p: Player, location: Location, choice: str) -> None:
     if choice in location.available_actions():
         if choice == 'north':
@@ -262,13 +340,16 @@ if __name__ == "__main__":
             p.victory = True
 
     if p.quit:
-        red("\nYou have successfully quit the game!\n")
+        red("\n\nYou have successfully quit the game!")
+        magenta("\nYour final score is: " + str(p.score) + "\n")
 
     if p.victory:
-        red("\nCongrats! You won!\n")
+        red("\n\nCongrats! You won!")
+        magenta("\nYour final score is: " + str(p.score) + "\n")
 
     if moves >= 40:
-        red("\nYou've reached the maximum number of moves. Game over!\n")
+        red("\n\nYou've reached the maximum number of moves. Game over!")
+        magenta("\nYour final score is: " + str(p.score) + "\n")
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
