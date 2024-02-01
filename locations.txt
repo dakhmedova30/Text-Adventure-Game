@@ -31,7 +31,7 @@ END
 Sir Daniel Wilson Residence
 0
 You are in front of the Sir Daniel Wilson Residence.
-You wake up at the Sir Daniel Wilson residence in your dorm. You look at your phone to see that the time is 8AM. You remember that you have an exam today at 6PM, but you can't seem to find any of the things that you need for your exam, namely your TCard, lucky pen, a cheat sheet and a water bottle.
+You wake up to the sound of loud music playing from the room next to you. Groggily, you look at your phone to see that the time is 8AM. You remember that you have an exam today at 6PM, but you can't see some things that you need for the exam - your TCard, lucky pen, and cheat sheet are nowhere to be found. And curiously, so is your water bottle. You get up from your bed and head to the door next to yours from where the music is coming from and knock on the door.
 END
 
 University College Library
