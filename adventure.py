@@ -35,10 +35,12 @@ def do_action(w: World, p: Player, location: Location, choice: str) -> None:
         if choice == 'east':
             p.x += 1
     else:
-        print('This way is blocked.')
-
+        lightGray('This way is blocked.')
 
 # COLORS
+def bold(skk):
+    print("\033[1m {}\033[00m" .format(skk))
+
 def black(skk):
     print("\033[30m {}\033[00m" .format(skk))
 
@@ -67,7 +69,7 @@ def darkGray(skk):
     print("\033[90m {}\033[00m" .format(skk))
 
 def red(skk):
-    print("\033[91m {}\033[00m" .format(skk))
+    print("\033[1;91m {}\033[00m" .format(skk))
     # \u001b[38;2;180;180;180m
 
 def green(skk):
@@ -83,11 +85,12 @@ def magenta(skk):
     print("\033[95m {}\033[00m" .format(skk))
 
 def cyan(skk):
-    print("\033[96m {}\033[00m" .format(skk))
+    print("\033[1;96m {}\033[00m" .format(skk))
 
 def white(skk):
-    print("\033[97m {}\033[00m" .format(skk))
+    print("\033[1;97m {}\033[00m" .format(skk))
 
+bold("This is bold.")
 black("This is black.")
 darkRed("This is dark red.")
 darkGreen("This is dark green.")
@@ -115,6 +118,14 @@ if __name__ == "__main__":
 
     location = w.get_location(p.x, p.y)
     moves = 0
+    water_grab = False
+    water_drop = False
+    tcard_grab = False
+    tcard_drop = False
+    sheet_grab = False
+    sheet_drop = False
+    pen_grab = False
+    pen_drop = False
 
     while not p.victory and not p.quit and moves < 40: # decide the number of moves later
         location = w.get_location(p.x, p.y)
@@ -124,44 +135,44 @@ if __name__ == "__main__":
             location.visited = True
         places[loc] += 1
         
-        print(location.name)
+        cyan("\n\n" + location.name)
         if location.visited == True:
-            print(location.brief)
+            lightGray(location.brief)
         else:
-            print(location.long)
+            lightGray(location.long)
 
-        print("What to do? \n")
-        print("[menu]")
-        print("north\nsouth\nwest\neast")
+        white("\nWhat to do? \n")
+        green("- [MENU]")
+        green("- North\n- South\n- West\n- East") # TODO: fix the spacing
         choice = input("\nEnter action: ")
 
-        if choice == "[menu]":
-            print("Menu Options: \n")
+        if choice.lower() == "[menu]":
+            white("\nWhat to do? \n")
             for option in menu:
-                print(option)
+                green(option)
             choice = input("\nChoose action: ")
         
-        if choice == "north" or choice == "south" or choice == "east" or choice == "west":
-            do_action(w, p, location, choice)
+        if choice.lower() == "north" or choice.lower() == "south" or choice.lower() == "east" or choice.lower() == "west":
+            do_action(w, p, location, choice.lower())
         
-        if choice == "look":
-            print(location.long + '\n') #TODO: don't print the brief
+        if choice.lower() == "look":
+            lightGray(location.long + '\n') #TODO: don't print the brief
         
-        if choice == "inventory":
+        if choice.lower() == "inventory":
             if p.inventory == []:
-                print("You have nothing in your bag.\n")
+                lightGray("You have nothing in your bag.\n")
             else:
-                print("Inventory:")
+                yellow("\nInventory:")
                 for item in p.inventory:
-                    print("- " + str(item))
+                    yellow("- " + str(item))
 
-        if choice == "score":
-            print("Score: " + str(p.score) + "\n")
+        if choice.lower() == "score":
+            magenta("\nScore: " + str(p.score))
 
-        if choice == "quit":
+        if choice.lower() == "quit":
             p.quit = True
 
-        if choice == "grab":
+        if choice.lower() == "grab":
             all_items = w.items
             curr_location = w.get_location(p.x, p.y)
             curr_items = []
@@ -171,13 +182,13 @@ if __name__ == "__main__":
                     curr_items.append(item_info.name)
 
             if curr_items == [] or (w.items != [] and all([item.curr_position == -1 for item in w.items])):
-                print("There are no items in this area!\n")
+                lightGray("There are no items in this area!\n")
             else:
-                print("Items:")
+                yellow("\nItems:")
                 for item in curr_items:
-                    print("- " + item)
+                    yellow("- " + item)
             
-                print("Which item do you want to grab?")
+                white("\nWhich item do you want to grab?")
                 choice = input("\nChoose item: ")
                 temp_items = []
                 
@@ -191,9 +202,9 @@ if __name__ == "__main__":
                         if chosen_item == item.name:
                             item.curr_position = -1
                 else:
-                    print("This item does not exist in this area.")
+                    lightGray("This item does not exist in this area.")
     
-        if choice == "drop":
+        if choice.lower() == "drop":
             all_items = p.inventory
             curr_location = w.get_location(p.x, p.y)
             curr_items = []
@@ -202,13 +213,13 @@ if __name__ == "__main__":
                 curr_items.append(item_info)
 
             if all_items == []:
-                print("You have no items to drop!\n")
+                lightGray("You have no items to drop!\n")
             else:
-                print("Inventory:")
+                yellow("\nInventory:")
                 for item in all_items:
-                    print("- " + str(item))
+                    yellow("- " + str(item))
             
-                print("Which item do you want to drop?")
+                white("\nWhich item do you want to drop?")
                 choice = input("\nChoose item: ")
                 temp_items = []
                 
@@ -218,23 +229,46 @@ if __name__ == "__main__":
                 if choice.lower() in temp_items:
                     chosen_item = choice.title()
                     p.inventory.remove(chosen_item)
+
+                    if chosen_item == 'Tcard':
+                        chosen_item = 'TCard'
+
                     for item in w.items:
                         if chosen_item == item.name:
                             item.curr_position = curr_location.pos
+                        
+                        if chosen_item == 'Water Bottle' and water_drop == False and item.curr_position == 8:
+                            p.score += 3
+                            water_drop = True
+                            
+                        if chosen_item == 'TCard' and tcard_drop == False and item.curr_position == 0:
+                            p.score += 5
+                            tcard_drop = True
+
+                        if chosen_item == 'Lucky Pen' and pen_drop == False and item.curr_position == 0:
+                            p.score += 5
+                            pen_drop = True
+
+                        if chosen_item == 'Cheat Sheet' and sheet_drop == False and item.curr_position == 0:
+                            p.score += 5
+                            sheet_drop = True
                 else:
-                    print("You don't have this item.")
+                    lightGray("You don't have this item.")
        
         if choice in ['north', 'south', 'east', 'west', 'grab', 'drop', 'look']:
             moves += 1
 
+        if water_drop and tcard_drop and pen_drop and sheet_drop and loc == 0:
+            p.victory = True
+
     if p.quit:
-        print("You have successfully quit the game!")
+        red("\nYou have successfully quit the game!\n")
 
     if p.victory:
-        print("Congrats! You won!")
+        red("\nCongrats! You won!\n")
 
-    if moves >= 25:
-        print("You've reached the maximum number of moves. Game over.")
+    if moves >= 40:
+        red("\nYou've reached the maximum number of moves. Game over!\n")
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if

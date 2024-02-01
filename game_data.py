@@ -279,8 +279,8 @@ class World:
             a[1] = int(a[1])
         nums = len(locations_list) - 1
         for b in range(0, nums):
-            ret_locations.append(Location(locations_list[b][0], b, locations_list[b][1], locations_list[b][2], [], [], False))
-        ret_locations.append(Location(locations_list[nums][0], -1, locations_list[nums][1], locations_list[nums][2], [], [], False))
+            ret_locations.append(Location(locations_list[b][0], b, locations_list[b][2], locations_list[b][3], [], [], False))
+        ret_locations.append(Location(locations_list[nums][0], -1, locations_list[nums][2], locations_list[nums][3], [], [], False))
         return ret_locations
 
     def load_items(self, items_data: TextIO) -> list[list[int]]:
