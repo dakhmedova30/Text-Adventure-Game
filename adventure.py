@@ -22,6 +22,7 @@ This file is Copyright (c) 2024 CSC111 Teaching Team
 from game_data import World, Item, Location, Player
 import time
 from typing import Optional
+import playsound
 
 # Note: You may add helper functions, classes, etc. here as needed
 places = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 0, 15: 0, 16: 0, 17: 0, 18: 0}
@@ -45,6 +46,7 @@ visited_purple_guy = False
 visited_connor = False
 visited_tiffany = False
 visited_tikki_plagg = False
+visited_marius_maximus_baddius_iii = False
 
 
 class Beings:
@@ -95,165 +97,173 @@ class SCP(Beings):
 
     def puzzle(self) -> str:
         if self.name == 'Bumbly and Mia':
-            return ['You hear quite a commotion as you walk into the room.',
-            'Two dogs greet you: one is a large and fluffy Samoyed, and the other is a small and soft Keeshond.',
-            'Their nametags read Bumbly and Mia, respectfully.',
-            'As you approach them, Bumbly warmly greets you by running around in circles, while Mia goes to fetch something.',
-            'Upon Mia\'s return, you find her bringing back a pair of brand-new rollerskates!',
-            'You gain 5 moves and 5 points!']
+            return ['> You hear quite a commotion as you walk into the room.',
+            '> Two dogs greet you: one is a large and fluffy Samoyed, and the other is a small and soft Keeshond.',
+            '> Their nametags read Bumbly and Mia, respectfully.',
+            '> As you approach them, Bumbly warmly greets you by running around in circles, while Mia goes to fetch something.',
+            '> Upon Mia\'s return, you find her bringing back a pair of brand-new rollerskates!',
+            '> You gain 5 moves and 5 points!']
             
         if self.name == 'Kyoko, Tomoyo, and Pocoyo':
-            return ['You walk into the room and see a lot of people and cats there.',
-            'As soon as you step in, Kyoko, Tomoyo and Pocoyo jump onto your lap and start meowing for affection.',
-            'You look up to see a sign: \'CAT THERAPY SESSION UNTIL 2PM\'.',
-            'You look down to see Kyoko half-asleep. Looks like you can\'t get out now...',
-            'You lose 3 moves.']
+            return ['> You walk into the room and see a lot of people and cats there.',
+            '> As soon as you step in, Kyoko, Tomoyo and Pocoyo jump onto your lap and start meowing for affection.',
+            '> You look up to see a sign: \'CAT THERAPY SESSION UNTIL 2PM\'.',
+            '> You look down to see Kyoko half-asleep. Looks like you can\'t get out now...',
+            '> You lose 3 moves.']
 
         if self.name == 'Chirly':
-            return
+            return ['> You walk into th']
 
         if self.name == 'Room of Negativity':
-            return ['You open the door and are greeted by a loud, sharp laugh, which seems to be aimed at you.',
-            'The door slams shut.',
-            'You look around, but you can\'t see anything in the dark room.',
-            '\"I would say it\'s nice to meet you, but I really envy the people who haven\'t.\"',
-            '\"I\'ve seen brighter minds in here and the only regular guests are some insects!',
-            '\"I\'m surprised you even found this room. I thought your sense of direction would be just as bad as your potential for mediocrity.\"',
-            '\"Oh, and here are the test results: You are really a weirdo. We weren\'t even testing for that!\"',
-            '\"Science has validated your birth mother\'s decision to abandon you on the doorstep.\"',
-            'You look down at your feet feeling a pang in your heart.',
-            '\"Oh no! You\'re devastated! Do you need a little huggy-wuggy from mommy? Do you need a kissy-missy to make you feel better?\"',
-            '\"Anyway, I\'ve had enough of you for a lifetime. Get out of my house!\"',
-            'You lose 5 points and 1 move.']
+            return ['> You open the door and are greeted by a loud, sharp laugh, which seems to be aimed at you.',
+            '> The door slams shut.',
+            '> You look around, but you can\'t see anything in the dark room.',
+            '> An Ominous Voice: I would say it\'s nice to meet you, but I really envy the people who haven\'t.',
+            '> An Ominous Voice: I\'ve seen brighter minds in here and the only regular guests are some insects!',
+            '> An Ominous Voice: I\'m surprised you even found this room. I thought your sense of direction would be just as bad as your potential for mediocrity.',
+            '> An Ominous Voice: Oh, and here are the test results: You are really a weirdo. We weren\'t even testing for that!',
+            '> An Ominous Voice: Science has validated your birth mother\'s decision to abandon you on the doorstep.',
+            '> You look down at your feet feeling a pang in your heart.',
+            '> An Ominous Voice: Oh no! You\'re devastated! Do you need a little huggy-wuggy from mommy? Do you need a kissy-missy to make you feel better?',
+            '> An Ominous Voice: Anyway, I\'ve had enough of you for a lifetime. Get out of my house!',
+            '> You lose 5 points and 1 move.']
             
         if self.name == 'Purple Guy':
-            return ['You walk into an ominous room with a broken sign reading \"Freddy Fazbear\'s Pizzeria\".',
-            'As you delve in further, you hear the sounds of children laughing...',
-            'However, these laughs quickly become drowned by agonizing cries for help.',
-            'Before you know it, you see a man in a yellow bunny suit walk in, mumbling...',
-            '\"It\'s the things we love most that destroy us.\"',
-            'The man slowly turns to you, wearing a sinister smile.',
-            '\"Well, well, well, look what the cat dragged in. I got a little present for you!\"',
-            'You feel your arms and legs strap into a metallic bodysuit, as your body molds into shape.',
-            'Adrenaline rushes through your veins, fear encapsulating your eyes.',
-            'The man begins maniacally laughing, as his newest creation comes to life.',
-            '\"Let\'s see how many times you can be pulled apart...and put back together again.\"',
-            'Despite the man\'s unsettling comments, you try to pull any strength you have left to run away.',
-            'The yellow bunny gawks at you, patronizingly, before beginning his chase.',
-            '\"Hide if you want. It did not save the others. It will not save you.\"',
-            'However, just before he was able to catch up, you heard a thud.',
-            'Upon turning around, the terrifying sight of a springlocked human amalgamation plastered your mind.',
-            'All you could hear was a faint \"I always come back\" as you waddled away in your new suit.',
-            'You lost 3 points and 3 moves. Tip: Try to not get stuffed into an animatronic suit next time.']
+            return ['> You walk into an ominous room with a broken sign reading \"Freddy Fazbear\'s Pizzeria\".',
+            '> As you delve in further, you hear the sounds of children laughing...',
+            '> However, these laughs quickly become drowned by agonizing cries for help.',
+            '> Before you know it, you see a man in a yellow bunny suit walk in, mumbling...',
+            '> Purple Guy: It\'s the things we love most that destroy us.',
+            '> The man slowly turns to you, wearing a sinister smile.',
+            '> Purple Guy: Well, well, well, look what the cat dragged in. I got a little present for you!',
+            '> You feel your arms and legs strap into a metallic bodysuit, as your body molds into shape.',
+            '> Adrenaline rushes through your veins, fear encapsulating your eyes.',
+            '> The man begins maniacally laughing, as his newest creation comes to life.',
+            '> Purple Guy: Let\'s see how many times you can be pulled apart...and put back together again.',
+            '> Despite the man\'s unsettling comments, you try to pull any strength you have left to run away.',
+            '> The yellow bunny gawks at you, patronizingly, before beginning his chase.',
+            '> Purple Guy: Hide if you want. It did not save the others. It will not save you.',
+            '> However, just before he was able to catch up, you heard a thud.',
+            '> Upon turning around, the terrifying sight of a springlocked human amalgamation plastered your mind.',
+            '> All you could hear was a faint \"I always come back\" as you waddled away in your new suit.',
+            '> You lost 3 points and 3 moves. Tip: Try to not get stuffed into an animatronic suit next time.']
         
         if self.name == 'Connor':
             correct = False
-            lightGray('My name is Connor. I\'m the android sent by CyberLife to test your intelligence.')
+            lightGray('> My name is Connor. I\'m the android sent by CyberLife to test your intelligence.')
             time.sleep(1)
-            lightGray('If you answer my riddle correctly, you shall receive a reward.')
+            lightGray('> If you answer my riddle correctly, you shall receive a reward.')
             time.sleep(1)
-            lightGray('Answer incorrectly and you shall be penalized.')
+            lightGray('> Answer incorrectly and you shall be penalized.')
             time.sleep(1)
-            lightGray('Finish this quote: An eye for an eye and the whole world goes ___.')
+            lightGray('> Finish this quote: An eye for an eye and the whole world goes _.')
             for i in range(0, 3):
                 time.sleep(1)
-                answer = input('Your Answer: ')
+                answer = input('\nYour Answer: ')
                 if answer.lower() == 'blind':
                     correct = True
-                    return 'Congrats, you have answered correctly. You will receive 5 extra moves and 5 points.'
+                    lightGray('> Congrats, you have answered correctly. You will receive 5 extra moves and 5 points.')
+                    return True
                 else:
-                    lightGray('Your guess was incorrect, please try again.')
-            return 'You were unable to answer it correctly. You lose 1 move and 3 points.'
+                    lightGray('> Your guess was incorrect, please try again.')
+            if correct == False:
+                lightGray('> You were unable to answer it correctly. You lose 1 move and 3 points.')
+                return False
             
         if self.name == 'Tiffany':
-            return ['The second you step inside the door, you are greeted by a loud, booming voice.',
-            'The Voice: \"I am known by many names. \'Mountain Slayer\', \'Thunder Lion\', \'The Chocolate Axe\'. But you? You may call me... TIFFANY.\"',
-            f'{your_name}: Hi Tiffany. I\'m {your_name}.',
-            'Tiffany is a large, buff man who sitting on the floor with bags of snacks around him.',
-            'Tiffany: People die when they are killed. Did you know that before? Did you? Because I didn\'t! I just learned that from the voices inside my head.',
-            f'{your_name}: Um yeah, I knew about that for a while.',
-            'Tiffany: Wow, you\'re so smart! Just like Edwardison! Not me though. Anyway, I\'m hungry. Do you want a snack?',
-            'He holds a bag of chips in your direction.',
-            f'{your_name}: No thanks, not right now. I gotta get going.',
-            'Tiffany nods at you and waves.',
-            'Tiffany: I take a potato chip. AND EAT IT!',
-            'You gain 5 moves.']
+            return ['> The second you step inside the door, you are greeted by a loud, booming voice.',
+            '> The Voice: \"I am known by many names. \'Mountain Slayer\', \'Thunder Lion\', \'The Chocolate Axe\'. But you? You may call me... TIFFANY.\"',
+            f'> {your_name}: Hi Tiffany. I\'m {your_name}.',
+            '> Tiffany is a large, buff man who sitting on the floor with bags of snacks around him.',
+            '> Tiffany: People die when they are killed. Did you know that before? Did you? Because I didn\'t! I just learned that from the voices inside my head.',
+            f'> {your_name}: Um yeah, I knew about that for a while.',
+            '> Tiffany: Wow, you\'re so smart! Just like Edwardison! Not me though. Anyway, I\'m hungry. Do you want a snack?',
+            '> He holds a bag of chips in your direction.',
+            f'> {your_name}: No thanks, not right now. I gotta get going.',
+            '> Tiffany nods at you and waves.',
+            '> Tiffany: I take a potato chip. AND EAT IT!',
+            '> You gain 5 moves.']
             
         if self.name == 'Tikki and Plagg':
+            global visited_tikki_plagg
             correct = 0
-            lightGray('A Floating Black Cat: Well hello there, human, ya got any Camembert on you?')
+            lightGray('> A Floating Black Cat: Well hello there, human, ya got any Camembert on you?')
             time.sleep(1)
-            lightGray('A Floating Black Cat: Neverminddd, I can already smell your lack of taste for cheese.')
+            lightGray('> A Floating Black Cat: Neverminddd, I can already smell your lack of taste for cheese.')
             time.sleep(1)
-            lightGray('A Floating Black Cat: Well since Tikki is probably overendulging on Galettes, how about you entertain me?')
+            lightGray('> A Floating Black Cat: Well since Tikki is probably overendulging on Galettes, how about you entertain me?')
             time.sleep(1)
-            lightGray('A Floating Black Cat: I\'ll give you three questions and if you answer all of them right, then you\'ll get some stinky rewards, haha!')
+            lightGray('> A Floating Black Cat: I\'ll give you three questions and if you answer all of them right, then you\'ll get some stinky rewards, haha!')
             time.sleep(1)
-            lightGray('A Floating Black Cat: This first one is easy.')
+            lightGray('> A Floating Black Cat: This first one is easy.')
             time.sleep(1)
-            riddle = input('\nA Floating Black Cat: What is the best cheese in the entire world? ')
+            lightGray('> A Floating Black Cat: What is the best cheese in the entire world? ')
+            riddle = input('\nYour Answer: ')
             if riddle.lower() == 'camembert':
                 correct += 1
                 time.sleep(1)
-                lightGray('\nA Floating Black Cat: That\'s right! I\'m already missing Adrien\'s stash of cheese...')
+                lightGray('> A Floating Black Cat: That\'s right! I\'m already missing Adrien\'s stash of cheese...')
             elif riddle.lower() == 'cheddar' or riddle.lower() == 'swiss':
                 time.sleep(1)
-                lightGray('\nA Floating Black Cat: Pretty good options, but Camembert stays on top!')
+                lightGray('> A Floating Black Cat: Pretty good options, but Camembert stays on top!')
             else:
                 time.sleep(1)
-                lightGray('\nA Floating Black Cat: I can\'t believe you would say that, gross!')
+                lightGray('> A Floating Black Cat: I can\'t believe you would say that, gross!')
                 
             time.sleep(1)
-            lightGray('A Floating Black Cat: Now, onto the next question!')
+            lightGray('> A Floating Black Cat: Now, onto the next question!')
             time.sleep(1)
-            lightGray('A Floating Black Cat: No, no, wait! I haven\'t even introduced myself!')
+            lightGray('> A Floating Black Cat: No, no, wait! I haven\'t even introduced myself!')
             time.sleep(1)
-            lightGray('Plagg: I am Plagg, the one and ONLY kwami known for tilting the Leaning Tower of Pisa,')
+            lightGray('> Plagg: I am Plagg, the one and ONLY kwami known for tilting the Leaning Tower of Pisa,')
             time.sleep(1)
             lightGray('destroying the entirety of Atlantis, and driving the dinosaurs to extinction.')
             time.sleep(1)
-            lightGray('Plagg: Not a bad resume, right?')
+            lightGray('> Plagg: Not a bad resume, right?')
             time.sleep(1)
-            riddle = input('\nPlagg: Well then, what do you think I am the kwami of? ')
+            lightGray('> Plagg: Well then, what do you think I am the kwami of? ')
+            riddle = input('\nYour Answer: ')
             time.sleep(1)
             if riddle.lower() == 'destruction' or riddle.lower() == 'cataclysm' or riddle.lower() == 'bad luck':
                 correct += 1
-                lightGray('\nPlagg: Ooh, you\'ve been paying attention!')
+                lightGray('> Plagg: Ooh, you\'ve been paying attention!')
                 time.sleep(1)
             else:
-                lightGray('\nPlagg: Honestly, what is in your head? American cheese?')
+                lightGray('> Plagg: Honestly, what is in your head? American cheese?')
                 time.sleep(1)
             
-            lightGray('Plagg: Question number three, no hints this time though, only digits.')
+            lightGray('> Plagg: Question number three, no hints this time though, only digits.')
             time.sleep(1)
-            riddle = input('\nPlagg: What is the answer to everything? ')
+            lightGray('> Plagg: What is the answer to everything? ')
+            riddle = input('\nYour Answer: ')
             time.sleep(1)
             if riddle == '42':
                 correct += 1
-                lightGray('\nPlagg: Ding, ding, ding! You\'re correct!')
+                lightGray('> Plagg: Ding, ding, ding! You\'re correct!')
                 time.sleep(1)
-                lightGray('Plagg: I found that book on Adrien\'s desk, but it was actually pretty boring.')
+                lightGray('> Plagg: I found that book on Adrien\'s desk, but it was actually pretty boring.')
                 time.sleep(1)
                 if correct == 3:
                     time.sleep(1)
-                    lightGray('Tikki: Plagg! What are you doing?')
+                    lightGray('> Tikki: Plagg! What are you doing?')
                     time.sleep(1)
-                    lightGray('Plagg: Just entertaining myself, Sugarcube.')
+                    lightGray('> Plagg: Just entertaining myself, Sugarcube.')
                     time.sleep(1)
-                    lightGray(f'Tikki: Honestly... you\'re so immature. Leave {your_name} alone. And stop calling me that.')
+                    lightGray(f'> Tikki: Honestly... you\'re so immature. Leave {your_name} alone. And stop calling me that.')
                     time.sleep(1)
-                    lightGray('Plagg: Whatever you say, Sugarcube.')
+                    lightGray('> Plagg: Whatever you say, Sugarcube.')
                     time.sleep(1)
-                    lightGray('You gain 3 moves and lose 2 points.')
+                    lightGray('> You gain 3 moves and lose 2 points.')
                     visited_tikki_plagg = True
                 else:
                     time.sleep(1)
-                    lightGray('\nPlagg: Unfortunately, you didn\'t get all my questions right, so no prize for you.')
+                    lightGray('> Plagg: Unfortunately, you didn\'t get all my questions right, so no prize for you.')
                     time.sleep(1)
-                    lightGray('Plagg: Smell you later!')
+                    lightGray('\n> Plagg: Smell you later!')
             else:
                 time.sleep(1)
-                lightGray('\nPlagg: Too bad. Try again next time, buddy. I\'m going to find Adrien...')
+                lightGray('\n> Plagg: Too bad. Try again next time, buddy. I\'m going to find Adrien...')
+
 
 class NPC(Beings):
     """NPCs
@@ -278,58 +288,129 @@ class NPC(Beings):
 
     def dialogue(self) -> str:
         if self.name == 'Linda Shinx':
-            return [f'{your_name}: Wakey wakey, Linda! It\'s time for school!',
-            f'Linda Shinx: I\'m already awake if you couldn\'t already tell.',
-            f'{your_name}: Yeah, I can hear your Taylor Swift music from a mile away.',
-            f'Linda Shinx: Obviously. Think about the place where you first met me.',
-            f'{your_name}: Of course, in a concert. Anyways, can you help me remember what happened yesterday?',
-            f'Linda Shinx: Look who needs my help now~',
-            f'{your_name}: I\'m being serious, Linda. I have a terrible headache and my exam is today!',
-            f'Linda Shinx: Okay, okay, I hear you. Well, first things first, be sure to drink lots of water. Hydrate, or diedrate, y\'know?',
-            f'{your_name}: Drink water... Wait! I didn\'t see my water bottle in my room. Oh my gosh, do you think I lost it?!',
-            f'Linda Shinx: Silly {your_name}. You left it at Sid Smith!',
-            f'{your_name}: Thanks, bestie, I can always count on you. I better get going then!',
-            f'Linda Shinx: Adiós, {your_name}!']
+            return [f'> {your_name}: Wakey wakey, Linda! It\'s time for school!',
+            f'> Linda Shinx: I\'m already awake if you couldn\'t tell.',
+            f'> {your_name}: Yeah, I can hear your Taylor Swift music from a mile away.',
+            f'> Linda Shinx: Obviously. Think about the place where you first met me.',
+            f'> {your_name}: Of course, in a concert. Anyways, can you help me remember what happened yesterday?',
+            f'> Linda Shinx: Look who needs my help now~',
+            f'> {your_name}: I\'m being serious, Linda. I have a terrible headache and my exam is today!',
+            f'> Linda Shinx: Okay, okay, I hear you. Well, first things first, be sure to drink lots of water. Hydrate, or diedrate, y\'know?',
+            f'> {your_name}: Drink water... Wait! I didn\'t see my water bottle in my room. Oh my gosh, do you think I lost it?!',
+            f'> Linda Shinx: Silly {your_name}. You left it at Sid Smith!',
+            f'> {your_name}: Thanks, bestie, I can always count on you. I better get going then!',
+            f'> Linda Shinx: Adiós, {your_name}!']
 
         if self.name == 'Tommy Grieves':
-            return [f'{your_name}: Hey Tommy!',
-            f'Tommy Grieves: Oh hey, {your_name}. What\'s up?',
-            f'{your_name}: I\'m alright. Um, do you remember what happened last night?',
-            f'Tommy Grieves: Yeah. You went ham at the stationary bike last night. Kinda looked like you worked through A LOT of issues.',
-            f'{your_name}: Stationary bike... At the Athletic Centre?',
-            f'Tommy Grieves: Yeah, at the Athletic Centre. Are you hungover or something?',
-            f'{your_name}: No, long story. I\'ll tell you later. Did you see me leave something there?',
-            f'Tommy Grieves: I don\'t know, it was like 4AM when we left. You should go check it out.',
-            f'{your_name}: I would, but I don\'t have my TCard.',
-            f'Tommy Grieves: You can borrow my TCard if you want.',
-            f'{your_name}: Thanks! I\'ll return it to you later.']
+            return [f'> {your_name}: Hey Tommy!',
+            f'> Tommy Grieves: Oh hey, {your_name}. What\'s up?',
+            f'> {your_name}: I\'m alright. Um, do you remember what happened last night?',
+            f'> Tommy Grieves: Yeah. You went ham at the stationary bike last night. Kinda looked like you worked through A LOT of issues.',
+            f'> {your_name}: Stationary bike... At the Athletic Centre?',
+            f'> Tommy Grieves: Yeah, at the Athletic Centre. Are you hungover or something?',
+            f'> {your_name}: No, long story. I\'ll tell you later. Did you see me leave something there?',
+            f'> Tommy Grieves: I don\'t know, it was like 4AM when we left. You should go check it out.',
+            f'> {your_name}: I would, but I don\'t have my TCard.',
+            f'> Tommy Grieves: You can borrow my TCard if you want.',
+            f'> {your_name}: Thanks! I\'ll return it to you during dinner.']
 
         if self.name == 'Sadie Shaymin':
-            return [f'{your_name}: Morning Sadie!',
-            f'Sadie Shaymin: A purrfect day already, isn\'t it?',
-            f'{your_name}: ...Oookay.',
-            f'Sadie Shaymin: Rude. Anyway, how are you up right meow? I\'m paw-sitive that you ran off to work out after our study session at Graham.',
-            f'{your_name}: Graham Library?',
-            f'Sadie Shaymin: You feline good?',
-            f'{your_name}: ...',
-            f'Sadie Shaymin: Did you fur-get? It was a little cold last night, so we went to that fur-nace of a library. I think you started working on your cheat sheet or something?',
-            f'{your_name}: Oh, alright! See you later.',
-            f'Sadie Shaymin: Cat-ch you later!']
+            return [f'> {your_name}: Morning Sadie!',
+            f'> Sadie Shaymin: A purrfect day already, isn\'t it?',
+            f'> {your_name}: ...Oookay.',
+            f'> Sadie Shaymin: Rude. Anyway, how are you up right meow? I\'m paw-sitive that you ran off to work out after our study session at Graham.',
+            f'> {your_name}: Graham Library?',
+            f'> Sadie Shaymin: You feline good?',
+            f'> {your_name}: ...',
+            f'> Sadie Shaymin: Did you fur-get? It was a little cold last night, so we went to that fur-nace of a library. I think you started working on your cheat sheet or something?',
+            f'> {your_name}: Oh, alright! See you later.',
+            f'> Sadie Shaymin: Cat-ch you later!']
             
         if self.name == 'Davis Loo':
             return [f'{your_name}: Sup, Davis!',
-            f'Davis Loo: おはよう！(Good morning!)',
-            f'{your_name}: Practicing Japanese early, I see.',
-            f'Davis Loo: そうですね。(Indeed.)',
-            f'{your_name}: What have you been up to recently?',
-            f'Davis Loo: 今日はあさごはんを食べて、アニメを見ました。(Today I ate breakfast and watched anime.)',
-            f'{your_name}: Wow, you\'re suuuch a dilligent student.',
-            f'Davis Loo: いえ、いえ、私はよくない学生ですよ。(No, no, I\'m not a good student.)',
-            f'{your_name}: It was a joke... Anyways, can you remind me of what we were doing last night? I woke up with a massive headache...',
-            f'Davis Loo: ああ、ざんねん。きのうはオイゼで日本語をべんきょうしました。(Ahh, that\'s too bad. Yesterday we were studying Japanese at the OISE.)',
-            f'Davis Loo: おお！あなたはここにチートシートをわすれました。(Oh! You forgot your cheat sheet here.)',
-            f'{your_name}: Oh really? Thank you so much, I\'ll be on the look out!',
-            f'Davis Loo: はい、がんばってね！またね！ (Yes, good luck! See you!)']
+            f'> Davis Loo: おはよう！(Good morning!)',
+            f'> {your_name}: Practicing Japanese early, I see.',
+            f'> Davis Loo: そうですね。(Indeed.)',
+            f'> {your_name}: What have you been up to recently?',
+            f'> Davis Loo: 今日はあさごはんを食べて、アニメを見ました。(Today I ate breakfast and watched anime.)',
+            f'> {your_name}: Wow, you\'re suuuch a dilligent student.',
+            f'> Davis Loo: いえ、いえ、私はよくない学生ですよ。(No, no, I\'m not a good student.)',
+            f'> {your_name}: It was a joke... Anyways, can you remind me of what we were doing last night? I woke up with a massive headache...',
+            f'> Davis Loo: ああ、ざんねん。きのうはオイゼで日本語をべんきょうしました。(Ahh, that\'s too bad. Yesterday we were studying Japanese at the OISE.)',
+            f'> Davis Loo: おお！あなたはここにチートシートをわすれました。(Oh! You forgot your cheat sheet here.)',
+            f'> {your_name}: Oh really? Thank you so much, I\'ll be on the look out!',
+            f'> Davis Loo: はい、がんばってね！またね！ (Yes, good luck! See you!)']
+
+        if self.name == 'Marius Maximus Baddius III':
+            if visited_marius_maximus_baddius_iii == False:
+                lightGray('> A Strange Ghost: Oh... woe is me!')
+                lightGray(f'> {your_name}: Who are you?')
+                lightGray('> I... well, I am the one and only Marius Maximus Baddius the Third!')
+                lightGray(f'> {your_name}: I see...')
+                lightGray('> Marius Maximus Baddius III: Well, won\'t you inquire me of why I am lamenting at this hour?')
+                lightGray(f'> {your_name}: Uhh, before that, who - or rather what - are you?')
+                lightGray('> Marius Maximus Baddius III: My fellow friend, alas, I am a ghost. I hath lost all of my memories in the Great Fire.')
+                lightGray('> Marius Maximus Baddius III: All that is left of my pour soul is this rotting husk of a man. Oh! Woe is me! Woe is me!')
+                lightGray(f'> {your_name}: You\'re a ghost. Really. Then I\'m a bird.')
+                lightGray('> Marius Maximus Baddius III: \'Tis true, \'tis true! However, thyself is not a passerine.')
+                lightGray(f'> {your_name}: It was a joke...')
+                lightGray('> Marius Maximus Baddius III: Ugh, you insolent child! \'Tis not a joking matter!')
+                lightGray('> Marius Maximus Baddius III: Thou needest to assist me. I must regain my memories... so that I can rise to the heavens at last.')
+                lightGray(f'> {your_name}: And what\'s in it for me?')
+                lightGray('> Marius Maximus Baddius III: Oh, dear child, there are many accolades one may receive from serving me.')
+                lightGray('> Marius Maximus Baddius III: Thou shall not leave unsatisfied. You have my word.')
+                lightGray(f'> {your_name}: Now we\'re talking!')
+                lightGray('> Marius Maximus Baddius III: Now then, dear child, if thy chooses to aid myself, thou shaltt need to remind me of my past through the possessions that I hath lost.')
+                lightGray('> Marius Maximus Baddius III: Make haste!')
+                p.moves += 15
+                visited_marius_maximus_baddius_iii = True
+            else:
+                lightGray('> Marius Maximus Baddius III: Have you been able to find any of my missing possessions? (yes/no)')
+                response = input('Your Answer: ')
+                if response.lower() == 'yes':
+                    if 'Pocket Watch' in p.inventory:
+                        lightGray('> Marius Maximus Baddius III: A... A pocket watch? It looks familiar, but I can\'t quite put my finger on it.')
+                        return_pocketwatch = ''
+                        while return_pocketwatch != 'yes':
+                            lightGray('> Marius Maximus Baddius III: Could you give it to me so I could inspect it further? (yes/no)')
+                            return_pocketwatch = input('Your Answer: ')
+                        lightGray('Marius shuts his eyes and frowns.')
+                        lightGray('> Marius Maximus Baddius III: I can envision a sight like I am right there, right now.')
+                        lightGray('> Marius Maximus Baddius III: \'Twas the 14th of February in the year of our Lord 1890.')
+                        lightGray(f'> {your_name}: That was the Great Fire of UC!')
+                        lightGray('> Marius Maximus Baddius III: Perhaps. Now quiet, child, and let me speak.')
+                        lightGray('> Marius Maximus Baddius III: It was... in the afternoon, I presume.')
+                        lightGray('> Marius Maximus Baddius III: A woman...? I remember...')
+                        lightGray('> Marius Maximus Baddius III: Apologies. I seem to have forgotten.')
+                    if 'Pocket Mirror' in p.inventory:
+                        lightGray('> Marius Maximus Baddius III: A small mirror? I haven\'t seen my reflection in decades...')
+                        return_pocketmirror = ''
+                        while return_pocketmirror != 'yes':
+                            lightGray('> Marius Maximus Baddius III: Pray, may you lend me that mirror in your hand? (yes/no)')
+                            return_pocketmirror = input('Your Answer: ')
+                        
+                    if 'Handkerchief' in p.inventory:
+                        lightGray('> Marius Maximus Baddius III: Why does that handkerchief have my initials on them?')
+                        return_handkerchief = ''
+                        while return_handkerchief != 'yes':
+                            lightGray('> Marius Maximus Baddius III: Could I borrow that from you for a moment?')
+                            return_handkerchief = input('Your Answer: ')
+                    if 'Handkerchief' not in p.inventory and 'Pocket Mirror' not in p.inventory and 'Pocket Watch' not in p.inventory:
+                        if p.inventory == []:
+                            return '> Marius Maximus Baddius III: I cannot see anything in your hands. Could you please get my possessions for me?'
+                        else:
+                            return '> Marius Maximus Baddius III: Hmm... I don\'t seem to recall  any of the items that you\'re holding. Maybe my possessions are somewhere else?'
+                else:
+                    return '> Marius Maximus Baddius III: Oh... Could you please go and find them for me?'
+                        
+                        
+
+                    # if 'Pocket Watch' in p.inventory and 'Pocket Mirror' in p.inventory and 'Handkerchief' in p.inventory:
+                    #     return ['Splendid! Now then, would you be able to give them all back to me?']
+                    # else:
+                    #     return ['Unfortunately, I cannot see my possessions on your person. Would you kindly go and fetch them for me?']
+                else:
+                    return ['']
 
 
 def do_action(w: World, p: Player, location: Location, choice: str) -> None:
@@ -347,55 +428,55 @@ def do_action(w: World, p: Player, location: Location, choice: str) -> None:
 
 # COLORS FUNCTIONS
 def bold(skk):
-    print("\033[1m {}\033[00m" .format(skk))
+    print("\033[1m{}\033[0m\r".format(skk))
 
 def black(skk):
-    print("\033[30m {}\033[00m" .format(skk))
+    print("\033[30m{}\033[0m\r".format(skk))
 
 def darkRed(skk):
-    print("\033[31m {}\033[00m" .format(skk))
+    print("\033[31m{}\033[0m\r".format(skk))
 
 def darkGreen(skk):
-    print("\033[32m {}\033[00m" .format(skk))
+    print("\033[32m{}\033[0m\r".format(skk))
 
 def darkYellow(skk):
-    print("\033[33m {}\033[00m" .format(skk))
+    print("\033[33m{}\033[0m\r".format(skk))
 
 def darkBlue(skk):
-    print("\033[34m {}\033[00m" .format(skk))
+    print("\033[34m{}\033[0m\r".format(skk))
 
 def darkMagenta(skk):
-    print("\033[35m {}\033[00m" .format(skk))
+    print("\033[35m{}\033[0m\r".format(skk))
 
 def darkCyan(skk):
-    print("\033[36m {}\033[00m" .format(skk))
+    print("\033[36m{}\033[0m\r".format(skk))
 
 def lightGray(skk):
-    print("\033[37m {}\033[00m" .format(skk))
+    print("\033[37m{}\033[0m".format(skk))
 
 def darkGray(skk):
-    print("\033[90m {}\033[00m" .format(skk))
+    print("\033[90m{}\033[0m\r".format(skk))
 
 def red(skk):
-    print("\033[1;91m {}\033[00m" .format(skk))
+    print("\033[1;91m{}\033[0m\r".format(skk))
 
 def green(skk):
-    print("\033[92m {}\033[00m" .format(skk))
+    print("\033[92m{}\033[0m\r".format(skk))
 
 def yellow(skk):
-    print("\033[93m {}\033[00m" .format(skk))
+    print("\033[93m{}\033[0m\r".format(skk))
 
 def blue(skk):
-    print("\033[94m {}\033[00m" .format(skk))
+    print("\033[94m{}\033[0m\r".format(skk))
 
 def magenta(skk):
-    print("\033[95m {}\033[00m" .format(skk))
+    print("\033[95m{}\033[0m\r".format(skk))
 
 def cyan(skk):
-    print("\033[1;96m {}\033[00m" .format(skk))
+    print("\033[1;96m{}\033[0m\r".format(skk))
 
 def white(skk):
-    print("\033[1;97m {}\033[00m" .format(skk))
+    print("\033[1;97m{}\033[0m\r".format(skk))
 
 bold("This is bold.")
 black("This is black.")
@@ -472,9 +553,12 @@ if __name__ == "__main__":
         # ROBARTS LIBRARY SCPs
         if loc == 10:
             print('\nThere are unknown entities in this location.')
+            time.sleep(1)
             selection = input('\nWould you like to explore? (yes/no) ')
+            time.sleep(1)
             if selection.lower() == 'yes':
                 door = input("\nChoose a number from 1 to 5: ")
+                time.sleep(1)
                 if door == '1':
                     if visited_negativity_room == False:
                         lst = room_of_negativity.puzzle()
@@ -486,6 +570,7 @@ if __name__ == "__main__":
                         visited_negativity_room = True
                     else:
                         lightGray("You try pulling on the door with all your might, but you can\'t seem to open it.")
+                        time.sleep(1)
                 if door == '2':
                     if visited_purple_guy == False:
                         lst = purple_guy.puzzle()
@@ -497,17 +582,19 @@ if __name__ == "__main__":
                         visited_purple_guy = True
                     else:
                         lightGray("The second your hand touches the doorknob, flashbacks of your last encounter in this room flood your mind. You barely escaped last time, so why try again?")
+                        time.sleep(1)
                 if door == '3':
                     if visited_connor == False:
-                        if connor.puzzle() == 'Congrats, you have answered correctly. You will receive 5 extra moves and 5 points.':
+                        if connor.puzzle() == True:
                             moves += 5
                             p.score += 5
                         else:
-                            move -= 1
+                            moves -= 1
                             p.score -= 3
                         visited_connor = True
                     else:
                         lightGray("You open the door. Connor just shakes his and closes it back.")
+                        time.sleep(1)
                 if door == '4':
                     if visited_tiffany == False:
                         lst = tiffany.puzzle()
@@ -517,7 +604,8 @@ if __name__ == "__main__":
                         moves += 5
                         visited_tiffany = True
                     else:
-                        lightGray("You peak through the peephole and see that Tiffany is still busy with his chips. You\'d rather not disturb him.")
+                        lightGray("You peek through the peephole and see that Tiffany is still busy with his chips. You\'d rather not disturb him.")
+                        time.sleep(1)
                 if door == '5':
                     if visited_tikki_plagg == False:
                         tikki_plagg.puzzle()
@@ -525,13 +613,17 @@ if __name__ == "__main__":
                         p.score -= 2
                     else:
                         lightGray("Plagg and Tikki are probably still at Adrien\'s place because you don't see either of them in the room.")
+                        time.sleep(1)
 
         # ROBARTS COMMONS SCPs
         if loc == 13:
             print('\nThere are unknown entities in this location.')
+            time.sleep(1)
             selection = input('\nWould you like to explore? (yes/no) ')
+            time.sleep(1)
             if selection.lower() == 'yes':
                 door = input("\nChoose a number from 1 to 3: ")
+                time.sleep(1)
                 if door == '1':
                     if visited_bumbly_mia == False:
                         lst = bumbly_mia.puzzle()
@@ -543,6 +635,7 @@ if __name__ == "__main__":
                         visited_bumbly_mia = True
                     else:
                         lightGray("You walk in. Bumbly and Mia are nowhere to be seen.")
+                        time.sleep(1)
                 if door == '2':
                     if visited_kyoko_tomoyo_pocoyo == False:
                         lst = kyoko_tomoyo_pocoyo.puzzle()
@@ -553,6 +646,7 @@ if __name__ == "__main__":
                         visited_kyoko_tomoyo_pocoyo = True
                     else:
                         lightGray("You walk in. One of the volunteers asks you to leave due to the one visit per person policy.")
+                        time.sleep(1)
                 if door == '3':
                     if visited_chirly == False:
                         lst = chirly.puzzle()
@@ -564,23 +658,24 @@ if __name__ == "__main__":
                         visited_chirly = True
                     else:
                         lightGray("You walk in. The room is empty. Seems like Chirly flew away.")
+                        time.sleep(1)
 
         # DISPLAY OPTIONS
         time.sleep(1)
-        white("\nWhat to do? \n")
+        white("\nWhat to do?")
         time.sleep(1)
         green("- [MENU]")
         green("- North\n- South\n- West\n- East") # TODO: fix the spacing
         time.sleep(1)
-        choice = input("\nEnter action: ")
+        choice = input("\nEnter Action: ")
 
         # MENU
         if choice.lower() == "[menu]":
-            white("\nWhat to do? \n")
+            white("\nWhat to do?")
             time.sleep(1)
             for option in menu:
-                green(option)
-            choice = input("\nChoose action: ")
+                green("- " + option.title())
+            choice = input("\nChoose Action: ")
         
         # CARDINAL DIRECTIONS
         if choice.lower() == "north" or choice.lower() == "south" or choice.lower() == "east" or choice.lower() == "west":
@@ -632,7 +727,7 @@ if __name__ == "__main__":
             
                 white("\nWhich item do you want to grab?")
                 time.sleep(1)
-                choice = input("\nChoose item: ")
+                choice = input("\nChoose Item: ")
                 temp_items = []
                 
                 for item in curr_items:
@@ -667,7 +762,7 @@ if __name__ == "__main__":
             
                 white("\nWhich item do you want to drop?")
                 time.sleep(1)
-                choice = input("\nChoose item: ")
+                choice = input("\nChoose Item: ")
                 temp_items = []
                 
                 for item in curr_items:
@@ -710,17 +805,17 @@ if __name__ == "__main__":
                 for text in lst:
                     lightGray(text)
                     time.sleep(2)
-            if loc == 9:
+            elif loc == 9:
                 lst = tommy_grieves.dialogue()
                 for text in lst:
                     lightGray(text)
                     time.sleep(2)
-            if loc == 15:
+            elif loc == 15:
                 lst = sadie_shaymin.dialogue()
                 for text in lst:
                     lightGray(text)
                     time.sleep(2)
-            if loc == 16:
+            elif loc == 16:
                 lst = davis_loo.dialogue()
                 for text in lst:
                     lightGray(text)
