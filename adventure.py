@@ -388,6 +388,13 @@ class NPC(Beings):
                         while return_pocketmirror != 'yes':
                             lightGray('> Marius Maximus Baddius III: Pray, may you lend me that mirror in your hand? (yes/no)')
                             return_pocketmirror = input('Your Answer: ')
+                        lightGray('Marius looks at the mirror and admires his reflection. Suddenly, the image begins to shift.')
+                        lightGray('> Marius Maximus Baddius III: That face... The woman looks familiar...')
+                        lightGray('> Marius Maximus Baddius III: ...Both women look familiar.')
+                        lightGray('> Marius Maximus Baddius III: My Francesca? Why did she leave?')
+                        lightGray('> Marius Maximus Baddius III: And is that... Bernice Sougher? What is she doing here?!')
+                        lightGray('> Marius Maximus Baddius III: ...Oh')
+                        lightGray('The image disappears.')
                         
                     if 'Handkerchief' in p.inventory:
                         lightGray('> Marius Maximus Baddius III: Why does that handkerchief have my initials on them?')
@@ -409,8 +416,6 @@ class NPC(Beings):
                     #     return ['Splendid! Now then, would you be able to give them all back to me?']
                     # else:
                     #     return ['Unfortunately, I cannot see my possessions on your person. Would you kindly go and fetch them for me?']
-                else:
-                    return ['']
 
 
 def do_action(w: World, p: Player, location: Location, choice: str) -> None:
