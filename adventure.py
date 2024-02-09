@@ -19,10 +19,14 @@ This file is Copyright (c) 2024 CSC111 Teaching Team
 """
 
 # Note: You may add in other import statements here as needed
+from os import environ
+environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 from game_data import World, Item, Location, Player
 import time
-from typing import Optional
-import playsound
+from typing import Optional, Any
+import pygame
+pygame.init()
+pygame.mixer.init()
 
 # Note: You may add helper functions, classes, etc. here as needed
 places = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 0, 15: 0, 16: 0, 17: 0, 18: 0}
@@ -38,6 +42,10 @@ sheet_drop = False
 pen_grab = False
 pen_drop = False
 
+visited_linda = False
+visited_tommy = False
+visited_davis = False
+visited_sadie = False
 visited_bumbly_mia = False
 visited_kyoko_tomoyo_pocoyo = False
 visited_chirly = False
@@ -47,6 +55,7 @@ visited_connor = False
 visited_tiffany = False
 visited_tikki_plagg = False
 visited_marius_maximus_baddius_iii = False
+found_items = False
 
 
 class Beings:
@@ -95,7 +104,7 @@ class SCP(Beings):
         self.curr_pos = curr_pos
         self.points = points
 
-    def puzzle(self) -> str:
+    def puzzle(self) -> Any:
         if self.name == 'Bumbly and Mia':
             return ['> You hear quite a commotion as you walk into the room.',
             '> Two dogs greet you: one is a large and fluffy Samoyed, and the other is a small and soft Keeshond.',
@@ -138,7 +147,7 @@ class SCP(Beings):
             '> You look down at your feet feeling a pang in your heart.',
             '> An Ominous Voice: Oh no! You\'re devastated! Do you need a little huggy-wuggy from mommy? Do you need a kissy-missy to make you feel better?',
             '> An Ominous Voice: Anyway, I\'ve had enough of you for a lifetime. Get out of my house!',
-            '> You lose 5 points and 1 move.']
+            '> You lose 1 move and 5 points.']
             
         if self.name == 'Purple Guy':
             return ['> You walk into an ominous room with a broken sign reading \"Freddy Fazbear\'s Pizzeria\".',
@@ -158,28 +167,34 @@ class SCP(Beings):
             '> However, just before he was able to catch up, you heard a thud.',
             '> Upon turning around, the terrifying sight of a springlocked human amalgamation plastered your mind.',
             '> All you could hear was a faint \"I always come back\" as you waddled away in your new suit.',
-            '> You lost 3 points and 3 moves. Tip: Try to not get stuffed into an animatronic suit next time.']
+            '> You lose 3 moves and 3 points. Tip: Try to not get stuffed into an animatronic suit next time.']
         
         if self.name == 'Connor':
             correct = False
-            lightGray('> My name is Connor. I\'m the android sent by CyberLife to test your intelligence.')
-            time.sleep(1)
-            lightGray('> If you answer my riddle correctly, you shall receive a reward.')
-            time.sleep(1)
-            lightGray('> Answer incorrectly and you shall be penalized.')
-            time.sleep(1)
-            lightGray('> Finish this quote: An eye for an eye and the whole world goes _.')
+            lightGray('> Connor: My name is Connor. I\'m the android sent by CyberLife to test your intelligence.')
+            time.sleep(2)
+            lightGray('> Connor: If you answer my riddle correctly, you shall receive a reward.')
+            time.sleep(2)
+            lightGray('> Connor: Answer incorrectly and you shall be penalized.')
+            time.sleep(2)
+            lightGray('> Connor: Finish this quote: An eye for an eye and the whole world goes _.')
+            time.sleep(2)
             for i in range(0, 3):
-                time.sleep(1)
-                answer = input('\nYour Answer: ')
+                answer = input('\033[1;97m\nYour Answer: \033[0m')
+                time.sleep(2)
                 if answer.lower() == 'blind':
                     correct = True
-                    lightGray('> Congrats, you have answered correctly. You will receive 5 extra moves and 5 points.')
+                    lightGray('> Connor: Congrats, you have answered correctly.')
+                    time.sleep(2)
+                    lightGray('> You gain 5 moves and 5 points!')
                     return True
                 else:
-                    lightGray('> Your guess was incorrect, please try again.')
+                    lightGray('> Connor: Your guess was incorrect, please try again.')
+                    time.sleep(2)
             if correct == False:
-                lightGray('> You were unable to answer it correctly. You lose 1 move and 3 points.')
+                lightGray('> Connor: You were unable to answer it correctly.')
+                time.sleep(2)
+                lightGray('> You lose 1 move and 3 points.')
                 return False
             
         if self.name == 'Tiffany':
@@ -194,87 +209,93 @@ class SCP(Beings):
             f'> {your_name}: No thanks, not right now. I gotta get going.',
             '> Tiffany nods at you and waves.',
             '> Tiffany: I take a potato chip. AND EAT IT!',
-            '> You gain 5 moves.']
+            '> You gain 5 moves!']
             
         if self.name == 'Tikki and Plagg':
             global visited_tikki_plagg
             correct = 0
             lightGray('> A Floating Black Cat: Well hello there, human, ya got any Camembert on you?')
-            time.sleep(1)
+            time.sleep(2)
             lightGray('> A Floating Black Cat: Neverminddd, I can already smell your lack of taste for cheese.')
-            time.sleep(1)
+            time.sleep(2)
             lightGray('> A Floating Black Cat: Well since Tikki is probably overendulging on Galettes, how about you entertain me?')
-            time.sleep(1)
+            time.sleep(2)
             lightGray('> A Floating Black Cat: I\'ll give you three questions and if you answer all of them right, then you\'ll get some stinky rewards, haha!')
-            time.sleep(1)
+            time.sleep(2)
             lightGray('> A Floating Black Cat: This first one is easy.')
-            time.sleep(1)
+            time.sleep(2)
             lightGray('> A Floating Black Cat: What is the best cheese in the entire world? ')
-            riddle = input('\nYour Answer: ')
+            time.sleep(2)
+            riddle = input('\033[1;97m\nYour Answer: \033[0m')
             if riddle.lower() == 'camembert':
                 correct += 1
-                time.sleep(1)
+                time.sleep(2)
                 lightGray('> A Floating Black Cat: That\'s right! I\'m already missing Adrien\'s stash of cheese...')
             elif riddle.lower() == 'cheddar' or riddle.lower() == 'swiss':
-                time.sleep(1)
+                time.sleep(2)
                 lightGray('> A Floating Black Cat: Pretty good options, but Camembert stays on top!')
             else:
-                time.sleep(1)
+                time.sleep(2)
                 lightGray('> A Floating Black Cat: I can\'t believe you would say that, gross!')
                 
-            time.sleep(1)
+            time.sleep(2)
             lightGray('> A Floating Black Cat: Now, onto the next question!')
-            time.sleep(1)
+            time.sleep(2)
             lightGray('> A Floating Black Cat: No, no, wait! I haven\'t even introduced myself!')
-            time.sleep(1)
+            time.sleep(2)
             lightGray('> Plagg: I am Plagg, the one and ONLY kwami known for tilting the Leaning Tower of Pisa,')
-            time.sleep(1)
+            time.sleep(2)
             lightGray('destroying the entirety of Atlantis, and driving the dinosaurs to extinction.')
-            time.sleep(1)
+            time.sleep(2)
             lightGray('> Plagg: Not a bad resume, right?')
-            time.sleep(1)
-            lightGray('> Plagg: Well then, what do you think I am the kwami of? ')
-            riddle = input('\nYour Answer: ')
-            time.sleep(1)
+            time.sleep(2)
+            lightGray('> Plagg: Well then, what do you think I am the kwami of?')
+            time.sleep(2)
+            riddle = input('\033[1;97m\nYour Answer: \033[0m')
+            time.sleep(2)
             if riddle.lower() == 'destruction' or riddle.lower() == 'cataclysm' or riddle.lower() == 'bad luck':
                 correct += 1
                 lightGray('> Plagg: Ooh, you\'ve been paying attention!')
-                time.sleep(1)
+                time.sleep(2)
             else:
                 lightGray('> Plagg: Honestly, what is in your head? American cheese?')
-                time.sleep(1)
+                time.sleep(2)
             
             lightGray('> Plagg: Question number three, no hints this time though, only digits.')
-            time.sleep(1)
-            lightGray('> Plagg: What is the answer to everything? ')
-            riddle = input('\nYour Answer: ')
-            time.sleep(1)
+            time.sleep(2)
+            lightGray('> Plagg: What is the answer to everything?')
+            time.sleep(2)
+            riddle = input('\033[1;97m\nYour Answer: \033[0m')
+            time.sleep(2)
             if riddle == '42':
                 correct += 1
                 lightGray('> Plagg: Ding, ding, ding! You\'re correct!')
-                time.sleep(1)
+                time.sleep(2)
                 lightGray('> Plagg: I found that book on Adrien\'s desk, but it was actually pretty boring.')
-                time.sleep(1)
+                time.sleep(2)
                 if correct == 3:
-                    time.sleep(1)
+                    time.sleep(2)
                     lightGray('> Tikki: Plagg! What are you doing?')
-                    time.sleep(1)
+                    time.sleep(2)
                     lightGray('> Plagg: Just entertaining myself, Sugarcube.')
-                    time.sleep(1)
+                    time.sleep(2)
                     lightGray(f'> Tikki: Honestly... you\'re so immature. Leave {your_name} alone. And stop calling me that.')
-                    time.sleep(1)
+                    time.sleep(2)
                     lightGray('> Plagg: Whatever you say, Sugarcube.')
-                    time.sleep(1)
+                    time.sleep(2)
                     lightGray('> You gain 3 moves and lose 2 points.')
                     visited_tikki_plagg = True
+                    return True
                 else:
-                    time.sleep(1)
+                    time.sleep(2)
                     lightGray('> Plagg: Unfortunately, you didn\'t get all my questions right, so no prize for you.')
-                    time.sleep(1)
+                    time.sleep(2)
                     lightGray('\n> Plagg: Smell you later!')
+                    return False
             else:
-                time.sleep(1)
+                time.sleep(2)
                 lightGray('\n> Plagg: Too bad. Try again next time, buddy. I\'m going to find Adrien...')
+                return False
 
 
 class NPC(Beings):
@@ -300,6 +321,8 @@ class NPC(Beings):
 
     def dialogue(self) -> str:
         if self.name == 'Linda Shinx':
+            global visited_linda
+            visited_linda = True
             return [f'> {your_name}: Wakey wakey, Linda! It\'s time for school!',
             f'> Linda Shinx: I\'m already awake if you couldn\'t tell.',
             f'> {your_name}: Yeah, I can hear your Taylor Swift music from a mile away.',
@@ -311,9 +334,12 @@ class NPC(Beings):
             f'> {your_name}: Drink water... Wait! I didn\'t see my water bottle in my room. Oh my gosh, do you think I lost it?!',
             f'> Linda Shinx: Silly {your_name}. You left it at Sid Smith!',
             f'> {your_name}: Thanks, bestie, I can always count on you. I better get going then!',
-            f'> Linda Shinx: Adiós, {your_name}!']
+            f'> Linda Shinx: Adiós, {your_name}!',
+            f'> You gain 2 moves and 5 points!']
 
         if self.name == 'Tommy Grieves':
+            global visited_tommy
+            visited_tommy = True
             return [f'> {your_name}: Hey Tommy!',
             f'> Tommy Grieves: Oh hey, {your_name}. What\'s up?',
             f'> {your_name}: I\'m alright. Um, do you remember what happened last night?',
@@ -324,9 +350,12 @@ class NPC(Beings):
             f'> Tommy Grieves: I don\'t know, it was like 4AM when we left. You should go check it out.',
             f'> {your_name}: I would, but I don\'t have my TCard.',
             f'> Tommy Grieves: You can borrow my TCard if you want.',
-            f'> {your_name}: Thanks! I\'ll return it to you during dinner.']
+            f'> {your_name}: Thanks! I\'ll return it to you during dinner.',
+            f'> You gain 2 moves and 9 points!']
 
         if self.name == 'Sadie Shaymin':
+            global visited_sadie
+            visited_sadie = True
             return [f'> {your_name}: Morning Sadie!',
             f'> Sadie Shaymin: A purrfect day already, isn\'t it?',
             f'> {your_name}: ...Oookay.',
@@ -336,9 +365,12 @@ class NPC(Beings):
             f'> {your_name}: ...',
             f'> Sadie Shaymin: Did you fur-get? It was a little cold last night, so we went to that fur-nace of a library. I think you started working on your cheat sheet or something?',
             f'> {your_name}: Oh, alright! See you later.',
-            f'> Sadie Shaymin: Cat-ch you later!']
+            f'> Sadie Shaymin: Cat-ch you later!',
+            f'> You gain 2 moves and 16 points!']
             
         if self.name == 'Davis Loo':
+            global visited_davis
+            visited_davis = True
             return [f'{your_name}: Sup, Davis!',
             f'> Davis Loo: おはよう！(Good morning!)',
             f'> {your_name}: Practicing Japanese early, I see.',
@@ -351,69 +383,117 @@ class NPC(Beings):
             f'> Davis Loo: ああ、ざんねん。きのうはオイゼで日本語をべんきょうしました。(Ahh, that\'s too bad. Yesterday we were studying Japanese at the OISE.)',
             f'> Davis Loo: おお！あなたはここにチートシートをわすれました。(Oh! You forgot your cheat sheet here.)',
             f'> {your_name}: Oh really? Thank you so much, I\'ll be on the look out!',
-            f'> Davis Loo: はい、がんばってね！またね！ (Yes, good luck! See you!)']
+            f'> Davis Loo: はい、がんばってね！またね！ (Yes, good luck! See you!)',
+            f'> You gain 2 moves and 16 points!']
 
         if self.name == 'Marius Maximus Baddius III':
             if visited_marius_maximus_baddius_iii == False:
                 lightGray('> A Strange Ghost: Oh... woe is me!')
+                time.sleep(2)
                 lightGray(f'> {your_name}: Who are you?')
+                time.sleep(2)
                 lightGray('> I... well, I am the one and only Marius Maximus Baddius the Third!')
+                time.sleep(2)
                 lightGray(f'> {your_name}: I see...')
+                time.sleep(2)
                 lightGray('> Marius Maximus Baddius III: Well, won\'t you inquire me of why I am lamenting at this hour?')
+                time.sleep(2)
                 lightGray(f'> {your_name}: Uhh, before that, who - or rather what - are you?')
+                time.sleep(2)
                 lightGray('> Marius Maximus Baddius III: My fellow friend, alas, I am a ghost. I hath lost all of my memories in the Great Fire.')
+                time.sleep(2)
                 lightGray('> Marius Maximus Baddius III: All that is left of my pour soul is this rotting husk of a man. Oh! Woe is me! Woe is me!')
+                time.sleep(2)
                 lightGray(f'> {your_name}: You\'re a ghost. Really. Then I\'m a bird.')
+                time.sleep(2)
                 lightGray('> Marius Maximus Baddius III: \'Tis true, \'tis true! However, thyself is not a passerine.')
+                time.sleep(2)
                 lightGray(f'> {your_name}: It was a joke...')
+                time.sleep(2)
                 lightGray('> Marius Maximus Baddius III: Ugh, you insolent child! \'Tis not a joking matter!')
+                time.sleep(2)
                 lightGray('> Marius Maximus Baddius III: Thou needest to assist me. I must regain my memories... so that I can rise to the heavens at last.')
+                time.sleep(2)
                 lightGray(f'> {your_name}: And what\'s in it for me?')
+                time.sleep(2)
                 lightGray('> Marius Maximus Baddius III: Oh, dear child, there are many accolades one may receive from serving me.')
+                time.sleep(2)
                 lightGray('> Marius Maximus Baddius III: Thou shall not leave unsatisfied. You have my word.')
+                time.sleep(2)
                 lightGray(f'> {your_name}: Now we\'re talking!')
+                time.sleep(2)
                 lightGray('> Marius Maximus Baddius III: Now then, dear child, if thy chooses to aid myself, thou shaltt need to remind me of my past through the possessions that I hath lost.')
+                time.sleep(2)
                 lightGray('> Marius Maximus Baddius III: Make haste!')
+                time.sleep(2)
+                lightGray('> You gain 15 moves!')
                 p.moves += 15
                 visited_marius_maximus_baddius_iii = True
-            else:
+                
+            elif found_items == False:
                 lightGray('> Marius Maximus Baddius III: Have you been able to find any of my missing possessions? (yes/no)')
-                response = input('Your Answer: ')
+                time.sleep(2)
+                response = input('\033[1;97m\nYour Answer: \033[0m')
+                time.sleep(2)
                 if response.lower() == 'yes':
                     if 'Pocket Watch' in p.inventory:
                         lightGray('> Marius Maximus Baddius III: A... A pocket watch? It looks familiar, but I can\'t quite put my finger on it.')
+                        time.sleep(2)
                         return_pocketwatch = ''
                         while return_pocketwatch != 'yes':
                             lightGray('> Marius Maximus Baddius III: Could you give it to me so I could inspect it further? (yes/no)')
-                            return_pocketwatch = input('Your Answer: ')
+                            time.sleep(2)
+                            return_pocketwatch = input('\033[1;97m\nYour Answer: \033[0m')
+                            time.sleep(2)
                         lightGray('> Marius shuts his eyes and frowns.')
+                        time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: I can envision a sight like I am right there, right now.')
+                        time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: \'Twas the 14th of February in the year of our Lord 1890.')
+                        time.sleep(2)
                         lightGray(f'> {your_name}: That was the Great Fire of UC!')
+                        time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: Perhaps. Now quiet, child, and let me speak.')
+                        time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: It was... in the afternoon, I presume.')
+                        time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: A woman...? I remember...')
+                        time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: Apologies. I seem to have forgotten.')
+
                     if 'Pocket Mirror' in p.inventory:
                         lightGray('> Marius Maximus Baddius III: A small mirror? I haven\'t seen my reflection in decades...')
+                        time.sleep(2)
                         return_pocketmirror = ''
                         while return_pocketmirror != 'yes':
                             lightGray('> Marius Maximus Baddius III: Pray, may you lend me that mirror in your hand? (yes/no)')
-                            return_pocketmirror = input('Your Answer: ')
+                            time.sleep(2)
+                            return_pocketmirror = input('\033[1;97m\nYour Answer: \033[0m')
+                            time.sleep(2)
                         lightGray('> Marius looks at the mirror and admires his reflection. Suddenly, the image begins to shift.')
+                        time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: That face... The woman looks familiar...')
+                        time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: ...Both women look familiar.')
+                        time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: My Francesca? Why did she leave?')
+                        time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: And is that... Bernice Sougher? What is she doing here?!')
+                        time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: ...Oh')
+                        time.sleep(2)
                         lightGray('> The image disappears.')
                         
                     if 'Handkerchief' in p.inventory:
                         lightGray('> Marius Maximus Baddius III: Why does that handkerchief have my initials on them?')
+                        time.sleep(2)
                         return_handkerchief = ''
                         while return_handkerchief != 'yes':
                             lightGray('> Marius Maximus Baddius III: Could I borrow that from you for a moment?')
-                            return_handkerchief = input('Your Answer: ')
+                            time.sleep(2)
+                            return_handkerchief = input('\033[1;97m\nYour Answer: \033[0m')
+                            time.sleep(2)
+
                     if 'Handkerchief' not in p.inventory and 'Pocket Mirror' not in p.inventory and 'Pocket Watch' not in p.inventory:
                         if p.inventory == []:
                             return '> Marius Maximus Baddius III: I cannot see anything in your hands. Could you please get my possessions for me?'
@@ -422,12 +502,13 @@ class NPC(Beings):
                 else:
                     return '> Marius Maximus Baddius III: Oh... Could you please go and find them for me?'
                         
-                        
-
                     # if 'Pocket Watch' in p.inventory and 'Pocket Mirror' in p.inventory and 'Handkerchief' in p.inventory:
                     #     return ['Splendid! Now then, would you be able to give them all back to me?']
                     # else:
                     #     return ['Unfortunately, I cannot see my possessions on your person. Would you kindly go and fetch them for me?']
+            else:
+                lightGray('> You gain 10 moves and 50 points!')
+                return # this is for when you talk to him again after helping
 
 
 def do_action(w: World, p: Player, location: Location, choice: str) -> None:
@@ -524,6 +605,7 @@ if __name__ == "__main__":
     tommy_grieves = NPC("Tommy Grieves", 9, 2)
     sadie_shaymin = NPC("Sadie Shaymin", 15, 2)
     davis_loo = NPC("Davis Loo", 16, 2)
+    marius_maximus_baddius_iii = NPC("Marius Maximus Baddius III", 50, 10)
 
     bumbly_mia = SCP("Bumbly and Mia", 13, 5, 5)
     kyoko_tomoyo_pocoyo = SCP("Kyoko, Tomoyo, and Pocoyo", 13, 0, -3)
@@ -542,11 +624,14 @@ if __name__ == "__main__":
     moves = 0
 
     # START GAME
+    pygame.mixer.music.load("kahoot.mp3")
+    pygame.mixer.music.set_volume(0.07)
+    pygame.mixer.music.play(loops=-1, start=0.7)
     time.sleep(1)
-    your_name = input("Enter your name: ")
+    your_name = input("\033[1;97m\nEnter your name: \033[0m")
     time.sleep(1)
     white(f'\nHello, {your_name}! Welcome to the Amazing Digital Adventure. Press menu to get a list of commands that you can call at any time. You are able to move in all four directions too (if the location permits).')
-    time.sleep(2)
+    time.sleep(1)
 
     while not p.victory and not p.quit and moves < 40: # decide the number of moves later
         location = w.get_location(p.x, p.y)
@@ -565,69 +650,99 @@ if __name__ == "__main__":
             time.sleep(1)
         else:
             lightGray(location.long)
-            time.sleep(2)
+            time.sleep(1)
 
         # ROBARTS LIBRARY SCPs
         if loc == 10:
             print('\nThere are unknown entities in this location.')
             time.sleep(1)
-            selection = input('\nWould you like to explore? (yes/no) ')
+            selection = input('\033[1;97m\nWould you like to explore? (yes/no) \033[0m')
             time.sleep(1)
             if selection.lower() == 'yes':
-                door = input("\nChoose a number from 1 to 5: ")
+                door = input("\033[1;97m\nChoose a number from 1 to 5: \033[0m")
                 time.sleep(1)
                 if door == '1':
                     if visited_negativity_room == False:
+                        pygame.mixer.music.load("tadc.mp3")
+                        pygame.mixer.music.set_volume(0.04)
+                        pygame.mixer.music.play(loops=-1, start=16)
                         lst = room_of_negativity.puzzle()
                         for text in lst:
                             lightGray(text)
                             time.sleep(2)
                         moves -= 1
                         p.score -= 5
+                        pygame.mixer.music.load("kahoot.mp3")
+                        pygame.mixer.music.set_volume(0.07)
+                        pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_negativity_room = True
                     else:
                         lightGray("You try pulling on the door with all your might, but you can\'t seem to open it.")
                         time.sleep(1)
                 if door == '2':
                     if visited_purple_guy == False:
+                        pygame.mixer.music.load("fnaf.mp3")
+                        pygame.mixer.music.set_volume(0.04)
+                        pygame.mixer.music.play(loops=-1, start=42.8)
                         lst = purple_guy.puzzle()
                         for text in lst:
                             lightGray(text)
                             time.sleep(2)
                         moves -= 3
                         p.score -= 3
+                        pygame.mixer.music.load("kahoot.mp3")
+                        pygame.mixer.music.set_volume(0.07)
+                        pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_purple_guy = True
                     else:
                         lightGray("The second your hand touches the doorknob, flashbacks of your last encounter in this room flood your mind. You barely escaped last time, so why try again?")
                         time.sleep(1)
                 if door == '3':
                     if visited_connor == False:
+                        pygame.mixer.music.load("connor.mp3")
+                        pygame.mixer.music.set_volume(0.07)
+                        pygame.mixer.music.play(loops=-1, start=64)
                         if connor.puzzle() == True:
                             moves += 5
                             p.score += 5
                         else:
                             moves -= 1
                             p.score -= 3
+                        pygame.mixer.music.load("kahoot.mp3")
+                        pygame.mixer.music.set_volume(0.07)
+                        pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_connor = True
                     else:
                         lightGray("You open the door. Connor just shakes his and closes it back.")
                         time.sleep(1)
                 if door == '4':
                     if visited_tiffany == False:
+                        pygame.mixer.music.load("sao.mp3")
+                        pygame.mixer.music.set_volume(0.05)
+                        pygame.mixer.music.play(loops=-1, start=2.5)
                         lst = tiffany.puzzle()
                         for text in lst:
                             lightGray(text)
                             time.sleep(2)
                         moves += 5
+                        pygame.mixer.music.load("kahoot.mp3")
+                        pygame.mixer.music.set_volume(0.07)
+                        pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_tiffany = True
                     else:
                         lightGray("You peek through the peephole and see that Tiffany is still busy with his chips. You\'d rather not disturb him.")
                         time.sleep(1)
                 if door == '5':
                     if visited_tikki_plagg == False:
-                        tikki_plagg.puzzle()
-                        moves += 3
-                        p.score -= 2
+                        pygame.mixer.music.load("mlb.mp3")
+                        pygame.mixer.music.set_volume(0.07)
+                        pygame.mixer.music.play(loops=-1)
+                        if connor.puzzle() == True:
+                            moves += 3
+                            p.score -= 2
+                        pygame.mixer.music.load("kahoot.mp3")
+                        pygame.mixer.music.set_volume(0.07)
+                        pygame.mixer.music.play(loops=-1, start=0.7)
                     else:
                         lightGray("Plagg and Tikki are probably still at Adrien\'s place because you don't see either of them in the room.")
                         time.sleep(1)
@@ -636,42 +751,60 @@ if __name__ == "__main__":
         if loc == 13:
             print('\nThere are unknown entities in this location.')
             time.sleep(1)
-            selection = input('\nWould you like to explore? (yes/no) ')
+            selection = input('\033[1;97m\nWould you like to explore? (yes/no) \033[0m')
             time.sleep(1)
             if selection.lower() == 'yes':
-                door = input("\nChoose a number from 1 to 3: ")
+                door = input('\033[1;97m\nChoose a number from 1 to 3: \033[0m')
                 time.sleep(1)
                 if door == '1':
                     if visited_bumbly_mia == False:
+                        pygame.mixer.music.load("dog.mp3")
+                        pygame.mixer.music.set_volume(0.08)
+                        pygame.mixer.music.play(loops=-1)
                         lst = bumbly_mia.puzzle()
                         for text in lst:
                             lightGray(text)
                             time.sleep(2)
                         moves += 5
                         p.score += 5
+                        pygame.mixer.music.load("kahoot.mp3")
+                        pygame.mixer.music.set_volume(0.07)
+                        pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_bumbly_mia = True
                     else:
                         lightGray("You walk in. Bumbly and Mia are nowhere to be seen.")
                         time.sleep(1)
                 if door == '2':
                     if visited_kyoko_tomoyo_pocoyo == False:
+                        pygame.mixer.music.load("cat.mp3")
+                        pygame.mixer.music.set_volume(0.04, start=0.5)
+                        pygame.mixer.music.play(loops=-1)
                         lst = kyoko_tomoyo_pocoyo.puzzle()
                         for text in lst:
                             lightGray(text)
                             time.sleep(2)
                         moves -= 3
+                        pygame.mixer.music.load("kahoot.mp3")
+                        pygame.mixer.music.set_volume(0.07)
+                        pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_kyoko_tomoyo_pocoyo = True
                     else:
                         lightGray("You walk in. One of the volunteers asks you to leave due to the one visit per person policy.")
                         time.sleep(1)
                 if door == '3':
                     if visited_chirly == False:
+                        pygame.mixer.music.load("birdcage.mp3")
+                        pygame.mixer.music.set_volume(0.04)
+                        pygame.mixer.music.play(loops=-1, start=18.5)
                         lst = chirly.puzzle()
                         for text in lst:
                             lightGray(text)
                             time.sleep(2)
                         moves += 10
                         p.score += 3
+                        pygame.mixer.music.load("kahoot.mp3")
+                        pygame.mixer.music.set_volume(0.07)
+                        pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_chirly = True
                     else:
                         lightGray("You walk in. The room is empty. Seems like Chirly flew away.")
@@ -684,7 +817,7 @@ if __name__ == "__main__":
         green("- [MENU]")
         green("- North\n- South\n- West\n- East") # TODO: fix the spacing
         time.sleep(1)
-        choice = input("\nEnter Action: ")
+        choice = input("\033[1;97m\nEnter Action: \033[0m")
 
         # MENU
         if choice.lower() == "[menu]":
@@ -692,7 +825,7 @@ if __name__ == "__main__":
             time.sleep(1)
             for option in menu:
                 green("- " + option.title())
-            choice = input("\nChoose Action: ")
+            choice = input("\033[1;97m\nChoose Action: \033[0m")
         
         # CARDINAL DIRECTIONS
         if choice.lower() == "north" or choice.lower() == "south" or choice.lower() == "east" or choice.lower() == "west":
@@ -744,7 +877,7 @@ if __name__ == "__main__":
             
                 white("\nWhich item do you want to grab?")
                 time.sleep(1)
-                choice = input("\nChoose Item: ")
+                choice = input("\033[1;97m\nChoose Item: \033[0m")
                 temp_items = []
                 
                 for item in curr_items:
@@ -779,7 +912,7 @@ if __name__ == "__main__":
             
                 white("\nWhich item do you want to drop?")
                 time.sleep(1)
-                choice = input("\nChoose Item: ")
+                choice = input("\033[1;97m\nChoose Item: \033[0m")
                 temp_items = []
                 
                 for item in curr_items:
@@ -818,25 +951,72 @@ if __name__ == "__main__":
         # TALK
         if choice.lower() == 'talk':
             if loc == 5:
+                pygame.mixer.music.load("getaway.mp3")
+                pygame.mixer.music.set_volume(0.06)
+                pygame.mixer.music.play(loops=-1, start=3)
                 lst = linda_shinx.dialogue()
                 for text in lst:
                     lightGray(text)
                     time.sleep(2)
+                if visited_linda == True:
+                    moves += 2
+                    p.score += 5
+                pygame.mixer.music.load("kahoot.mp3")
+                pygame.mixer.music.set_volume(0.07)
+                pygame.mixer.music.play(loops=-1, start=0.7)
+            elif loc == 6:
+                pygame.mixer.music.load("jojo.mp3")
+                pygame.mixer.music.set_volume(0.06)
+                pygame.mixer.music.play(loops=-1)
+                marius_maximus_baddius_iii.dialogue()
+                if found_items == True and visited_marius_maximus_baddius_iii == True:
+                    moves += 10
+                    p.score += 50
+                pygame.mixer.music.load("kahoot.mp3")
+                pygame.mixer.music.set_volume(0.07)
+                pygame.mixer.music.play(loops=-1, start=0.7)
             elif loc == 9:
+                pygame.mixer.music.load("whistle.mp3")
+                pygame.mixer.music.set_volume(0.07)
+                pygame.mixer.music.play(loops=-1, start=0.5)
                 lst = tommy_grieves.dialogue()
                 for text in lst:
                     lightGray(text)
                     time.sleep(2)
+                if visited_tommy == True:
+                    moves += 2
+                    p.score += 9
+                pygame.mixer.music.load("kahoot.mp3")
+                pygame.mixer.music.set_volume(0.07)
+                pygame.mixer.music.play(loops=-1, start=0.7)
             elif loc == 15:
+                pygame.mixer.music.load("tangled.mp3")
+                pygame.mixer.music.set_volume(0.07)
+                pygame.mixer.music.play(loops=-1, start=0.5)
                 lst = sadie_shaymin.dialogue()
                 for text in lst:
                     lightGray(text)
                     time.sleep(2)
+                if visited_sadie == True:
+                    moves += 2
+                    p.score += 15
+                pygame.mixer.music.load("kahoot.mp3")
+                pygame.mixer.music.set_volume(0.07)
+                pygame.mixer.music.play(loops=-1, start=0.7)
             elif loc == 16:
+                pygame.mixer.music.load("renai.mp3")
+                pygame.mixer.music.set_volume(0.04)
+                pygame.mixer.music.play(loops=-1, start=0.7)
                 lst = davis_loo.dialogue()
                 for text in lst:
                     lightGray(text)
                     time.sleep(2)
+                if visited_davis == True:
+                    moves += 2
+                    p.score += 16
+                pygame.mixer.music.load("kahoot.mp3")
+                pygame.mixer.music.set_volume(0.07)
+                pygame.mixer.music.play(loops=-1, start=0.7)
             else:
                 lightGray("There is no one to talk to here.")
                 time.sleep(1)

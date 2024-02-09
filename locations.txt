@@ -49,7 +49,7 @@ END
 Howard Ferguson Dining Hall
 0
 You are in the Howard Ferguson Dining Hall.
-You walk to the Howard Ferguson Dining Hall through the basement passage. The aroma of food envelops the area as you long for a bite. However, you realize that you need to find your missing items first. Be back at 12PM for lunch!
+You walk to the Howard Ferguson Dining Hall through the basement passage. The aroma of food envelops the area as you long for a bite. In an obscure corner, you find a few scratched out letters reading "The cake is a lie!" This piques your curiousity, however, you realize that you need to find your missing items first. Be back for lunch!
 END
 
 Morrison Hall
