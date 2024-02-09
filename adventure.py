@@ -59,7 +59,8 @@ found_items = False
 
 
 class Beings:
-    """SCPs and NPCs
+    """Parent class for various enhancement SCPs (everything you meet at the Robarts Library and Commons) 
+    and NPCs (the four characters that help you figure where your stuff went and Marius, the ghost.)
 
     Instance Attributes:
         - self.name: the beings' name
@@ -82,7 +83,7 @@ class Beings:
 
 
 class SCP(Beings):
-    """SCPs
+    """Child class of Being defining the creatures and animals you meet at Robarts Library and Commons.
 
     Instance Attributes:
         - self.name: the beings' name
@@ -105,6 +106,8 @@ class SCP(Beings):
         self.points = points
 
     def puzzle(self) -> Any:
+        """Dialogue that pops up when you visit a room for the first time along with the 
+        amount of move and/or point you gain/lose and the questions some of them ask."""
         if self.name == 'Bumbly and Mia':
             return ['> You hear quite a commotion as you walk into the room.',
             '> Two dogs greet you: one is a large and fluffy Samoyed, and the other is a small and soft Keeshond.',
@@ -299,7 +302,8 @@ class SCP(Beings):
 
 
 class NPC(Beings):
-    """NPCs
+    """Child class of Being defining the people (and the one ghost) you meet around campus 
+    who help you find your missing thingsor ask for your help to decode their death.
 
     Instance Attributes:
         - self.name: the beings' name
@@ -320,6 +324,7 @@ class NPC(Beings):
         self.points = points
 
     def dialogue(self) -> str:
+        """The conversation with the NPCs that pops up every time you choose to TALK in the location they are in."""
         if self.name == 'Linda Shinx':
             global visited_linda
             visited_linda = True
@@ -480,7 +485,7 @@ class NPC(Beings):
                         time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: And is that... Bernice Sougher? What is she doing here?!')
                         time.sleep(2)
-                        lightGray('> Marius Maximus Baddius III: ...Oh')
+                        lightGray('> Marius Maximus Baddius III: ...Oh.')
                         time.sleep(2)
                         lightGray('> The image disappears.')
                         
@@ -493,6 +498,17 @@ class NPC(Beings):
                             time.sleep(2)
                             return_handkerchief = input('\033[1;97m\nYour Answer: \033[0m')
                             time.sleep(2)
+                        lightGray('> Marius carefully examines the blood, brushing a ghostly finger against a small splotch of red on the handkerchief.')
+                        time.sleep(2)
+                        lightGray('> Marius Maximus Baddius III: Blood? I thought I died in the fire.')
+                        time.sleep(2)
+                        lightGray('> Marius Maximus Baddius III: Ow! Why does my stomach hurt?')
+                        time.sleep(2)
+                        lightGray('> Marius Maximus Baddius III: I remember... I got stabbed.')
+                        time.sleep(2)
+                        lightGray('> Marius Maximus Baddius III: I felt a sharp pain. And then agony as I bled out and was consumed... by a fire.')
+                        time.sleep(2)
+                        lightGray('> Marius Maximus Baddius III: That\'s all I can recollect.')
 
                     if 'Handkerchief' not in p.inventory and 'Pocket Mirror' not in p.inventory and 'Pocket Watch' not in p.inventory:
                         if p.inventory == []:
@@ -501,17 +517,13 @@ class NPC(Beings):
                             return '> Marius Maximus Baddius III: Hmm... I don\'t seem to recall any of the items that you\'re holding. Maybe my possessions are somewhere else?'
                 else:
                     return '> Marius Maximus Baddius III: Oh... Could you please go and find them for me?'
-                        
-                    # if 'Pocket Watch' in p.inventory and 'Pocket Mirror' in p.inventory and 'Handkerchief' in p.inventory:
-                    #     return ['Splendid! Now then, would you be able to give them all back to me?']
-                    # else:
-                    #     return ['Unfortunately, I cannot see my possessions on your person. Would you kindly go and fetch them for me?']
             else:
                 lightGray('> You gain 10 moves and 50 points!')
-                return # this is for when you talk to him again after helping
+                return '> Marius Maximus Baddius III: Thank you child, for helping me figure out my past. I can now ascend to a further plane on the next anniversary of my demise.'
 
 
 def do_action(w: World, p: Player, location: Location, choice: str) -> None:
+    """Allows for the player to move in four cardinal directions."""
     if choice in location.available_actions():
         if choice == 'north':
             p.y -= 1
@@ -526,54 +538,71 @@ def do_action(w: World, p: Player, location: Location, choice: str) -> None:
 
 # COLORS FUNCTIONS
 def bold(skk):
+    """Defining bolded text."""
     print("\033[1m{}\033[0m\r".format(skk))
 
 def black(skk):
+    """Defining a black color for text."""
     print("\033[30m{}\033[0m\r".format(skk))
 
 def darkRed(skk):
+    """Defining a dark red color for text."""
     print("\033[31m{}\033[0m\r".format(skk))
 
 def darkGreen(skk):
+    """Defining a dark green color for text."""
     print("\033[32m{}\033[0m\r".format(skk))
 
 def darkYellow(skk):
+    """Defining a dark yellow color for text."""
     print("\033[33m{}\033[0m\r".format(skk))
 
 def darkBlue(skk):
+    """Defining a dark blue color for text."""
     print("\033[34m{}\033[0m\r".format(skk))
 
 def darkMagenta(skk):
+    """Defining a dark magenta color for text."""
     print("\033[35m{}\033[0m\r".format(skk))
 
 def darkCyan(skk):
+    """Defining a dark cyan color for text."""
     print("\033[36m{}\033[0m\r".format(skk))
 
 def lightGray(skk):
+    """Defining a light gray color for text."""
     print("\033[37m{}\033[0m".format(skk))
 
 def darkGray(skk):
+    """Defining a dark gray color for text."""
     print("\033[90m{}\033[0m\r".format(skk))
 
 def red(skk):
+    """Defining a red color for text."""
     print("\033[1;91m{}\033[0m\r".format(skk))
 
 def green(skk):
+    """Defining a green color for text."""
     print("\033[92m{}\033[0m\r".format(skk))
 
 def yellow(skk):
+    """Defining a yellow color for text."""
     print("\033[93m{}\033[0m\r".format(skk))
 
 def blue(skk):
+    """Defining a blue color for text."""
     print("\033[94m{}\033[0m\r".format(skk))
 
 def magenta(skk):
+    """Defining a magenta color for text."""
     print("\033[95m{}\033[0m\r".format(skk))
 
 def cyan(skk):
+    """Defining a cyan color for text."""
     print("\033[1;96m{}\033[0m\r".format(skk))
 
 def white(skk):
+    """Defining a white color for text."""
     print("\033[1;97m{}\033[0m\r".format(skk))
 
 bold("This is bold.")
@@ -620,6 +649,7 @@ if __name__ == "__main__":
     # VARIABLES
     menu = ["look", "inventory", "score", "quit", "grab", "drop", "talk"]
 
+    # INITIAL LOCATION AND MOVES INITIALIZATION
     location = w.get_location(p.x, p.y)
     moves = 0
 

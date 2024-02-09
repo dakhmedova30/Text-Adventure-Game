@@ -22,16 +22,16 @@ You pass by Bahen Centre for Information Technology and the UofT Bookstore.
 On one side of street, you see Bahen Centre for Information Technology and the University of Toronto Bookstore along with a few smaller stores next to it.
 END
 
-Scenery
+Knox College
 0
-You pass by Knox College and Myhal Centre for Engineering Innovation and Entrepreneurship.
-As you walk, you see Knox College, Nona Macdonald Visitors Centre, Myhal Centre for Engineering Innovation and Entrepreneurship, Lash Miller Chemical Laboratories and the department of Astronomy and Astrophysics as you walk. 
+You are in the Knox College.
+You walk into an old-fashioned Gothic-style college - Knox. You usually wouldn't go there, but a glint of light from something lying on the ground catches your eye. A broken pocket mirror?
 END
 
 Sir Daniel Wilson Residence
 0
 You are in front of the Sir Daniel Wilson Residence.
-You wake up to the sound of loud music playing from the room next to you. Groggily, you look at your phone to see that the time is 8AM. You remember that you have an exam today at 6PM, but you can't see some things that you need for the exam - your TCard, lucky pen, and cheat sheet are nowhere to be found. And curiously, so is your water bottle. You get up from your bed and head to the door next to yours from where the music is coming from and knock on the door.
+You wake up to the sound of loud music playing from the room next to you. Groggily, you look at your phone to see that the time is 8AM. You remember that you have an exam today at 6PM, but you can't see some things that you need for the exam - your TCard, lucky pen, and cheat sheet are nowhere to be found. And curiously, so is your water bottle. You get up from your bed and head to the door next to yours from where the music is coming from and knock on the door to TALK with your neighbor.
 END
 
 University College Library
@@ -43,7 +43,7 @@ END
 Sidney Smith Hall
 0
 You are in the Sidney Smith Hall.
-Detail
+You enter Sidney Smith Hall and start walking inside. As soon as the Sid Smith Cafe is in sight, so is a small pile of items in the lost-or-found box. Maybe that's where your bottle is...
 END
 
 Howard Ferguson Dining Hall
@@ -91,7 +91,7 @@ END
 Scenery
 0
 You pass by Rotman School of Management and the Innis College Residence.
-Detail
+As you walk forward, you pass a couple more university buildings - the Rotman School of Management and the Innis College Residence. A girl waves at you. Wait... you know her!
 END
 
 Woodsworth College
@@ -103,7 +103,7 @@ END
 Scenery
 0
 You pass by Rotman Commerce and the Bata Shoe Museum.
-Detail
+Walking forward, you see the Rotman Commerce Building and the Bata SHoe Museum on either side of the street.
 END
 
 Ontario Institue for Studies in Education (OISE)
