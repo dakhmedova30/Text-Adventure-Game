@@ -103,7 +103,7 @@ END
 Scenery
 0
 You pass by Rotman Commerce and the Bata Shoe Museum.
-Walking forward, you see the Rotman Commerce Building and the Bata SHoe Museum on either side of the street.
+Walking forward, you see the Rotman Commerce Building and the Bata Shoe Museum on either side of the street.
 END
 
 Ontario Institue for Studies in Education (OISE)

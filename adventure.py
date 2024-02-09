@@ -55,7 +55,12 @@ visited_connor = False
 visited_tiffany = False
 visited_tikki_plagg = False
 visited_marius_maximus_baddius_iii = False
+visited_phone_guy = False
 found_items = False
+found_pocket_mirror = False
+found_pocket_watch = False
+found_handkerchief = False
+marius_moves_gained = False
 
 
 class Beings:
@@ -300,6 +305,39 @@ class SCP(Beings):
                 lightGray('\n> Plagg: Too bad. Try again next time, buddy. I\'m going to find Adrien...')
                 return False
 
+        if self.name == 'Phone Guy':
+            return['> You notice a mysterious blue telephone on the ground.',
+            '> It begins ringing...',
+            '> Phone Guy: Hello, hello, hello?',
+            '> Phone Guy: Uh, I wanted to record a message for you to help you get settled into this text adventure game.',
+            '> Phone Guy: Um, I actually was the player before you. I\'m finishing up my last playthrough now, as a matter of fact.',
+            '> Phone Guy: So, I know it can be a bit overwhelming, but I\'m here to tell you there\'s nothing to worry about. Uh, you\'ll do fine.',
+            '> Phone Guy: So, let\'s just focus on getting you through the game, okay?',
+            '> Phone Guy: Uh, let\'s see, first there\'s an introductory greeting from the game developers that I\'m supposed to read.',
+            '> Phone Guy: Uh, it\'s kind of a legal thing, you know.',
+            f'> Phone Guy: Um, \"Welcome to the Amazing Digital Adventure, {your_name}. A magical place for kids and grown-ups alike, where fantasy and fun come to life.',
+            '> Phone Guy: Comp Sci Entertainment is not responsible for damage to property or person.',
+            '> Phone Guy: Upon discovering that despair or confusion has occurred, a missing items report will be filed within 90 days, or as soon property and premises have been thoroughly cleaned and checked, and the carpets have been replaced.',
+            '> Phone Guy: Blah, blah, blah. Now that might sound bad, I know, but there\'s really nothing to worry about.',
+            '> Phone Guy: Uh, the SCP and NPC characters here do get a bit quirky at night, but do I blame them?',
+            '> Phone Guy: No. If I were forced to say those same stupid lines for twenty years and I never got a bath?',
+            '> Phone Guy: I\'d probably be a bit irritable at night too.',
+            '> Phone Guy: So, remember, these characters hold a special place in the hearts of children and we need to show them a little respect, right? Okay.',
+            '> Phone Guy: So, just be aware, the characters do tend to wander a bit. Uh, they\'re left in some kind of free roaming mode at night.',
+            '> Phone Guy: Uh... something about their code bugging up if they get turned off for too long.',
+            '> Phone Guy: Uh, they used to be allowed to walk around during the day too. But then there was The Bite of \'87. Yeah.',
+            '> Phone Guy: I-It\'s amazing that they human body can live without a perfectly-sound mind, you know?',
+            '> Phone Guy: Uh, now concerning your safety, the only real risk to you as a player here, if any, is the fact that these characters, uh, if they happen to see you after hours, probably won\'t recognize you as a person.',
+            '> Phone Guy: They\'ll pr- they\'ll most likely see you as an amalgamation of HTML without its CSS on.',
+            '> Phone Guy: Now since that\'s against the rules here at the Amazing Digital Adventure, they\'ll probably try to... forcefully stuff you inside a Being class.',
+            '> Phone Guy: Um, now, that wouldn\'t be so bad if the classes themselves weren\'t filled with instance attributes, representation invariants, and functions, especially around the top area.',
+            '> Phone Guy: So, you could imagine how having your head forcefully pressed inside one of those could cause a bit of discomfort... and expiration.',
+            '> Phone Guy: Uh, the only parts of you that would likely see the light of day again would be your eyeballs and teeth when they merge with the pre-existing code, heh.',
+            '> Phone Guy: Y-yeah, they don\'t tell you these things when you sign up. But hey, your first playthrough should be a breeze.',
+            '> Phone Guy: I\'ll chat with you tomorrow. Uh, check those rooms, and remember to quit the game only if absolutely necessary.',
+            '> Phone Guy: Gotta conserve your moves. Alright, goodbye.',
+            '> The phone call ends.']
+
 
 class NPC(Beings):
     """Child class of Being defining the people (and the one ghost) you meet around campus 
@@ -323,7 +361,7 @@ class NPC(Beings):
         self.curr_pos = curr_pos
         self.points = points
 
-    def dialogue(self) -> str:
+    def dialogue(self) -> Any:
         """The conversation with the NPCs that pops up every time you choose to TALK in the location they are in."""
         if self.name == 'Linda Shinx':
             global visited_linda
@@ -392,12 +430,18 @@ class NPC(Beings):
             f'> You gain 2 moves and 16 points!']
 
         if self.name == 'Marius Maximus Baddius III':
+            global visited_marius_maximus_baddius_iii
+            global found_handkerchief
+            global found_pocket_mirror
+            global found_pocket_watch
+            global marius_moves_gained
+            global found_items
             if visited_marius_maximus_baddius_iii == False:
                 lightGray('> A Strange Ghost: Oh... woe is me!')
                 time.sleep(2)
                 lightGray(f'> {your_name}: Who are you?')
                 time.sleep(2)
-                lightGray('> I... well, I am the one and only Marius Maximus Baddius the Third!')
+                lightGray('> Marius Maximus Baddius III: I... well, I am the one and only Marius Maximus Baddius the Third!')
                 time.sleep(2)
                 lightGray(f'> {your_name}: I see...')
                 time.sleep(2)
@@ -427,12 +471,12 @@ class NPC(Beings):
                 time.sleep(2)
                 lightGray(f'> {your_name}: Now we\'re talking!')
                 time.sleep(2)
-                lightGray('> Marius Maximus Baddius III: Now then, dear child, if thy chooses to aid myself, thou shaltt need to remind me of my past through the possessions that I hath lost.')
+                lightGray('> Marius Maximus Baddius III: Now then, dear child, if thy chooses to aid myself, thou shalt need to remind me of my past through the possessions that I hath lost.')
                 time.sleep(2)
                 lightGray('> Marius Maximus Baddius III: Make haste!')
                 time.sleep(2)
                 lightGray('> You gain 15 moves!')
-                p.moves += 15
+                marius_moves_gained = True
                 visited_marius_maximus_baddius_iii = True
                 
             elif found_items == False:
@@ -465,6 +509,7 @@ class NPC(Beings):
                         lightGray('> Marius Maximus Baddius III: A woman...? I remember...')
                         time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: Apologies. I seem to have forgotten.')
+                        found_pocket_watch = True
 
                     if 'Pocket Mirror' in p.inventory:
                         lightGray('> Marius Maximus Baddius III: A small mirror? I haven\'t seen my reflection in decades...')
@@ -488,38 +533,51 @@ class NPC(Beings):
                         lightGray('> Marius Maximus Baddius III: ...Oh.')
                         time.sleep(2)
                         lightGray('> The image disappears.')
+                        found_pocket_mirror = True
                         
                     if 'Handkerchief' in p.inventory:
                         lightGray('> Marius Maximus Baddius III: Why does that handkerchief have my initials on them?')
                         time.sleep(2)
                         return_handkerchief = ''
                         while return_handkerchief != 'yes':
-                            lightGray('> Marius Maximus Baddius III: Could I borrow that from you for a moment?')
+                            lightGray('> Marius Maximus Baddius III: Could I borrow that from you for a moment? (yes/no) ')
                             time.sleep(2)
                             return_handkerchief = input('\033[1;97m\nYour Answer: \033[0m')
                             time.sleep(2)
-                        lightGray('> Marius carefully examines the blood, brushing a ghostly finger against a small splotch of red on the handkerchief.')
+                        lightGray('> Marius carefully examines the handkerchief, brushing a ghostly finger against a small splotch of red on the handkerchief.')
                         time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: Blood? I thought I died in the fire.')
                         time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: Ow! Why does my stomach hurt?')
                         time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: I remember... I got stabbed.')
+                        if found_pocket_mirror == True:
+                            time.sleep(2)
+                            lightGray(f'{your_name}: Bernice sounds sus...')
+                        elif found_pocket_watch == True:
+                            time.sleep(2)
+                            lightGray(f'{your_name}: The woman sounds sus...')
                         time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: I felt a sharp pain. And then agony as I bled out and was consumed... by a fire.')
                         time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: That\'s all I can recollect.')
+                        found_handkerchief = True
 
+                    if found_pocket_watch and found_pocket_mirror and found_handkerchief:
+                        lightGray('> You gain 10 moves and 50 points!')
+                        time.sleep(2)
+                        lightGray('> Marius Maximus Baddius III: Thank you child, for helping me figure out my past.')
+                        found_items = True
+                        
                     if 'Handkerchief' not in p.inventory and 'Pocket Mirror' not in p.inventory and 'Pocket Watch' not in p.inventory:
                         if p.inventory == []:
-                            return '> Marius Maximus Baddius III: I cannot see anything in your hands. Could you please get my possessions for me?'
+                            lightGray('> Marius Maximus Baddius III: I cannot see anything in your hands. Could you please get my possessions for me?')
                         else:
-                            return '> Marius Maximus Baddius III: Hmm... I don\'t seem to recall any of the items that you\'re holding. Maybe my possessions are somewhere else?'
+                            lightGray('> Marius Maximus Baddius III: Hmm... I don\'t seem to recall any of the items that you\'re holding. Maybe my possessions are somewhere else?')
                 else:
-                    return '> Marius Maximus Baddius III: Oh... Could you please go and find them for me?'
+                    lightGray('> Marius Maximus Baddius III: Oh... Could you please go and find them for me?')
             else:
-                lightGray('> You gain 10 moves and 50 points!')
-                return '> Marius Maximus Baddius III: Thank you child, for helping me figure out my past. I can now ascend to a further plane on the next anniversary of my demise.'
+                lightGray('> Marius Maximus Baddius III: I can now ascend to a further plane on the next anniversary of my demise.')
 
 
 def do_action(w: World, p: Player, location: Location, choice: str) -> None:
@@ -624,6 +682,16 @@ cyan("This is cyan.")
 white("This is white.")
 print("\n")
 
+def gambling_game() -> None:
+    lightGray('> The phone suddenly rings again.')
+    time.sleep(2)
+    lightGray('> Hello, hello, hello?')
+    time.sleep(2)
+    lightGray(f'> Oh, it\'s you again, {your_name}.')
+    time.sleep(2)
+    lightGray('> Now that you gained a basic sense of this game\'s mechanics, would you like to play a game?')
+    time.sleep(2)
+
 # Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
     w = World("map.txt", "locations.txt", "items.txt")
@@ -645,13 +713,15 @@ if __name__ == "__main__":
     connor = SCP("Connor", 10, 0, 0) # TODO: figure out
     tiffany = SCP("Tiffany", 10, 0, 5)
     tikki_plagg = SCP("Tikki and Plagg", 10, -2, 3)
+
+    phone_guy = SCP("Phone Guy", 11, 3, -3)
     
     # VARIABLES
     menu = ["look", "inventory", "score", "quit", "grab", "drop", "talk"]
 
     # INITIAL LOCATION AND MOVES INITIALIZATION
     location = w.get_location(p.x, p.y)
-    moves = 0
+    moves = 40
 
     # START GAME
     pygame.mixer.music.load("kahoot.mp3")
@@ -663,7 +733,7 @@ if __name__ == "__main__":
     white(f'\nHello, {your_name}! Welcome to the Amazing Digital Adventure. Press menu to get a list of commands that you can call at any time. You are able to move in all four directions too (if the location permits).')
     time.sleep(1)
 
-    while not p.victory and not p.quit and moves < 40: # decide the number of moves later
+    while not p.victory and not p.quit and moves > 0: # decide the number of moves later
         location = w.get_location(p.x, p.y)
         loc = location.pos
         
@@ -681,6 +751,9 @@ if __name__ == "__main__":
         else:
             lightGray(location.long)
             time.sleep(1)
+            
+        print('MOVES: ' + str(moves))
+        print('ajdkfhajkdhfjaajhfha')
 
         # ROBARTS LIBRARY SCPs
         if loc == 10:
@@ -707,7 +780,7 @@ if __name__ == "__main__":
                         pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_negativity_room = True
                     else:
-                        lightGray("You try pulling on the door with all your might, but you can\'t seem to open it.")
+                        lightGray("> You try pulling on the door with all your might, but you can\'t seem to open it.")
                         time.sleep(1)
                 if door == '2':
                     if visited_purple_guy == False:
@@ -725,7 +798,7 @@ if __name__ == "__main__":
                         pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_purple_guy = True
                     else:
-                        lightGray("The second your hand touches the doorknob, flashbacks of your last encounter in this room flood your mind. You barely escaped last time, so why try again?")
+                        lightGray("> The second your hand touches the doorknob, flashbacks of your last encounter in this room flood your mind. You barely escaped last time, so why try again?")
                         time.sleep(1)
                 if door == '3':
                     if visited_connor == False:
@@ -743,7 +816,7 @@ if __name__ == "__main__":
                         pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_connor = True
                     else:
-                        lightGray("You open the door. Connor just shakes his and closes it back.")
+                        lightGray("> You open the door. Connor just shakes his and closes it back.")
                         time.sleep(1)
                 if door == '4':
                     if visited_tiffany == False:
@@ -760,7 +833,7 @@ if __name__ == "__main__":
                         pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_tiffany = True
                     else:
-                        lightGray("You peek through the peephole and see that Tiffany is still busy with his chips. You\'d rather not disturb him.")
+                        lightGray("> You peek through the peephole and see that Tiffany is still busy with his chips. You\'d rather not disturb him.")
                         time.sleep(1)
                 if door == '5':
                     if visited_tikki_plagg == False:
@@ -774,7 +847,7 @@ if __name__ == "__main__":
                         pygame.mixer.music.set_volume(0.07)
                         pygame.mixer.music.play(loops=-1, start=0.7)
                     else:
-                        lightGray("Plagg and Tikki are probably still at Adrien\'s place because you don't see either of them in the room.")
+                        lightGray("> Plagg and Tikki are probably still at Adrien\'s place because you don't see either of them in the room.")
                         time.sleep(1)
 
         # ROBARTS COMMONS SCPs
@@ -802,7 +875,7 @@ if __name__ == "__main__":
                         pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_bumbly_mia = True
                     else:
-                        lightGray("You walk in. Bumbly and Mia are nowhere to be seen.")
+                        lightGray("> You walk in. Bumbly and Mia are nowhere to be seen.")
                         time.sleep(1)
                 if door == '2':
                     if visited_kyoko_tomoyo_pocoyo == False:
@@ -819,7 +892,7 @@ if __name__ == "__main__":
                         pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_kyoko_tomoyo_pocoyo = True
                     else:
-                        lightGray("You walk in. One of the volunteers asks you to leave due to the one visit per person policy.")
+                        lightGray("> You walk in. One of the volunteers asks you to leave due to the one visit per person policy.")
                         time.sleep(1)
                 if door == '3':
                     if visited_chirly == False:
@@ -837,8 +910,36 @@ if __name__ == "__main__":
                         pygame.mixer.music.play(loops=-1, start=0.7)
                         visited_chirly = True
                     else:
-                        lightGray("You walk in. The room is empty. Seems like Chirly flew away.")
+                        lightGray("> You walk in. The room is empty. Seems like Chirly flew away.")
                         time.sleep(1)
+
+        # PHONE GUY SCP
+        if loc == 11:
+            print('\nThere is an unknown entity in this location.')
+            time.sleep(1)
+            selection = input('\033[1;97m\nWould you like to explore? (yes/no) \033[0m')
+            time.sleep(1)
+            if selection.lower() == 'yes':
+                if visited_phone_guy == False:
+                    # pygame.mixer.music.load("phoneguy.mp3")
+                    # pygame.mixer.music.set_volume(0.08)
+                    # pygame.mixer.music.play(loops=-1)
+                    lst = phone_guy.puzzle()
+                    for text in lst:
+                        lightGray(text)
+                        time.sleep(2)
+                    moves -= 3
+                    p.score += 3
+                    gambling_game()
+                    pygame.mixer.music.load("kahoot.mp3")
+                    pygame.mixer.music.set_volume(0.07)
+                    pygame.mixer.music.play(loops=-1, start=0.7)
+                    visited_phone_guy = True
+                else:
+                    lightGray("> You notice a mysterious blue telephone on the ground.")
+                    gambling_game()
+                    time.sleep(1)
+
 
         # DISPLAY OPTIONS
         time.sleep(1)
@@ -999,6 +1100,18 @@ if __name__ == "__main__":
                 pygame.mixer.music.set_volume(0.06)
                 pygame.mixer.music.play(loops=-1)
                 marius_maximus_baddius_iii.dialogue()
+                if marius_moves_gained == True:
+                    moves += 15
+                    marius_moves_gained = False
+                if found_pocket_watch == True:
+                    p.inventory.remove('Pocket Watch')
+                    found_pocket_watch = False
+                if found_pocket_mirror == True:
+                    p.inventory.remove('Pocket Mirror')
+                    found_pocket_mirror = False
+                if found_handkerchief == True:
+                    p.inventory.remove('Handkerchief')
+                    found_handkerchief = False
                 if found_items == True and visited_marius_maximus_baddius_iii == True:
                     moves += 10
                     p.score += 50
@@ -1053,7 +1166,7 @@ if __name__ == "__main__":
 
         # UPDATE MOVES COUNTER
         if choice in ['north', 'south', 'east', 'west', 'grab', 'drop']:
-            moves += 1
+            moves -= 1
 
         # VICTORY
         if water_drop and tcard_drop and pen_drop and sheet_drop and loc == 0:
@@ -1074,7 +1187,7 @@ if __name__ == "__main__":
         time.sleep(1)
 
     # END: NO MOVES LEFT
-    if moves >= 40:
+    if moves <= 0:
         red("\n\nYou've reached the maximum number of moves. Game over!")
         time.sleep(1)
         magenta("\nYour final score is: " + str(p.score) + "\n")

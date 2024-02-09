@@ -17,13 +17,25 @@
 
 \begin{enumerate}
 
-\item Describe your enhancement \#1 here
+\item Creation of the four main NPCs
 	\begin{itemize}
-	\item Brief description of what the enhancement is (if it's a puzzle, also describe what steps the player must take to solve it):
-	\item Complexity level (choose from low/medium/high):
-	\item Reasons you believe this is the complexity level (e.g. mention implementation details, how much code did you have to add/change from the baseline, what challenges did you face, etc.)
-	% Feel free to add more subheadings if you need
+	\item Basic description of what the enhancement is: We created a class Beings with a subclass NPC. Four of our five NPCs help the player figure out where they may have left their items around campus. These four NPCs are: 
+            \begin{itemize}
+                \item Linda Shinx: Found at Sir Dans, Linda's the first of our NPCs. She tells you that you left your water bottle at Sid Smith yesterday.
+                \item Tommy Grieves: You meet Tommy at Morrison Hall where you ask him about yesterday. He tells you that you both were at the Athletic Centre, but that he doesn't remember if you forgot anything there.
+                \item Sadie Shaymin: You meet Sadie outside the Innis College Residence where she tells you that you both worked at Graham together last night, but she doesn't mention what you may have left.
+                \item Davis Loo: You meet Davis in the Woodsworth Residence building where he tells you that you were at OISE with him last night.
+            \end{itemize}
+	\item Complexity level (choose from low/medium/high): low
+	\item We felt that they were quite easy to add (in comparison) as we just needed to figure out the dialogues, their locations and give the player extra moves and points.
 	\end{itemize}
+\item Marius Maximus Baddius III (the fifth NPC)
+    \begin{itemize}
+    \item Basic description of what the enhancement is: Marius Maximus Baddius III is our fifth NPC, but he is a ghost who sends the player out on a quest to find a few items (which are not named during the dialogue with him) so that he can remember the circumstances of his death. After each item is collected, a small piece of the memory is unlocked. After all three items are found returned to him, he grants the players extra moves and points.
+    \item Complexity level (low/medium/high): High
+    \item Creating Marius meant we had to create numerous if...else loops to accommodate for every possible condition.
+    % Feel free to add more subheadings if you feel the need
+    \end{itemize}
 
 % Uncomment below section if you have more enhancements; copy-paste as many times as needed
 %\item Describe your enhancement here
