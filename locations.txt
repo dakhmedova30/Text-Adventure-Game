@@ -1,7 +1,7 @@
 Exam Centre
 5
 You are in the Exam Centre.
-Detail
+You anxiously arrive to the exam centre, seeing floods of students exiting and entering the different testing rooms. Looking around, you see a wide variety of students - some panicked and some calm - as they all head inside. Good luck!
 END
 
 Scenery
@@ -37,7 +37,7 @@ END
 University College Library
 0
 You are in the University College Library.
-Detail
+You walk into a small but charming library, lined with a long red carpet. There are barely any sounds echoing in this place, apart from the occasional murmur. At the wooden table, you see a few students dilligently studying for their exams and midterms.
 END
 
 Sidney Smith Hall
@@ -84,7 +84,7 @@ END
 
 Athletics Centre
 0
-You are in the Athletics Centre.
+You walk into the magnifient Athletics Centre, eyeing the enormous pool and all of the workout rooms. There is a place for every sport here, from karate to contemporary dancing. You reminisce going here a few times to work out with your friends.
 Detail
 END
 
@@ -97,7 +97,7 @@ END
 Woodsworth College
 0
 You are in Woodsworth College.
-Detail
+You walk into Woodsworth College, taking in the vintage architecture. You see a variety of classrooms downstairs, and notice an entrance to the residential dorms. You remember a friend who used to live in the dormitories here.
 END
 
 Scenery
