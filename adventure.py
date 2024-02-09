@@ -112,7 +112,19 @@ class SCP(Beings):
             '> You lose 3 moves.']
 
         if self.name == 'Chirly':
-            return ['> You walk into th']
+            return ['> You enter the room and see a sole birdcage.',
+            '> Inside, there is a yellow-green parrotlet named Chirly yapping away.',
+            '> Chirly: Squawk! He\'s dead! He\'s dead!',
+            f'> {your_name}: Who\'s... dead?',
+            '> Chirly: Marius! Marius! Squawk! He\'s dead! Squawk!',
+            f'> {your_name}: Marius? How did he die?',
+            '> Chirly: He was stabbed! Squawk! 28 times!',
+            f'> {your_name}: That\'s crazy... Who did it? Where? When?',
+            '> Chirly: He\'s dead! Detective, he\'s dead! Squawk!',
+            f'> {your_name}: Can you at least tell me why?',
+            '> Chirly: Squawk! He\'s dead! Case closed! Squawk!',
+            '> It seems like Chirly has nothing else to say.',
+            '> You gain 5 moves and 3 points!']
 
         if self.name == 'Room of Negativity':
             return ['> You open the door and are greeted by a loud, sharp laugh, which seems to be aimed at you.',
@@ -293,7 +305,7 @@ class NPC(Beings):
             f'> {your_name}: Yeah, I can hear your Taylor Swift music from a mile away.',
             f'> Linda Shinx: Obviously. Think about the place where you first met me.',
             f'> {your_name}: Of course, in a concert. Anyways, can you help me remember what happened yesterday?',
-            f'> Linda Shinx: Look who needs my help now~',
+            f'> Linda Shinx: Look who needs my help now~. All you need to do is \"shake it off.\" ;)',
             f'> {your_name}: I\'m being serious, Linda. I have a terrible headache and my exam is today!',
             f'> Linda Shinx: Okay, okay, I hear you. Well, first things first, be sure to drink lots of water. Hydrate, or diedrate, y\'know?',
             f'> {your_name}: Drink water... Wait! I didn\'t see my water bottle in my room. Oh my gosh, do you think I lost it?!',
@@ -374,7 +386,7 @@ class NPC(Beings):
                         while return_pocketwatch != 'yes':
                             lightGray('> Marius Maximus Baddius III: Could you give it to me so I could inspect it further? (yes/no)')
                             return_pocketwatch = input('Your Answer: ')
-                        lightGray('Marius shuts his eyes and frowns.')
+                        lightGray('> Marius shuts his eyes and frowns.')
                         lightGray('> Marius Maximus Baddius III: I can envision a sight like I am right there, right now.')
                         lightGray('> Marius Maximus Baddius III: \'Twas the 14th of February in the year of our Lord 1890.')
                         lightGray(f'> {your_name}: That was the Great Fire of UC!')
@@ -388,13 +400,13 @@ class NPC(Beings):
                         while return_pocketmirror != 'yes':
                             lightGray('> Marius Maximus Baddius III: Pray, may you lend me that mirror in your hand? (yes/no)')
                             return_pocketmirror = input('Your Answer: ')
-                        lightGray('Marius looks at the mirror and admires his reflection. Suddenly, the image begins to shift.')
+                        lightGray('> Marius looks at the mirror and admires his reflection. Suddenly, the image begins to shift.')
                         lightGray('> Marius Maximus Baddius III: That face... The woman looks familiar...')
                         lightGray('> Marius Maximus Baddius III: ...Both women look familiar.')
                         lightGray('> Marius Maximus Baddius III: My Francesca? Why did she leave?')
                         lightGray('> Marius Maximus Baddius III: And is that... Bernice Sougher? What is she doing here?!')
                         lightGray('> Marius Maximus Baddius III: ...Oh')
-                        lightGray('The image disappears.')
+                        lightGray('> The image disappears.')
                         
                     if 'Handkerchief' in p.inventory:
                         lightGray('> Marius Maximus Baddius III: Why does that handkerchief have my initials on them?')
@@ -406,7 +418,7 @@ class NPC(Beings):
                         if p.inventory == []:
                             return '> Marius Maximus Baddius III: I cannot see anything in your hands. Could you please get my possessions for me?'
                         else:
-                            return '> Marius Maximus Baddius III: Hmm... I don\'t seem to recall  any of the items that you\'re holding. Maybe my possessions are somewhere else?'
+                            return '> Marius Maximus Baddius III: Hmm... I don\'t seem to recall any of the items that you\'re holding. Maybe my possessions are somewhere else?'
                 else:
                     return '> Marius Maximus Baddius III: Oh... Could you please go and find them for me?'
                         
