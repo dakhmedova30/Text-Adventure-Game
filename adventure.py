@@ -1010,6 +1010,9 @@ if __name__ == "__main__":
                         answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                         while answer != 'leave':
+                            print('MOVES: ' + str(moves))
+                            print('PITY: ' + str(pity))
+
                             if pity >= 90:
                                 chance = random.randint(1, 2)
                                 if chance == 1:
@@ -1241,6 +1244,9 @@ if __name__ == "__main__":
                         answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                         while answer != 'leave':
+                            print('MOVES: ' + str(moves))
+                            print('PITY: ' + str(pity))
+                            
                             if pity >= 90:
                                 chance = random.randint(1, 2)
 
