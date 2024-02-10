@@ -56,7 +56,7 @@ visited_connor = False
 visited_tiffany = False
 visited_tikki_plagg = False
 visited_marius_maximus_baddius_iii = False
-visited_phone_guy = True # SET BACK TO FALSE !!!!
+visited_phone_guy = False
 found_items = False
 found_pocket_mirror = False
 found_pocket_watch = False
@@ -127,7 +127,7 @@ class SCP(Beings):
         if self.name == 'Kyoko, Tomoyo, and Pocoyo':
             return ['> You walk into the room and see a lot of people and cats there.',
             '> As soon as you step in, Kyoko, Tomoyo and Pocoyo jump onto your lap and start meowing for affection.',
-            '> You look up to see a sign: \'CAT THERAPY SESSION UNTIL 2PM\'.',
+            '> You look up to see a sign: \"CAT THERAPY SESSION UNTIL 2PM\".',
             '> You look down to see Kyoko half-asleep. Looks like you can\'t get out now...',
             '> You lose 3 moves.']
 
