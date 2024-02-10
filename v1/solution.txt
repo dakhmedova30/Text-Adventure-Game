@@ -1,0 +1,70 @@
+name
+talk
+score
+west
+grab
+water bottle
+inventory
+east
+north
+drop
+water bottle
+inventory
+score
+north
+talk
+score
+north
+no
+north
+talk
+score
+west
+grab
+tcard
+inventory
+south
+no
+east
+no
+east
+no
+east
+grab
+lucky pen
+inventory
+west
+no
+west
+no
+north
+north
+talk
+score
+north
+east
+grab
+cheat sheet
+west
+south
+south
+south
+no
+south
+south
+south
+south
+south
+south
+east
+east
+drop
+tcard
+inventory
+score
+drop
+cheat sheet
+inventory
+score
+drop
+lucky pen

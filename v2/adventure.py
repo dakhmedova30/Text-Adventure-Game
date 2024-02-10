@@ -776,7 +776,7 @@ if __name__ == "__main__":
     # START GAME
     pygame.mixer.music.load("kahoot.mp3")
     pygame.mixer.music.set_volume(0.07)
-    pygame.mixer.music.play(loops=-1, start=0.7)
+    pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
 
     time.sleep(1)
     YOUR_NAME = input("\033[1;97m\nEnter your name: \033[0m")
@@ -844,7 +844,7 @@ if __name__ == "__main__":
                         p.score -= 5
                         pygame.mixer.music.load("kahoot.mp3")
                         pygame.mixer.music.set_volume(0.07)
-                        pygame.mixer.music.play(loops=-1, start=0.7)
+                        pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
                         VISITED_NEGATIVITY_ROOM = True
                     else:
                         lightgray("> You try pulling on the door with all your might, but you can\'t seem to open it.")
@@ -862,7 +862,7 @@ if __name__ == "__main__":
                         p.score -= 3
                         pygame.mixer.music.load("kahoot.mp3")
                         pygame.mixer.music.set_volume(0.07)
-                        pygame.mixer.music.play(loops=-1, start=0.7)
+                        pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
                         VISITED_PURPLE_GUY = True
                     else:
                         lightgray(
@@ -881,7 +881,7 @@ if __name__ == "__main__":
                             p.score -= 3
                         pygame.mixer.music.load("kahoot.mp3")
                         pygame.mixer.music.set_volume(0.07)
-                        pygame.mixer.music.play(loops=-1, start=0.7)
+                        pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
                         VISITED_CONNOR = True
                     else:
                         lightgray("> You open the door. Connor just shakes his and closes it back.")
@@ -898,7 +898,7 @@ if __name__ == "__main__":
                         moves += 5
                         pygame.mixer.music.load("kahoot.mp3")
                         pygame.mixer.music.set_volume(0.07)
-                        pygame.mixer.music.play(loops=-1, start=0.7)
+                        pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
                         VISITED_TIFFANY = True
                     else:
                         lightgray(
@@ -917,7 +917,7 @@ if __name__ == "__main__":
                             p.score -= 2
                         pygame.mixer.music.load("kahoot.mp3")
                         pygame.mixer.music.set_volume(0.07)
-                        pygame.mixer.music.play(loops=-1, start=0.7)
+                        pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
                     else:
                         lightgray(
                             "> Plagg and Tikki are probably still at Adrien\'s place because you don't see either of them in the room.")
@@ -949,7 +949,7 @@ if __name__ == "__main__":
                         p.score += 5
                         pygame.mixer.music.load("kahoot.mp3")
                         pygame.mixer.music.set_volume(0.07)
-                        pygame.mixer.music.play(loops=-1, start=0.7)
+                        pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
                         VISITED_BUMBLY_MIA = True
                     else:
                         lightgray("> You walk in. Bumbly and Mia are nowhere to be seen.")
@@ -966,7 +966,7 @@ if __name__ == "__main__":
                         moves -= 3
                         pygame.mixer.music.load("kahoot.mp3")
                         pygame.mixer.music.set_volume(0.07)
-                        pygame.mixer.music.play(loops=-1, start=0.7)
+                        pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
                         VISITED_KYOKO_TOMOYO_POCOYO = True
                     else:
                         lightgray(
@@ -985,7 +985,7 @@ if __name__ == "__main__":
                         p.score += 3
                         pygame.mixer.music.load("kahoot.mp3")
                         pygame.mixer.music.set_volume(0.07)
-                        pygame.mixer.music.play(loops=-1, start=0.7)
+                        pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
                         VISITED_CHIRLY = True
                     else:
                         lightgray("> You walk in. The room is empty. Seems like Chirly flew away.")
@@ -1275,7 +1275,7 @@ if __name__ == "__main__":
 
                     pygame.mixer.music.load("kahoot.mp3")
                     pygame.mixer.music.set_volume(0.07)
-                    pygame.mixer.music.play(loops=-1, start=0.7)
+                    pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
                     VISITED_PHONE_GUY = True
 
                 else:
@@ -1545,7 +1545,7 @@ if __name__ == "__main__":
 
                     pygame.mixer.music.load("kahoot.mp3")
                     pygame.mixer.music.set_volume(0.07)
-                    pygame.mixer.music.play(loops=-1, start=0.7)
+                    pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
 
             elif selection.lower() != 'no':
                 pygame.mixer.Sound.play(SPELLING)
@@ -1706,12 +1706,12 @@ if __name__ == "__main__":
                     time.sleep(2)
                 pygame.mixer.music.load("kahoot.mp3")
                 pygame.mixer.music.set_volume(0.07)
-                pygame.mixer.music.play(loops=-1, start=0.7)
+                pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
 
             elif loc == 6:
                 pygame.mixer.music.load("jojo.mp3")
                 pygame.mixer.music.set_volume(0.06)
-                pygame.mixer.music.play(loops=-1, start=0)
+                pygame.mixer.music.play(loops=-1, start=0, fade_ms=2000)
                 marius_maximus_baddius_iii.dialogue()
                 if not MARIUS_MOVES_GAINED:
                     moves += 15
@@ -1729,7 +1729,7 @@ if __name__ == "__main__":
 
                 pygame.mixer.music.load("kahoot.mp3")
                 pygame.mixer.music.set_volume(0.07)
-                pygame.mixer.music.play(loops=-1, start=0.7)
+                pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
 
             elif loc == 9:
                 pygame.mixer.music.load("whistle.mp3")
@@ -1743,7 +1743,7 @@ if __name__ == "__main__":
                     time.sleep(2)
                 pygame.mixer.music.load("kahoot.mp3")
                 pygame.mixer.music.set_volume(0.07)
-                pygame.mixer.music.play(loops=-1, start=0.7)
+                pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
 
             elif loc == 15:
                 pygame.mixer.music.load("tangled.mp3")
@@ -1757,7 +1757,7 @@ if __name__ == "__main__":
                     time.sleep(2)
                 pygame.mixer.music.load("kahoot.mp3")
                 pygame.mixer.music.set_volume(0.07)
-                pygame.mixer.music.play(loops=-1, start=0.7)
+                pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
 
             elif loc == 16:
                 pygame.mixer.music.load("renai.mp3")
@@ -1771,7 +1771,7 @@ if __name__ == "__main__":
                     time.sleep(2)
                 pygame.mixer.music.load("kahoot.mp3")
                 pygame.mixer.music.set_volume(0.07)
-                pygame.mixer.music.play(loops=-1, start=0.7)
+                pygame.mixer.music.play(loops=-1, start=0.7, fade_ms=2000)
 
             else:
                 lightgray("There is no one to talk to here.")

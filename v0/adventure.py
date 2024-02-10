@@ -142,7 +142,7 @@ class SCP(Beings):
             f'> {your_name}: Marius? How did he die?',
             '> Chirly: He was stabbed! Squawk! 28 times!',
             f'> {your_name}: That\'s crazy... Who did it? Where? When?',
-            '> Chirly: He\'s dead! Detective, he\'s dead! Squawk!',
+            '> Chirly: He\'s dead! Detective, he died at UC! Squawk!',
             f'> {your_name}: Can you at least tell me why?',
             '> Chirly: Squawk! He\'s dead! Case closed! Squawk!',
             '> It seems like Chirly has nothing else to say.',
@@ -770,7 +770,7 @@ if __name__ == "__main__":
     time.sleep(2)
     white('- Look: Prints the long description of a location.')
     time.sleep(2)
-    white('- Talk: Displays your converstaion with any NPC present in the location.')
+    white('- Talk: Displays your conversation with any NPC present in the location. You can talk to NPCs as many times as you want.')
     time.sleep(2)
     white('- Quit: Immediately quits the game.')
     time.sleep(2)
