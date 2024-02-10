@@ -1003,13 +1003,20 @@ if __name__ == "__main__":
                         lightGray('> Phone Guy: Uh, welcome to The Amazing Digital Gacha Gambling Game.')
 
                         time.sleep(2)
-                        lightGray('> Phone Guy: You can exit anytime by typing \"leave.\"')
+                        lightGray('> Phone Guy: You can exit anytime by typing \"leave\".')
 
                         time.sleep(2)
                         lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                         answer = input('\033[1;97m\nYour Answer: \033[0m')
 
-                        while answer != 'leave':
+                        while moves > 0 and answer != 'leave':
+                            # END: NO MOVES LEFT
+                            if moves <= 0:
+                                red("\n\nYou've reached the maximum number of moves. Game over!")
+                                time.sleep(1)
+                                magenta("\nYour final score is: " + str(p.score) + "\n")
+                                time.sleep(1)
+
                             print('MOVES: ' + str(moves))
                             print('PITY: ' + str(pity))
 
@@ -1022,8 +1029,6 @@ if __name__ == "__main__":
                                     lightGray('> Phone Guy: Congrats, you won the 50/50.')
                                     time.sleep(2)
                                     lightGray('> You won 100 moves and 100 points!')
-                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
-                                    answer = input('\033[1;97m\nYour Answer: \033[0m')
                                     pity = 0
                                 else:
                                     moves += 35
@@ -1032,8 +1037,6 @@ if __name__ == "__main__":
                                     lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
                                     time.sleep(2)
                                     lightGray('> You won 35 moves and 35 points!')
-                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
-                                    answer = input('\033[1;97m\nYour Answer: \033[0m')
                                     pity = 0
 
                             elif 76 <= pity <= 80:
@@ -1050,7 +1053,7 @@ if __name__ == "__main__":
                                             lightGray('> Phone Guy: Congrats, you won the 50/50.')
                                             time.sleep(2)
                                             lightGray('> You won 100 moves and 100 points!')
-                                            lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                            lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
                                             pity = 0
                                         else:
@@ -1060,7 +1063,7 @@ if __name__ == "__main__":
                                             lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
                                             time.sleep(2)
                                             lightGray('> You won 35 moves and 35 points!')
-                                            lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                            lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
                                             pity = 0
 
@@ -1071,7 +1074,7 @@ if __name__ == "__main__":
                                         lightGray('> Phone Guy: Oh, uh look, you got something!')
                                         time.sleep(2)
                                         lightGray('> You won 5 moves and 5 points!')
-                                        lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                        lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                         answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                                     else:
@@ -1079,7 +1082,7 @@ if __name__ == "__main__":
                                         p.score += 1
                                         time.sleep(2)
                                         lightGray('> You lost 1 move and won 1 point.')
-                                        lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                        lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                         answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                                 elif answer.lower() == '10':
@@ -1119,12 +1122,12 @@ if __name__ == "__main__":
                                             p.score += 1
                                             time.sleep(2)
                                             lightGray('> You lost 1 move and won 1 point.')
-                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                    lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                     answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                                 else:
                                     pygame.mixer.Sound.play(spelling)
-                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                    lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                     answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                             else:
@@ -1141,7 +1144,7 @@ if __name__ == "__main__":
                                             lightGray('> Phone Guy: Congrats, you won the 50/50.')
                                             time.sleep(2)
                                             lightGray('> You won 100 moves and 100 points!')
-                                            lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                            lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
                                             pity = 0
                                         else:
@@ -1151,7 +1154,7 @@ if __name__ == "__main__":
                                             lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
                                             time.sleep(2)
                                             lightGray('> You won 35 moves and 35 points!')
-                                            lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                            lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
                                             pity = 0
 
@@ -1162,7 +1165,7 @@ if __name__ == "__main__":
                                         lightGray('> Phone Guy: Oh, uh look, you got something!')
                                         time.sleep(2)
                                         lightGray('> You won 5 moves and 5 points!')
-                                        lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                        lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                         answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                                     else:
@@ -1170,7 +1173,7 @@ if __name__ == "__main__":
                                         p.score += 1
                                         time.sleep(2)
                                         lightGray('> You lost 1 move and won 1 point.')
-                                        lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                        lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                         answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                                 elif answer.lower() == '10':
@@ -1210,12 +1213,12 @@ if __name__ == "__main__":
                                             p.score += 1
                                             time.sleep(2)
                                             lightGray('> You lost 1 move and won 1 point.')
-                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                    lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                     answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                                 else:
                                     pygame.mixer.Sound.play(spelling)
-                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                    lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                     answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                         time.sleep(2)
@@ -1257,13 +1260,20 @@ if __name__ == "__main__":
                         lightGray('> Phone Guy: Uh, welcome to The Amazing Digital Gacha Gambling Game.')
 
                         time.sleep(2)
-                        lightGray('> Phone Guy: You can exit anytime by typing \"leave.\"')
+                        lightGray('> Phone Guy: You can exit anytime by typing \"leave\".')
 
                         time.sleep(2)
                         lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                         answer = input('\033[1;97m\nYour Answer: \033[0m')
 
-                        while answer != 'leave':
+                        while moves > 0 and answer != 'leave':
+                            # END: NO MOVES LEFT
+                            if moves <= 0:
+                                red("\n\nYou've reached the maximum number of moves. Game over!")
+                                time.sleep(1)
+                                magenta("\nYour final score is: " + str(p.score) + "\n")
+                                time.sleep(1)
+                                
                             print('MOVES: ' + str(moves))
                             print('PITY: ' + str(pity))
                             
@@ -1277,8 +1287,6 @@ if __name__ == "__main__":
                                     lightGray('> Phone Guy: Congrats, you won the 50/50.')
                                     time.sleep(2)
                                     lightGray('> You won 100 moves and 100 points!')
-                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
-                                    answer = input('\033[1;97m\nYour Answer: \033[0m')
                                     pity = 0
                                 else:
                                     moves += 35
@@ -1287,8 +1295,6 @@ if __name__ == "__main__":
                                     lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
                                     time.sleep(2)
                                     lightGray('> You won 35 moves and 35 points!')
-                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
-                                    answer = input('\033[1;97m\nYour Answer: \033[0m')
                                     pity = 0
 
                             elif 76 <= pity <= 80:
@@ -1305,7 +1311,7 @@ if __name__ == "__main__":
                                             lightGray('> Phone Guy: Congrats, you won the 50/50.')
                                             time.sleep(2)
                                             lightGray('> You won 100 moves and 100 points!')
-                                            lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                            lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
                                             pity = 0
                                         else:
@@ -1315,7 +1321,7 @@ if __name__ == "__main__":
                                             lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
                                             time.sleep(2)
                                             lightGray('> You won 35 moves and 35 points!')
-                                            lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                            lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
                                             pity = 0
 
@@ -1326,7 +1332,7 @@ if __name__ == "__main__":
                                         lightGray('> Phone Guy: Oh, uh look, you got something!')
                                         time.sleep(2)
                                         lightGray('> You won 5 moves and 5 points!')
-                                        lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                        lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                         answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                                     else:
@@ -1334,7 +1340,7 @@ if __name__ == "__main__":
                                         p.score += 1
                                         time.sleep(2)
                                         lightGray('> You lost 1 move and won 1 point.')
-                                        lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                        lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                         answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                                 elif answer.lower() == '10':
@@ -1374,12 +1380,12 @@ if __name__ == "__main__":
                                             p.score += 1
                                             time.sleep(2)
                                             lightGray('> You lost 1 move and won 1 point.')
-                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                    lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                     answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                                 else:
                                     pygame.mixer.Sound.play(spelling)
-                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                    lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                     answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                             else:
@@ -1396,7 +1402,7 @@ if __name__ == "__main__":
                                             lightGray('> Phone Guy: Congrats, you won the 50/50.')
                                             time.sleep(2)
                                             lightGray('> You won 100 moves and 100 points!')
-                                            lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                            lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
                                             pity = 0
                                         else:
@@ -1406,7 +1412,7 @@ if __name__ == "__main__":
                                             lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
                                             time.sleep(2)
                                             lightGray('> You won 35 moves and 35 points!')
-                                            lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                            lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
                                             pity = 0
 
@@ -1417,7 +1423,7 @@ if __name__ == "__main__":
                                         lightGray('> Phone Guy: Oh, uh look, you got something!')
                                         time.sleep(2)
                                         lightGray('> You won 5 moves and 5 points!')
-                                        lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                        lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                         answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                                     else:
@@ -1425,7 +1431,7 @@ if __name__ == "__main__":
                                         p.score += 1
                                         time.sleep(2)
                                         lightGray('> You lost 1 move and won 1 point.')
-                                        lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                        lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                         answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                                 elif answer.lower() == '10':
@@ -1465,12 +1471,12 @@ if __name__ == "__main__":
                                             p.score += 1
                                             time.sleep(2)
                                             lightGray('> You lost 1 move and won 1 point.')
-                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                    lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                     answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                                 else:
                                     pygame.mixer.Sound.play(spelling)
-                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                    lightGray('\n> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                     answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                         time.sleep(2)
