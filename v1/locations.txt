@@ -1,0 +1,119 @@
+Exam Centre
+5
+You are in the Exam Centre.
+You anxiously arrive to the exam centre, seeing floods of students exiting and entering the different testing rooms. Looking around, you see a wide variety of students - some panicked and some calm - as they all head inside. Good luck!
+END
+
+Scenery
+0
+You see restaurants to your right and a university building to your left.
+To your right you see the Prenup Pub and Dear Saigon as you walk on College Street, and to your left lies the Lassonde Mining Building.
+END
+
+Scenery
+0
+You pass by Starbucks and a few university buildings.
+On one side of the street, you see a Starbucks location, while across the road are the Wallberg Memorial Building and the Department of Materials Science and Engineering.
+END
+
+Scenery
+0
+You pass by Bahen Centre for Information Technology and the UofT Bookstore.
+On one side of street, you see Bahen Centre for Information Technology and the University of Toronto Bookstore along with a few smaller stores next to it.
+END
+
+Knox College
+0
+You are in the Knox College.
+You walk into an old-fashioned Gothic-style college - Knox. You usually wouldn't go there, but a glint of light from something lying on the ground catches your eye. A broken pocket mirror?
+END
+
+Sir Daniel Wilson Residence
+0
+You are in front of the Sir Daniel Wilson Residence.
+You wake up to the sound of loud music playing from the room next to you. Groggily, you look at your phone to see that the time is 8AM. You remember that you have an exam today at 6PM, but you can't see some things that you need for the exam - your TCard, lucky pen, and cheat sheet are nowhere to be found. And curiously, so is your water bottle. You get up from your bed and head to the door next to yours from where the music is coming from and knock on the door to TALK with your neighbor.
+END
+
+University College Library
+0
+You are in the University College Library.
+You walk into a small but charming library, lined with a long red carpet. There are barely any sounds echoing in this place, apart from the occasional murmur. At the wooden table, you see a few students dilligently studying for their exams and midterms. You walk towards the table, but are immediately distracted by someone groaning loudly. Maybe someone's there?
+END
+
+Sidney Smith Hall
+0
+You are in the Sidney Smith Hall.
+You enter Sidney Smith Hall and start walking inside. As soon as the Sid Smith Cafe is in sight, so is a small pile of items in the lost-or-found box. Maybe that's where your bottle is...
+END
+
+Howard Ferguson Dining Hall
+0
+You are in the Howard Ferguson Dining Hall.
+You walk to the Howard Ferguson Dining Hall through the basement passage. The aroma of food envelops the area as you long for a bite. In an obscure corner, you find a few scratched out letters reading "The cake is a lie!" and curiously... a pocketwatch on the counter. This piques your curiousity, however, you realize that you need to find your missing items first. Maybe you can fill your bottle here?
+END
+
+Morrison Hall
+0
+You are in Morrison Hall.
+You enter Morrison Hall, with the loud chatter of students around you. You walk up towards the porter's desk where you see a familiar figure.
+END
+
+Robarts Library
+3
+You are in the Robarts Library. You see five doors in front of you. Pick one to enter or leave the commons area.
+You see five doors in front of you. Pick one of the five to enter or to leave the commons area.
+END
+
+Closed Buildings
+0
+You see some buildings near Trinity College, but they all seem to be closed.
+You walk past Newman Centre, noticing that it is closed. A few more buildings ahead of you, you see, also seem to be closed, like the Massey College building, the Campbell Conference Facility and the Munk School of Global Affairs and Public Policy.
+END
+
+Graham Library
+0
+You are in the Graham Library.
+You are greeted by a gust of warm air rushing past as you enter Graham library. You walk past the reception and into the rows of bookshelves, headed for a table in the corner near the window.
+END
+
+Robarts Commons
+3
+You are in the Robarts Commons. You see three doors in front of you. Pick one to enter or leave the commons area.
+You see three doors in front of you. Pick one of the doors to enter or to leave the commons area.
+END
+
+Athletics Centre
+0
+You are in the Athletics Centre.
+You walk into the magnifient Athletics Centre, eyeing the enormous pool and all of the workout rooms. There is a place for every sport here, from karate to contemporary dancing. You reminisce going here a few times to work out with your friends.
+END
+
+Scenery
+0
+You pass by Rotman School of Management and the Innis College Residence.
+As you walk forward, you pass a couple more university buildings - the Rotman School of Management and the Innis College Residence. A girl waves at you. Wait... you know her!
+END
+
+Woodsworth College
+0
+You are in Woodsworth College.
+You walk into Woodsworth College, taking in the vintage architecture. You see a variety of classrooms downstairs, and notice an entrance to the residential dorms. You remember a friend who used to live in the dormitories here.
+END
+
+Scenery
+0
+You pass by Rotman Commerce and the Bata Shoe Museum.
+Walking forward, you see the Rotman Commerce Building and the Bata Shoe Museum on either side of the street.
+END
+
+Ontario Institue for Studies in Education (OISE)
+0
+You are in the Ontario Institue for Studies in Education (OISE) building.
+You walk in to the Ontario Institue for Studies in Education (OISE) building, remembering the trek every Tuesday and Thursday from your computer science class to your Japanese tutorials. Upon entering, you see the OISE library and an elevator that leads to floors filled with various classrooms.
+END
+
+LOCATION -1
+0
+That way is blocked.
+That way is blocked.
+END
