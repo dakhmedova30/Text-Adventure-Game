@@ -614,6 +614,7 @@ class NPC(Beings):
                             lightGray('> Marius Maximus Baddius III: Hmm... I don\'t seem to recall any of the items that you\'re holding. Maybe my possessions are somewhere else?')
                 else:
                     lightGray('> Marius Maximus Baddius III: Oh... Could you please go and find them for me?')
+            
             else:
                 lightGray('> Marius Maximus Baddius III: I can now ascend to a further plane on the next anniversary of my demise.')
 
@@ -1673,13 +1674,10 @@ if __name__ == "__main__":
                     marius_moves_gained = False
                 if found_pocket_watch == True:
                     p.inventory.remove('Pocket Watch')
-                    found_pocket_watch = False
                 if found_pocket_mirror == True:
                     p.inventory.remove('Pocket Mirror')
-                    found_pocket_mirror = False
                 if found_handkerchief == True:
                     p.inventory.remove('Handkerchief')
-                    found_handkerchief = False
                 if found_items == True and visited_marius_maximus_baddius_iii == True and marius_end_gained == True:
                     moves += 10
                     p.score += 50
