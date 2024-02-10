@@ -1018,10 +1018,22 @@ if __name__ == "__main__":
                                 if chance == 1:
                                     moves += 100
                                     p.score += 100
+                                    time.sleep(2)
+                                    lightGray('> Phone Guy: Congrats, you won the 50/50.')
+                                    time.sleep(2)
+                                    lightGray('> You won 100 moves and 100 points!')
+                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                    answer = input('\033[1;97m\nYour Answer: \033[0m')
                                     pity = 0
                                 else:
                                     moves += 35
                                     p.score += 35
+                                    time.sleep(2)
+                                    lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
+                                    time.sleep(2)
+                                    lightGray('> You won 35 moves and 35 points!')
+                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                    answer = input('\033[1;97m\nYour Answer: \033[0m')
                                     pity = 0
 
                             elif 76 <= pity <= 80:
@@ -1040,6 +1052,7 @@ if __name__ == "__main__":
                                             lightGray('> You won 100 moves and 100 points!')
                                             lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
+                                            pity = 0
                                         else:
                                             moves += 35
                                             p.score += 35
@@ -1049,6 +1062,7 @@ if __name__ == "__main__":
                                             lightGray('> You won 35 moves and 35 points!')
                                             lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
+                                            pity = 0
 
                                     elif 26 <= rand <= 50:
                                         moves += 5
@@ -1082,6 +1096,7 @@ if __name__ == "__main__":
                                                 lightGray('> Phone Guy: Congrats, you won the 50/50.')
                                                 time.sleep(2)
                                                 lightGray('> You won 100 moves and 100 points!')
+                                                pity = 0
                                             else:
                                                 moves += 35
                                                 p.score += 35
@@ -1089,6 +1104,7 @@ if __name__ == "__main__":
                                                 lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
                                                 time.sleep(2)
                                                 lightGray('> You won 35 moves and 35 points!')
+                                                pity = 0
 
                                         elif 4 <= rand <= 28:
                                             moves += 5
@@ -1127,6 +1143,7 @@ if __name__ == "__main__":
                                             lightGray('> You won 100 moves and 100 points!')
                                             lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
+                                            pity = 0
                                         else:
                                             moves += 35
                                             p.score += 35
@@ -1136,6 +1153,7 @@ if __name__ == "__main__":
                                             lightGray('> You won 35 moves and 35 points!')
                                             lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
+                                            pity = 0
 
                                     elif 4 <= rand <= 28:
                                         moves += 5
@@ -1169,6 +1187,7 @@ if __name__ == "__main__":
                                                 lightGray('> Phone Guy: Congrats, you won the 50/50.')
                                                 time.sleep(2)
                                                 lightGray('> You won 100 moves and 100 points!')
+                                                pity = 0
                                             else:
                                                 moves += 35
                                                 p.score += 35
@@ -1176,6 +1195,7 @@ if __name__ == "__main__":
                                                 lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
                                                 time.sleep(2)
                                                 lightGray('> You won 35 moves and 35 points!')
+                                                pity = 0
 
                                         elif 4 <= rand <= 28:
                                             moves += 5
@@ -1253,10 +1273,22 @@ if __name__ == "__main__":
                                 if chance == 1:
                                     moves += 100
                                     p.score += 100
+                                    time.sleep(2)
+                                    lightGray('> Phone Guy: Congrats, you won the 50/50.')
+                                    time.sleep(2)
+                                    lightGray('> You won 100 moves and 100 points!')
+                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                    answer = input('\033[1;97m\nYour Answer: \033[0m')
                                     pity = 0
                                 else:
                                     moves += 35
                                     p.score += 35
+                                    time.sleep(2)
+                                    lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
+                                    time.sleep(2)
+                                    lightGray('> You won 35 moves and 35 points!')
+                                    lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                                    answer = input('\033[1;97m\nYour Answer: \033[0m')
                                     pity = 0
 
                             elif 76 <= pity <= 80:
@@ -1275,6 +1307,7 @@ if __name__ == "__main__":
                                             lightGray('> You won 100 moves and 100 points!')
                                             lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
+                                            pity = 0
                                         else:
                                             moves += 35
                                             p.score += 35
@@ -1284,6 +1317,7 @@ if __name__ == "__main__":
                                             lightGray('> You won 35 moves and 35 points!')
                                             lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
+                                            pity = 0
 
                                     elif 26 <= rand <= 50:
                                         moves += 5
@@ -1317,6 +1351,7 @@ if __name__ == "__main__":
                                                 lightGray('> Phone Guy: Congrats, you won the 50/50.')
                                                 time.sleep(2)
                                                 lightGray('> You won 100 moves and 100 points!')
+                                                pity = 0
                                             else:
                                                 moves += 35
                                                 p.score += 35
@@ -1324,6 +1359,7 @@ if __name__ == "__main__":
                                                 lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
                                                 time.sleep(2)
                                                 lightGray('> You won 35 moves and 35 points!')
+                                                pity = 0
 
                                         elif 4 <= rand <= 28:
                                             moves += 5
@@ -1362,6 +1398,7 @@ if __name__ == "__main__":
                                             lightGray('> You won 100 moves and 100 points!')
                                             lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
+                                            pity = 0
                                         else:
                                             moves += 35
                                             p.score += 35
@@ -1371,6 +1408,7 @@ if __name__ == "__main__":
                                             lightGray('> You won 35 moves and 35 points!')
                                             lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
                                             answer = input('\033[1;97m\nYour Answer: \033[0m')
+                                            pity = 0
 
                                     elif 4 <= rand <= 28:
                                         moves += 5
@@ -1404,6 +1442,7 @@ if __name__ == "__main__":
                                                 lightGray('> Phone Guy: Congrats, you won the 50/50.')
                                                 time.sleep(2)
                                                 lightGray('> You won 100 moves and 100 points!')
+                                                pity = 0
                                             else:
                                                 moves += 35
                                                 p.score += 35
@@ -1411,6 +1450,7 @@ if __name__ == "__main__":
                                                 lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
                                                 time.sleep(2)
                                                 lightGray('> You won 35 moves and 35 points!')
+                                                pity = 0
 
                                         elif 4 <= rand <= 28:
                                             moves += 5
