@@ -41,16 +41,6 @@ class Item:
     def __init__(self, name: str, curr: int, start: int, target: int, target_points: int) -> None:
         """Initialize a new item.
         """
-
-        # NOTES:
-        # This is just a suggested starter class for Item.
-        # You may change these parameters and the data available for each Item object as you see fit.
-        # (The current parameters correspond to the example in the handout).
-        # Consider every method in this Item class as a "suggested method".
-        #
-        # The only thing you must NOT change is the name of this class: Item.
-        # All item objects in your game MUST be represented as an instance of this class.
-
         self.name = name
         self.curr_position = curr
         self.start_position = start
@@ -76,31 +66,10 @@ class Location:
         - self.brief != ''
         - self.long != ''
         - self.commands != []
-
     """
-
     def __init__(self, name: str, pos: int, brief: str, long: str, commands: list[str], items: list[Item], visited: bool) -> None:
         """Initialize a new location.
-
-        # TODO Add more details here about the initialization if needed
         """
- 
-        # NOTES:
-        # Data that could be associated with each Location object:
-        # a position in the world map,
-        # a brief description,
-        # a long description,
-        # a list of available commands/directions to move,
-        # items that are available in the location,
-        # and whether the location has been visited before.
-        # Store these as you see fit, using appropriate data types.
-        #
-        # This is just a suggested starter class for Location.
-        # You may change/add parameters and the data available for each Location object as you see fit.
-        #
-        # The only thing you must NOT change is the name of this class: Location.
-        # All locations in your game MUST be represented as an instance of this class.
-
         self.name = name
         self.pos = pos
         self.brief = brief
@@ -115,10 +84,6 @@ class Location:
         The actions should depend on the items available in the location
         and the x,y position of this location on the world map.
         """
-
-        # NOTE: This is just a suggested method
-        # i.e. You may remove/modify/rename this as you like, and complete the
-        # function header (e.g. add in parameters, complete the type contract) as needed
         if self.pos == 0:
             return ['west', 'grab', 'drop']
         if self.pos == 1:
@@ -178,11 +143,6 @@ class Player:
         """
         Initializes a new Player at position (x, y).
         """
-
-        # NOTES:
-        # This is a suggested starter class for Player.
-        # You may change these parameters and the data available for the Player object as you see fit.
-
         self.x = x
         self.y = y
         self.inventory = []
@@ -212,27 +172,10 @@ class World:
         - location_data: name of text file containing location data (format left up to you)
         - items_data: name of text file containing item data (format left up to you)
         """
-
-        # NOTES:
- 
-        # map_data should refer to an open text file containing map data in a grid format, with integers separated by a
-        # space, representing each location, as described in the project handout. Each integer represents a different
-        # location, and -1 represents an invalid, inaccessible space.
-
-        # You may ADD parameters/attributes/methods to this class as you see fit.
-        # BUT DO NOT RENAME OR REMOVE ANY EXISTING METHODS/ATTRIBUTES IN THIS CLASS
-
-        # The map MUST be stored in a nested list as described in the load_map() function's docstring below
         self.map = self.load_map(map_data)
         self.location = self.load_locations(location_data)
         self.items = self.load_items(items_data)
 
-        # NOTE: You may choose how to store location and item data; create your own World methods to handle these
-        # accordingly. The only requirements:
-        # 1. Make sure the Location class is used to represent each location.
-        # 2. Make sure the Item class is used to represent each item.
-
-    # NOTE: The method below is REQUIRED. Complete it exactly as specified.
     def load_map(self, map_data: TextIO) -> list[list[int]]:
         """
         Store map from open file map_data as the map attribute of this object, as a nested list of integers like so:
@@ -252,7 +195,6 @@ class World:
             temp.append(line.split(" "))
         map_list = [[int(i) for i in lst] for lst in temp]
         return map_list
-
 
     def load_locations(self, location_data: TextIO) -> list[list]:
         ret_locations = []
@@ -303,7 +245,6 @@ class World:
         for a in range(0, len(items_list)):
             ret_items.append(Item(items_list[a][3], items_list[a][0], items_list[a][0], items_list[a][1], items_list[a][2]))
         return ret_items
-
 
     def get_location(self, x: int, y: int) -> Optional[Location]:
         """Return Location object associated with the coordinates (x, y) in the world map, if a valid location exists at

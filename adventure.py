@@ -18,17 +18,18 @@ please consult our Course Syllabus.
 This file is Copyright (c) 2024 CSC111 Teaching Team
 """
 
-# Note: You may add in other import statements here as needed
+
 from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 from game_data import World, Item, Location, Player
 import time
+import random
 from typing import Optional, Any
 import pygame
 pygame.init()
 pygame.mixer.init()
 
-# Note: You may add helper functions, classes, etc. here as needed
+
 places = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 0, 15: 0, 16: 0, 17: 0, 18: 0}
 
 your_name = ''
@@ -64,8 +65,8 @@ marius_moves_gained = False
 
 
 class Beings:
-    """Parent class for various enhancement SCPs (everything you meet at the Robarts Library and Commons) 
-    and NPCs (the four characters that help you figure where your stuff went and Marius, the ghost.)
+    """Parent class for various enhancement SCPs (everything you meet at the Robarts Library and Commons, as well as Phone Guy) 
+    and NPCs (the four characters that help you figure where your items went and Marius, the ghost).
 
     Instance Attributes:
         - self.name: the beings' name
@@ -112,7 +113,8 @@ class SCP(Beings):
 
     def puzzle(self) -> Any:
         """Dialogue that pops up when you visit a room for the first time along with the 
-        amount of move and/or point you gain/lose and the questions some of them ask."""
+        amount of moves and/or points you gain/lose and the questions some of them ask.
+        """
         if self.name == 'Bumbly and Mia':
             return ['> You hear quite a commotion as you walk into the room.',
             '> Two dogs greet you: one is a large and fluffy Samoyed, and the other is a small and soft Keeshond.',
@@ -306,42 +308,70 @@ class SCP(Beings):
                 return False
 
         if self.name == 'Phone Guy':
-            return['> You notice a mysterious blue telephone on the ground.',
-            '> It begins ringing...',
-            '> Phone Guy: Hello, hello, hello?',
-            '> Phone Guy: Uh, I wanted to record a message for you to help you get settled into this text adventure game.',
-            '> Phone Guy: Um, I actually was the player before you. I\'m finishing up my last playthrough now, as a matter of fact.',
-            '> Phone Guy: So, I know it can be a bit overwhelming, but I\'m here to tell you there\'s nothing to worry about. Uh, you\'ll do fine.',
-            '> Phone Guy: So, let\'s just focus on getting you through the game, okay?',
-            '> Phone Guy: Uh, let\'s see, first there\'s an introductory greeting from the game developers that I\'m supposed to read.',
-            '> Phone Guy: Uh, it\'s kind of a legal thing, you know.',
-            f'> Phone Guy: Um, \"Welcome to the Amazing Digital Adventure, {your_name}. A magical place for kids and grown-ups alike, where fantasy and fun come to life.',
-            '> Phone Guy: Comp Sci Entertainment is not responsible for damage to property or person.',
-            '> Phone Guy: Upon discovering that despair or confusion has occurred, a missing items report will be filed within 90 days, or as soon property and premises have been thoroughly cleaned and checked, and the carpets have been replaced.',
-            '> Phone Guy: Blah, blah, blah. Now that might sound bad, I know, but there\'s really nothing to worry about.',
-            '> Phone Guy: Uh, the SCP and NPC characters here do get a bit quirky at night, but do I blame them?',
-            '> Phone Guy: No. If I were forced to say those same stupid lines for twenty years and I never got a bath?',
-            '> Phone Guy: I\'d probably be a bit irritable at night too.',
-            '> Phone Guy: So, remember, these characters hold a special place in the hearts of children and we need to show them a little respect, right? Okay.',
-            '> Phone Guy: So, just be aware, the characters do tend to wander a bit. Uh, they\'re left in some kind of free roaming mode at night.',
-            '> Phone Guy: Uh... something about their code bugging up if they get turned off for too long.',
-            '> Phone Guy: Uh, they used to be allowed to walk around during the day too. But then there was The Bite of \'87. Yeah.',
-            '> Phone Guy: I-It\'s amazing that they human body can live without a perfectly-sound mind, you know?',
-            '> Phone Guy: Uh, now concerning your safety, the only real risk to you as a player here, if any, is the fact that these characters, uh, if they happen to see you after hours, probably won\'t recognize you as a person.',
-            '> Phone Guy: They\'ll pr- they\'ll most likely see you as an amalgamation of HTML without its CSS on.',
-            '> Phone Guy: Now since that\'s against the rules here at the Amazing Digital Adventure, they\'ll probably try to... forcefully stuff you inside a Being class.',
-            '> Phone Guy: Um, now, that wouldn\'t be so bad if the classes themselves weren\'t filled with instance attributes, representation invariants, and functions, especially around the top area.',
-            '> Phone Guy: So, you could imagine how having your head forcefully pressed inside one of those could cause a bit of discomfort... and expiration.',
-            '> Phone Guy: Uh, the only parts of you that would likely see the light of day again would be your eyeballs and teeth when they merge with the pre-existing code, heh.',
-            '> Phone Guy: Y-yeah, they don\'t tell you these things when you sign up. But hey, your first playthrough should be a breeze.',
-            '> Phone Guy: I\'ll chat with you tomorrow. Uh, check those rooms, and remember to quit the game only if absolutely necessary.',
-            '> Phone Guy: Gotta conserve your moves. Alright, goodbye.',
-            '> The phone call ends.']
+            lightGray('> You notice a mysterious blue telephone on the ground.')
+            time.sleep(1)
+            lightGray('> It begins ringing...')
+            time.sleep(9)
+            lightGray('> Phone Guy: Hello? Hello, hello?')
+            time.sleep(3)
+            lightGray('> Phone Guy: Uh, I wanted to record a message for you to help you get settled into this text adventure game.')
+            time.sleep(6)
+            lightGray('> Phone Guy: Um, I actually was the player before you. I\'m finishing up my last playthrough now, as a matter of fact.')
+            time.sleep(7)
+            lightGray('> Phone Guy: So, I know it can be a bit overwhelming, but I\'m here to tell you there\'s nothing to worry about. Uh, you\'ll do fine.')
+            time.sleep(8)
+            lightGray('> Phone Guy: So, let\'s just focus on getting you through the game, okay?')
+            time.sleep(5)
+            lightGray('> Phone Guy: Uh, let\'s see, first there\'s an introductory greeting from the game developers that I\'m supposed to read.')
+            time.sleep(6)
+            lightGray('> Phone Guy: Uh, it\'s kind of a legal thing, you know.')
+            time.sleep(3)
+            lightGray(f'> Phone Guy: Um, \"Welcome to The Amazing Digital Adventure, {your_name}. A magical place for kids and grown-ups alike, where fantasy and fun come to life.\"')
+            time.sleep(9)
+            lightGray('> Phone Guy: \"Comp Sci Entertainment is not responsible for damage to property or person.\"')
+            time.sleep(4)
+            lightGray('> Phone Guy: \"Upon discovering that despair or expiration has occurred, a missing person report will be filed within 90 days, or as soon property and premises have been thoroughly cleaned and checked, and the carpets have been replaced.\"')
+            time.sleep(11)
+            lightGray('> Phone Guy: Blah, blah, blah. Now that might sound bad, I know, but there\'s surely nothing to worry about.')
+            time.sleep(6)
+            lightGray('> Phone Guy: Uh, the SCP and NPC characters here do get a bit quirky at night, but do I blame them? No.')
+            time.sleep(6)
+            lightGray('> Phone Guy: If I were forced to say those same stupid lines for twenty years and I never got a bath? I\'d probably be a bit irritable at night too.')
+            time.sleep(9)
+            lightGray('> Phone Guy: So, remember, these characters hold a special place in the hearts of children and we need to show them a little respect, right? Okay.')
+            time.sleep(8)
+            lightGray('> Phone Guy: So, just be aware, the characters do tend to wander a bit. Uh, they\'re left in some kind of free roaming mode at night.')
+            time.sleep(8)
+            lightGray('> Phone Guy: Uh... something about their code bugging up if they get turned off for too long.')
+            time.sleep(5)
+            lightGray('> Phone Guy: Uh, they used to be allowed to walk around during the day too. But then there was The Bite of \'87. Yeah.')
+            time.sleep(7)
+            lightGray('> Phone Guy: I-It\'s amazing that they human body can live without the frontal lobe, you know?')
+            time.sleep(5)
+            lightGray('> Phone Guy: Uh, now concerning your safety, the only real risk to you as a player here, if any, is the fact that these characters, uh, if they happen to see you after hours, probably won\'t recognize you as a person.')
+            time.sleep(14)
+            lightGray('> Phone Guy: They\'ll pr- they\'ll most likely see you as an amalgamation of HTML without its CSS on.')
+            time.sleep(5)
+            lightGray('> Phone Guy: Now since that\'s against the rules here at The Amazing Digital Adventure, they\'ll probably try to... forcefully stuff you inside a Being class.')
+            time.sleep(10)
+            lightGray('> Phone Guy: Um, now, that wouldn\'t be so bad if the classes themselves weren\'t filled with instance attributes, representation invariants, and functions, especially around the top area.')
+            time.sleep(11)
+            lightGray('> Phone Guy: So, you could imagine how having your head forcefully pressed inside one of those could cause a bit of discomfort... and expiration.')
+            time.sleep(8)
+            lightGray('> Phone Guy: Uh, the only parts of you that would likely see the light of day again would be your eyeballs and teeth when they merge with the pre-existing code, heh.')
+            time.sleep(7)
+            lightGray('> Phone Guy: Y-yeah, they don\'t tell you these things when you sign up. But hey, your first playthrough should be a breeze.')
+            time.sleep(5)
+            lightGray('> Phone Guy: I\'ll chat with you tomorrow. Uh, check those rooms, and remember to quit the game only if absolutely necessary.')
+            time.sleep(6)
+            lightGray('> Phone Guy: Gotta conserve your moves. Alright, goodbye.')
+            time.sleep(4)
+            lightGray('> The phone call ends.')
 
 
 class NPC(Beings):
-    """Child class of Being defining the people (and the one ghost) you meet around campus 
-    who help you find your missing thingsor ask for your help to decode their death.
+    """Child class of Beings defining the people (and the one ghost) you meet around campus 
+    who help you find your missing items or ask for your help to decode their death.
 
     Instance Attributes:
         - self.name: the beings' name
@@ -581,7 +611,8 @@ class NPC(Beings):
 
 
 def do_action(w: World, p: Player, location: Location, choice: str) -> None:
-    """Allows for the player to move in four cardinal directions."""
+    """Allows for the player to move in four cardinal directions.
+    """
     if choice in location.available_actions():
         if choice == 'north':
             p.y -= 1
@@ -593,6 +624,7 @@ def do_action(w: World, p: Player, location: Location, choice: str) -> None:
             p.x += 1
     else:
         lightGray('This way is blocked.')
+
 
 # COLORS FUNCTIONS
 def bold(skk):
@@ -663,39 +695,30 @@ def white(skk):
     """Defining a white color for text."""
     print("\033[1;97m{}\033[0m\r".format(skk))
 
-bold("This is bold.")
-black("This is black.")
-darkRed("This is dark red.")
-darkGreen("This is dark green.")
-darkYellow("This is dark yellow.")
-darkBlue("This is dark blue.")
-darkMagenta("This is dark magenta.")
-darkCyan("This is dark cyan.")
-lightGray("This is light gray.")
-darkGray("This is dark gray.")
-red("This is red.")
-green("This is green.")
-yellow("This is yellow.")
-blue("This is blue.")
-magenta("This is magenta.")
-cyan("This is cyan.")
-white("This is white.")
-print("\n")
+# bold("This is bold.")
+# black("This is black.")
+# darkRed("This is dark red.")
+# darkGreen("This is dark green.")
+# darkYellow("This is dark yellow.")
+# darkBlue("This is dark blue.")
+# darkMagenta("This is dark magenta.")
+# darkCyan("This is dark cyan.")
+# lightGray("This is light gray.")
+# darkGray("This is dark gray.")
+# red("This is red.")
+# green("This is green.")
+# yellow("This is yellow.")
+# blue("This is blue.")
+# magenta("This is magenta.")
+# cyan("This is cyan.")
+# white("This is white.")
+# print("\n")
 
-def gambling_game() -> None:
-    lightGray('> The phone suddenly rings again.')
-    time.sleep(2)
-    lightGray('> Hello, hello, hello?')
-    time.sleep(2)
-    lightGray(f'> Oh, it\'s you again, {your_name}.')
-    time.sleep(2)
-    lightGray('> Now that you gained a basic sense of this game\'s mechanics, would you like to play a game?')
-    time.sleep(2)
 
-# Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
     w = World("map.txt", "locations.txt", "items.txt")
     p = Player(2, 7)  # set starting location of player; you may change the x, y coordinates here as appropriate
+
 
     # INSTANCES OF NPCs/SCPs
     linda_shinx = NPC("Linda Shinx", 5, 2)
@@ -710,38 +733,48 @@ if __name__ == "__main__":
 
     room_of_negativity = SCP("Room of Negativity", 10, -5, -1)
     purple_guy = SCP("Purple Guy", 10, -3, -3)
-    connor = SCP("Connor", 10, 0, 0) # TODO: figure out
+    connor = SCP("Connor", 10, 0, 0)
     tiffany = SCP("Tiffany", 10, 0, 5)
     tikki_plagg = SCP("Tikki and Plagg", 10, -2, 3)
 
     phone_guy = SCP("Phone Guy", 11, 3, -3)
     
+
     # VARIABLES
     menu = ["look", "inventory", "score", "quit", "grab", "drop", "talk"]
+
 
     # INITIAL LOCATION AND MOVES INITIALIZATION
     location = w.get_location(p.x, p.y)
     moves = 40
 
+
     # START GAME
     pygame.mixer.music.load("kahoot.mp3")
     pygame.mixer.music.set_volume(0.07)
     pygame.mixer.music.play(loops=-1, start=0.7)
+    spelling = pygame.mixer.Sound('spelling.mp3')
+    spelling.set_volume(0.2)
+
     time.sleep(1)
     your_name = input("\033[1;97m\nEnter your name: \033[0m")
     time.sleep(1)
-    white(f'\nHello, {your_name}! Welcome to the Amazing Digital Adventure. Press menu to get a list of commands that you can call at any time. You are able to move in all four directions too (if the location permits).')
+    white(f'\nHello, {your_name}! Welcome to The Amazing Digital Adventure. Press menu to get a list of commands that you can call at any time. You are able to move in all four directions too (if the location permits).')
     time.sleep(1)
 
-    while not p.victory and not p.quit and moves > 0: # decide the number of moves later
+
+    while not p.victory and not p.quit and moves > 0:
+        # print('MOVES: ' + str(moves))
         location = w.get_location(p.x, p.y)
         loc = location.pos
         
+
         # VISITED CHECKER
         if places[loc] > 0:
             location.visited = True
         places[loc] += 1
         
+
         # DISPLAY LOCATIONS
         cyan("\n\n" + location.name)
         time.sleep(1)
@@ -751,13 +784,11 @@ if __name__ == "__main__":
         else:
             lightGray(location.long)
             time.sleep(1)
-            
-        print('MOVES: ' + str(moves))
-        print('ajdkfhajkdhfjaajhfha')
+
 
         # ROBARTS LIBRARY SCPs
         if loc == 10:
-            print('\nThere are unknown entities in this location.')
+            white('\nThere are unknown entities in this location.')
             time.sleep(1)
             selection = input('\033[1;97m\nWould you like to explore? (yes/no) \033[0m')
             time.sleep(1)
@@ -782,7 +813,7 @@ if __name__ == "__main__":
                     else:
                         lightGray("> You try pulling on the door with all your might, but you can\'t seem to open it.")
                         time.sleep(1)
-                if door == '2':
+                elif door == '2':
                     if visited_purple_guy == False:
                         pygame.mixer.music.load("fnaf.mp3")
                         pygame.mixer.music.set_volume(0.04)
@@ -800,7 +831,7 @@ if __name__ == "__main__":
                     else:
                         lightGray("> The second your hand touches the doorknob, flashbacks of your last encounter in this room flood your mind. You barely escaped last time, so why try again?")
                         time.sleep(1)
-                if door == '3':
+                elif door == '3':
                     if visited_connor == False:
                         pygame.mixer.music.load("connor.mp3")
                         pygame.mixer.music.set_volume(0.07)
@@ -818,7 +849,7 @@ if __name__ == "__main__":
                     else:
                         lightGray("> You open the door. Connor just shakes his and closes it back.")
                         time.sleep(1)
-                if door == '4':
+                elif door == '4':
                     if visited_tiffany == False:
                         pygame.mixer.music.load("sao.mp3")
                         pygame.mixer.music.set_volume(0.05)
@@ -835,7 +866,7 @@ if __name__ == "__main__":
                     else:
                         lightGray("> You peek through the peephole and see that Tiffany is still busy with his chips. You\'d rather not disturb him.")
                         time.sleep(1)
-                if door == '5':
+                elif door == '5':
                     if visited_tikki_plagg == False:
                         pygame.mixer.music.load("mlb.mp3")
                         pygame.mixer.music.set_volume(0.07)
@@ -849,10 +880,15 @@ if __name__ == "__main__":
                     else:
                         lightGray("> Plagg and Tikki are probably still at Adrien\'s place because you don't see either of them in the room.")
                         time.sleep(1)
+                else:
+                    pygame.mixer.Sound.play(spelling)
+            elif selection.lower() != 'no':
+                pygame.mixer.Sound.play(spelling)
+
 
         # ROBARTS COMMONS SCPs
         if loc == 13:
-            print('\nThere are unknown entities in this location.')
+            white('\nThere are unknown entities in this location.')
             time.sleep(1)
             selection = input('\033[1;97m\nWould you like to explore? (yes/no) \033[0m')
             time.sleep(1)
@@ -877,7 +913,7 @@ if __name__ == "__main__":
                     else:
                         lightGray("> You walk in. Bumbly and Mia are nowhere to be seen.")
                         time.sleep(1)
-                if door == '2':
+                elif door == '2':
                     if visited_kyoko_tomoyo_pocoyo == False:
                         pygame.mixer.music.load("cat.mp3")
                         pygame.mixer.music.set_volume(0.04, start=0.5)
@@ -894,7 +930,7 @@ if __name__ == "__main__":
                     else:
                         lightGray("> You walk in. One of the volunteers asks you to leave due to the one visit per person policy.")
                         time.sleep(1)
-                if door == '3':
+                elif door == '3':
                     if visited_chirly == False:
                         pygame.mixer.music.load("birdcage.mp3")
                         pygame.mixer.music.set_volume(0.04)
@@ -912,33 +948,442 @@ if __name__ == "__main__":
                     else:
                         lightGray("> You walk in. The room is empty. Seems like Chirly flew away.")
                         time.sleep(1)
+                else:
+                    pygame.mixer.Sound.play(spelling)
+            elif selection.lower() != 'no':
+                pygame.mixer.Sound.play(spelling)
+
 
         # PHONE GUY SCP
         if loc == 11:
-            print('\nThere is an unknown entity in this location.')
+            white('\nThere is an unknown entity in this location.')
             time.sleep(1)
             selection = input('\033[1;97m\nWould you like to explore? (yes/no) \033[0m')
             time.sleep(1)
             if selection.lower() == 'yes':
                 if visited_phone_guy == False:
-                    # pygame.mixer.music.load("phoneguy.mp3")
-                    # pygame.mixer.music.set_volume(0.08)
-                    # pygame.mixer.music.play(loops=-1)
-                    lst = phone_guy.puzzle()
-                    for text in lst:
-                        lightGray(text)
-                        time.sleep(2)
+                    pygame.mixer.music.load("phoneguy.mp3")
+                    pygame.mixer.music.set_volume(0.08)
+                    pygame.mixer.music.play(start=5)
+                    phone_guy.puzzle()
+
+                    pygame.mixer.music.load("fnaf.mp3")
+                    pygame.mixer.music.set_volume(0.04)
+                    pygame.mixer.music.play(loops=-1, start=0)
+
                     moves -= 3
                     p.score += 3
-                    gambling_game()
+
+                    time.sleep(2)
+                    lightGray('> The phone suddenly rings again.')
+                    time.sleep(2)
+                    lightGray('> Phone Guy: Hello, hello, hello?')
+                    time.sleep(2)
+                    lightGray(f'> Phone Guy: Oh, it\'s you again, {your_name}.')
+                    time.sleep(2)
+                    lightGray('> Phone Guy: Now that you gained a basic sense of this game\'s mechanics, would you like to play a game?')
+                    time.sleep(2)
+                    response = input('\033[1;97m\nYour Answer: \033[0m')
+
+                    if response.lower() == 'yes':
+                        pity = 0
+
+                        time.sleep(2)
+                        lightGray('> Phone Guy: Uh, welcome to The Amazing Digital Gacha Gambling Game.')
+
+                        time.sleep(2)
+                        lightGray('> Phone Guy: You can exit anytime by typing \"leave.\"')
+
+                        time.sleep(2)
+                        lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                        answer = input('\033[1;97m\nYour Answer: \033[0m')
+
+                        while answer != 'leave':
+                            if pity >= 90:
+                                chance = random.randint(1, 2)
+                                if chance == 1:
+                                    moves += 100
+                                    p.score += 100
+                                    pity = 0
+                                else:
+                                    moves += 35
+                                    p.score += 35
+                                    pity = 0
+
+                            elif 76 <= pity <= 80:
+                                if answer.lower() == '1':
+                                    pity += 1
+                                    rand = random.randint(1, 500)
+                                    
+                                    if 1 <= rand <= 25:
+                                        chance = random.randint(1, 2)
+                                        if chance == 1:
+                                            moves += 100
+                                            p.score += 100
+                                            time.sleep(2)
+                                            lightGray('> Phone Guy: Congrats, you won the 50/50.')
+                                            time.sleep(2)
+                                            lightGray('> You won 100 moves and 100 points!')
+                                        else:
+                                            moves += 35
+                                            p.score += 35
+                                            time.sleep(2)
+                                            lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
+                                            time.sleep(2)
+                                            lightGray('> You won 35 moves and 35 points!')
+
+                                    elif 26 <= rand <= 50:
+                                        moves += 5
+                                        p.score += 5
+                                        time.sleep(2)
+                                        lightGray('> Phone Guy: Oh, uh look, you got something!')
+                                        time.sleep(2)
+                                        lightGray('> You won 5 moves and 5 points!')
+
+                                    else:
+                                        moves -= 1
+                                        p.score += 1
+                                        time.sleep(2)
+                                        lightGray('> You lost 1 move and won 1 point.')
+
+                                elif answer.lower() == '10':
+                                    pity += 10
+                                    for i in range(0, 10):
+                                        rand = random.randint(1, 500)
+
+                                        if 1 <= rand <= 3:
+                                            chance = random.randint(1, 2)
+                                            if chance == 1:
+                                                moves += 100
+                                                p.score += 100
+                                                time.sleep(2)
+                                                lightGray('> Phone Guy: Congrats, you won the 50/50.')
+                                                time.sleep(2)
+                                                lightGray('> You won 100 moves and 100 points!')
+                                            else:
+                                                moves += 35
+                                                p.score += 35
+                                                time.sleep(2)
+                                                lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
+                                                time.sleep(2)
+                                                lightGray('> You won 35 moves and 35 points!')
+
+                                        elif 4 <= rand <= 28:
+                                            moves += 5
+                                            p.score += 5
+                                            time.sleep(2)
+                                            lightGray('> Phone Guy: Oh, uh look, you got something!')
+                                            time.sleep(2)
+                                            lightGray('> You won 5 moves and 5 points!')
+
+                                        else:
+                                            moves -= 1
+                                            p.score += 1
+                                            time.sleep(2)
+                                            lightGray('> You lost 1 move and won 1 point.')
+                                
+                                else:
+                                    pygame.mixer.Sound.play(spelling)
+
+                            else:
+                                if answer.lower() == '1':
+                                    pity += 1
+                                    rand = random.randint(1, 500)
+
+                                    if 1 <= rand <= 3:
+                                        chance = random.randint(1, 2)
+                                        if chance == 1:
+                                            moves += 100
+                                            p.score += 100
+                                            time.sleep(2)
+                                            lightGray('> Phone Guy: Congrats, you won the 50/50.')
+                                            time.sleep(2)
+                                            lightGray('> You won 100 moves and 100 points!')
+                                        else:
+                                            moves += 35
+                                            p.score += 35
+                                            time.sleep(2)
+                                            lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
+                                            time.sleep(2)
+                                            lightGray('> You won 35 moves and 35 points!')
+
+                                    elif 4 <= rand <= 28:
+                                        moves += 5
+                                        p.score += 5
+                                        time.sleep(2)
+                                        lightGray('> Phone Guy: Oh, uh look, you got something!')
+                                        time.sleep(2)
+                                        lightGray('> You won 5 moves and 5 points!')
+
+                                    else:
+                                        moves -= 1
+                                        p.score += 1
+                                        time.sleep(2)
+                                        lightGray('> You lost 1 move and won 1 point.')
+
+                                elif answer.lower() == '10':
+                                    pity += 10
+                                    for i in range(0, 10):
+                                        rand = random.randint(1, 500)
+
+                                        if 1 <= rand <= 3:
+                                            chance = random.randint(1, 2)
+                                            if chance == 1:
+                                                moves += 100
+                                                p.score += 100
+                                                time.sleep(2)
+                                                lightGray('> Phone Guy: Congrats, you won the 50/50.')
+                                                time.sleep(2)
+                                                lightGray('> You won 100 moves and 100 points!')
+                                            else:
+                                                moves += 35
+                                                p.score += 35
+                                                time.sleep(2)
+                                                lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
+                                                time.sleep(2)
+                                                lightGray('> You won 35 moves and 35 points!')
+
+                                        elif 4 <= rand <= 28:
+                                            moves += 5
+                                            p.score += 5
+                                            time.sleep(2)
+                                            lightGray('> Phone Guy: Oh, uh look, you got something!')
+                                            time.sleep(2)
+                                            lightGray('> You won 5 moves and 5 points!')
+
+                                        else:
+                                            moves -= 1
+                                            p.score += 1
+                                            time.sleep(2)
+                                            lightGray('> You lost 1 move and won 1 point.')
+                                
+                                else:
+                                    pygame.mixer.Sound.play(spelling)
+
+                        time.sleep(2)
+                        lightGray('> Phone Guy: Um... okay, I\'ll leave you to it. See you on the flip side!')
+                    
+                    elif response.lower() == 'no':
+                        time.sleep(2)
+                        lightGray('> Phone Guy: Um... okay, I\'ll leave you to it. See you on the flip side!')
+
+                    else:
+                        pygame.mixer.Sound.play(spelling)
+
                     pygame.mixer.music.load("kahoot.mp3")
                     pygame.mixer.music.set_volume(0.07)
                     pygame.mixer.music.play(loops=-1, start=0.7)
                     visited_phone_guy = True
+
                 else:
-                    lightGray("> You notice a mysterious blue telephone on the ground.")
-                    gambling_game()
-                    time.sleep(1)
+                    pygame.mixer.music.load("fnaf.mp3")
+                    pygame.mixer.music.set_volume(0.04)
+                    pygame.mixer.music.play(loops=-1, start=0)
+
+                    lightGray('> You notice a mysterious blue telephone on the ground.')
+                    time.sleep(2)
+                    lightGray('> The phone suddenly starts ringing.')
+                    time.sleep(2)
+                    lightGray('> Phone Guy: Hello, hello, hello?')
+                    time.sleep(2)
+                    lightGray(f'> Phone Guy: Oh, it\'s you again, {your_name}.')
+                    time.sleep(2)
+                    lightGray('> Phone Guy: Now that you gained a basic sense of this game\'s mechanics, would you like to play a game?')
+                    time.sleep(2)
+                    response = input('\033[1;97m\nYour Answer: \033[0m')
+
+                    if response.lower() == 'yes':
+                        pity = 0
+
+                        time.sleep(2)
+                        lightGray('> Phone Guy: Uh, welcome to The Amazing Digital Gacha Gambling Game.')
+
+                        time.sleep(2)
+                        lightGray('> Phone Guy: You can exit anytime by typing \"leave.\"')
+
+                        time.sleep(2)
+                        lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
+                        response = input('\033[1;97m\nYour Answer: \033[0m')
+
+                        while answer != 'leave':
+                            if pity >= 90:
+                                chance = random.randint(1, 2)
+
+                                if chance == 1:
+                                    moves += 100
+                                    p.score += 100
+                                    pity = 0
+                                else:
+                                    moves += 35
+                                    p.score += 35
+                                    pity = 0
+
+                            elif 76 <= pity <= 80:
+                                if answer.lower() == '1':
+                                    pity += 1
+                                    rand = random.randint(1, 500)
+
+                                    if 1 <= rand <= 25:
+                                        chance = random.randint(1, 2)
+                                        if chance == 1:
+                                            moves += 100
+                                            p.score += 100
+                                            time.sleep(2)
+                                            lightGray('> Phone Guy: Congrats, you won the 50/50.')
+                                            time.sleep(2)
+                                            lightGray('> You won 100 moves and 100 points!')
+                                        else:
+                                            moves += 35
+                                            p.score += 35
+                                            time.sleep(2)
+                                            lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
+                                            time.sleep(2)
+                                            lightGray('> You won 35 moves and 35 points!')
+
+                                    elif 26 <= rand <= 50:
+                                        moves += 5
+                                        p.score += 5
+                                        time.sleep(2)
+                                        lightGray('> Phone Guy: Oh, uh look, you got something!')
+                                        time.sleep(2)
+                                        lightGray('> You won 5 moves and 5 points!')
+
+                                    else:
+                                        moves -= 1
+                                        p.score += 1
+                                        time.sleep(2)
+                                        lightGray('> You lost 1 move and won 1 point.')
+
+                                elif answer.lower() == '10':
+                                    pity += 10
+                                    for i in range(0, 10):
+                                        rand = random.randint(1, 500)
+
+                                        if 1 <= rand <= 3:
+                                            chance = random.randint(1, 2)
+                                            if chance == 1:
+                                                moves += 100
+                                                p.score += 100
+                                                time.sleep(2)
+                                                lightGray('> Phone Guy: Congrats, you won the 50/50.')
+                                                time.sleep(2)
+                                                lightGray('> You won 100 moves and 100 points!')
+                                            else:
+                                                moves += 35
+                                                p.score += 35
+                                                time.sleep(2)
+                                                lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
+                                                time.sleep(2)
+                                                lightGray('> You won 35 moves and 35 points!')
+
+                                        elif 4 <= rand <= 28:
+                                            moves += 5
+                                            p.score += 5
+                                            time.sleep(2)
+                                            lightGray('> Phone Guy: Oh, uh look, you got something!')
+                                            time.sleep(2)
+                                            lightGray('> You won 5 moves and 5 points!')
+
+                                        else:
+                                            moves -= 1
+                                            p.score += 1
+                                            time.sleep(2)
+                                            lightGray('> You lost 1 move and won 1 point.')
+                                
+                                else:
+                                    pygame.mixer.Sound.play(spelling)
+
+                            else:
+                                if answer.lower() == '1':
+                                    pity += 1
+                                    rand = random.randint(1, 500)
+
+                                    if 1 <= rand <= 3:
+                                        chance = random.randint(1, 2)
+                                        if chance == 1:
+                                            moves += 100
+                                            p.score += 100
+                                            time.sleep(2)
+                                            lightGray('> Phone Guy: Congrats, you won the 50/50.')
+                                            time.sleep(2)
+                                            lightGray('> You won 100 moves and 100 points!')
+                                        else:
+                                            moves += 35
+                                            p.score += 35
+                                            time.sleep(2)
+                                            lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
+                                            time.sleep(2)
+                                            lightGray('> You won 35 moves and 35 points!')
+
+                                    elif 4 <= rand <= 28:
+                                        moves += 5
+                                        p.score += 5
+                                        time.sleep(2)
+                                        lightGray('> Phone Guy: Oh, uh look, you got something!')
+                                        time.sleep(2)
+                                        lightGray('> You won 5 moves and 5 points!')
+
+                                    else:
+                                        moves -= 1
+                                        p.score += 1
+                                        time.sleep(2)
+                                        lightGray('> You lost 1 move and won 1 point.')
+
+                                elif answer.lower() == '10':
+                                    pity += 10
+                                    for i in range(0, 10):
+                                        rand = random.randint(1, 500)
+
+                                        if 1 <= rand <= 3:
+                                            chance = random.randint(1, 2)
+                                            if chance == 1:
+                                                moves += 100
+                                                p.score += 100
+                                                time.sleep(2)
+                                                lightGray('> Phone Guy: Congrats, you won the 50/50.')
+                                                time.sleep(2)
+                                                lightGray('> You won 100 moves and 100 points!')
+                                            else:
+                                                moves += 35
+                                                p.score += 35
+                                                time.sleep(2)
+                                                lightGray('> Phone Guy: It seems that you have lost the 50/50, oh well...')
+                                                time.sleep(2)
+                                                lightGray('> You won 35 moves and 35 points!')
+
+                                        elif 4 <= rand <= 28:
+                                            moves += 5
+                                            p.score += 5
+                                            time.sleep(2)
+                                            lightGray('> Phone Guy: Oh, uh look, you got something!')
+                                            time.sleep(2)
+                                            lightGray('> You won 5 moves and 5 points!')
+
+                                        else:
+                                            moves -= 1
+                                            p.score += 1
+                                            time.sleep(2)
+                                            lightGray('> You lost 1 move and won 1 point.')
+
+                                else:
+                                    pygame.mixer.Sound.play(spelling)
+
+                        time.sleep(2)
+                        lightGray('> Phone Guy: Um... okay, I\'ll leave you to it. See you on the flip side!')
+
+                    elif response.lower() == 'no':
+                        time.sleep(2)
+                        lightGray('> Phone Guy: Um... okay, I\'ll leave you to it. See you on the flip side!')
+
+                    else:
+                        pygame.mixer.Sound.play(spelling)
+
+                    pygame.mixer.music.load("kahoot.mp3")
+                    pygame.mixer.music.set_volume(0.07)
+                    pygame.mixer.music.play(loops=-1, start=0.7)
+
+            elif selection.lower() != 'no':
+                pygame.mixer.Sound.play(spelling)
 
 
         # DISPLAY OPTIONS
@@ -946,9 +1391,10 @@ if __name__ == "__main__":
         white("\nWhat to do?")
         time.sleep(1)
         green("- [MENU]")
-        green("- North\n- South\n- West\n- East") # TODO: fix the spacing
+        green("- North\n- South\n- West\n- East")
         time.sleep(1)
         choice = input("\033[1;97m\nEnter Action: \033[0m")
+
 
         # MENU
         if choice.lower() == "[menu]":
@@ -958,15 +1404,18 @@ if __name__ == "__main__":
                 green("- " + option.title())
             choice = input("\033[1;97m\nChoose Action: \033[0m")
         
+
         # CARDINAL DIRECTIONS
         if choice.lower() == "north" or choice.lower() == "south" or choice.lower() == "east" or choice.lower() == "west":
             do_action(w, p, location, choice.lower())
         
+
         # LOOK
         if choice.lower() == "look":
-            lightGray(location.long + '\n') #TODO: don't print the brief
+            lightGray(location.long + '\n')
             time.sleep(1)
         
+
         # INVENTORY
         if choice.lower() == "inventory":
             if p.inventory == []:
@@ -978,14 +1427,17 @@ if __name__ == "__main__":
                     yellow("- " + str(item))
                 time.sleep(1)
 
+
         # SCORE
         if choice.lower() == "score":
             magenta("\nScore: " + str(p.score))
             time.sleep(1)
 
+
         # QUIT
         if choice.lower() == "quit":
             p.quit = True
+
 
         # GRAB
         if choice.lower() == "grab":
@@ -998,6 +1450,7 @@ if __name__ == "__main__":
                     curr_items.append(item_info.name)
 
             if curr_items == [] or (w.items != [] and all([item.curr_position == -1 for item in w.items])):
+                pygame.mixer.Sound.play(spelling)
                 lightGray("There are no items in this area!\n")
                 time.sleep(1)
             else:
@@ -1021,9 +1474,11 @@ if __name__ == "__main__":
                         if chosen_item == item.name:
                             item.curr_position = -1
                 else:
+                    pygame.mixer.Sound.play(spelling)
                     lightGray("This item does not exist in this area.")
                     time.sleep(1)
     
+
         # DROP
         if choice.lower() == "drop":
             all_items = p.inventory
@@ -1034,6 +1489,7 @@ if __name__ == "__main__":
                 curr_items.append(item_info)
 
             if all_items == []:
+                pygame.mixer.Sound.play(spelling)
                 lightGray("You have no items to drop!\n")
                 time.sleep(1)
             else:
@@ -1076,9 +1532,11 @@ if __name__ == "__main__":
                             p.score += 5
                             sheet_drop = True
                 else:
+                    pygame.mixer.Sound.play(spelling)
                     lightGray("You don't have this item.")
                     time.sleep(1)
        
+
         # TALK
         if choice.lower() == 'talk':
             if loc == 5:
@@ -1161,16 +1619,25 @@ if __name__ == "__main__":
                 pygame.mixer.music.set_volume(0.07)
                 pygame.mixer.music.play(loops=-1, start=0.7)
             else:
+                pygame.mixer.Sound.play(spelling)
                 lightGray("There is no one to talk to here.")
                 time.sleep(1)
 
+
+        # MISSPELLING
+        if choice.lower() not in ['north', 'south', 'east', 'west', '[menu]', 'look', 'inventory', 'score', 'quit', 'grab', 'drop', 'talk', 'quit']:
+            pygame.mixer.Sound.play(spelling)
+
+
         # UPDATE MOVES COUNTER
-        if choice in ['north', 'south', 'east', 'west', 'grab', 'drop']:
+        if choice.lower() in ['north', 'south', 'east', 'west', 'grab', 'drop']:
             moves -= 1
+
 
         # VICTORY
         if water_drop and tcard_drop and pen_drop and sheet_drop and loc == 0:
             p.victory = True
+
 
     # END: QUIT
     if p.quit:
@@ -1179,6 +1646,7 @@ if __name__ == "__main__":
         magenta("\nYour final score is: " + str(p.score) + "\n")
         time.sleep(1)
 
+
     # END: VICTORY
     if p.victory:
         red("\n\nCongrats! You won!")
@@ -1186,20 +1654,10 @@ if __name__ == "__main__":
         magenta("\nYour final score is: " + str(p.score) + "\n")
         time.sleep(1)
 
+
     # END: NO MOVES LEFT
     if moves <= 0:
         red("\n\nYou've reached the maximum number of moves. Game over!")
         time.sleep(1)
         magenta("\nYour final score is: " + str(p.score) + "\n")
         time.sleep(1)
-
-        # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
-        #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
-        #  the choice the player made was just a movement, so only updating player's position is enough to change the
-        #  location to the next appropriate location
-        #  Possibilities:
-        #  A helper function such as do_action(w, p, location, choice)
-        #  OR A method in World class w.do_action(p, location, choice)
-        #  OR Check what type of action it is, then modify only player or location accordingly
-        #  OR Method in Player class for move or updating inventory
-        #  OR Method in Location class for updating location item info, or other location data etc....
