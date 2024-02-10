@@ -62,6 +62,7 @@ found_pocket_mirror = False
 found_pocket_watch = False
 found_handkerchief = False
 marius_moves_gained = False
+marius_end_gained = False
 
 
 class Beings:
@@ -392,7 +393,8 @@ class NPC(Beings):
         self.points = points
 
     def dialogue(self) -> Any:
-        """The conversation with the NPCs that pops up every time you choose to TALK in the location they are in."""
+        """The conversation with the NPCs that pops up every time you choose to TALK in the location they are in.
+        """
         if self.name == 'Linda Shinx':
             global visited_linda
             visited_linda = True
@@ -465,6 +467,7 @@ class NPC(Beings):
             global found_pocket_mirror
             global found_pocket_watch
             global marius_moves_gained
+            global marius_end_gained
             global found_items
             if visited_marius_maximus_baddius_iii == False:
                 lightGray('> A Strange Ghost: Oh... woe is me!')
@@ -597,6 +600,7 @@ class NPC(Beings):
                         lightGray('> You gain 10 moves and 50 points!')
                         time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: Thank you child, for helping me figure out my past.')
+                        marius_end_gained = True
                         found_items = True
                         
                     if 'Handkerchief' not in p.inventory and 'Pocket Mirror' not in p.inventory and 'Pocket Watch' not in p.inventory:
@@ -717,7 +721,7 @@ def white(skk):
 
 if __name__ == "__main__":
     w = World("map.txt", "locations.txt", "items.txt")
-    p = Player(2, 7)  # set starting location of player; you may change the x, y coordinates here as appropriate
+    p = Player(2, 7) # set starting location of player; you may change the x, y coordinates here as appropriate
 
 
     # INSTANCES OF NPCs/SCPs
@@ -759,7 +763,7 @@ if __name__ == "__main__":
     time.sleep(1)
     your_name = input("\033[1;97m\nEnter your name: \033[0m")
     time.sleep(1)
-    white(f'\nHello, {your_name}! Welcome to The Amazing Digital Adventure. Press menu to get a list of commands that you can call at any time. You are able to move in all four directions too (if the location permits).')
+    white(f'\nHello, {your_name}! Welcome to The Amazing Digital Adventure. Type [MENU] to get a list of commands that you can call at any time. You are able to move in all four cardinal directions too, if the location permits.')
     time.sleep(1)
 
 
@@ -1449,7 +1453,7 @@ if __name__ == "__main__":
                 if item_info.curr_position == curr_location.pos:
                     curr_items.append(item_info.name)
 
-            if curr_items == [] or (w.items != [] and all([item.curr_position == -1 for item in w.items])):
+            if (w.items != [] and all([item.curr_position == -1 for item in w.items])) or curr_items == []:
                 pygame.mixer.Sound.play(spelling)
                 lightGray("There are no items in this area!\n")
                 time.sleep(1)
@@ -1477,7 +1481,7 @@ if __name__ == "__main__":
                     pygame.mixer.Sound.play(spelling)
                     lightGray("This item does not exist in this area.")
                     time.sleep(1)
-    
+
 
         # DROP
         if choice.lower() == "drop":
@@ -1543,16 +1547,17 @@ if __name__ == "__main__":
                 pygame.mixer.music.load("getaway.mp3")
                 pygame.mixer.music.set_volume(0.06)
                 pygame.mixer.music.play(loops=-1, start=3)
+                if visited_linda == False:
+                    moves += 2
+                    p.score += 5
                 lst = linda_shinx.dialogue()
                 for text in lst:
                     lightGray(text)
                     time.sleep(2)
-                if visited_linda == True:
-                    moves += 2
-                    p.score += 5
                 pygame.mixer.music.load("kahoot.mp3")
                 pygame.mixer.music.set_volume(0.07)
                 pygame.mixer.music.play(loops=-1, start=0.7)
+
             elif loc == 6:
                 pygame.mixer.music.load("jojo.mp3")
                 pygame.mixer.music.set_volume(0.06)
@@ -1570,56 +1575,61 @@ if __name__ == "__main__":
                 if found_handkerchief == True:
                     p.inventory.remove('Handkerchief')
                     found_handkerchief = False
-                if found_items == True and visited_marius_maximus_baddius_iii == True:
+                if found_items == True and visited_marius_maximus_baddius_iii == True and marius_end_gained == True:
                     moves += 10
                     p.score += 50
+                    marius_end_gained = False
+
                 pygame.mixer.music.load("kahoot.mp3")
                 pygame.mixer.music.set_volume(0.07)
                 pygame.mixer.music.play(loops=-1, start=0.7)
+
             elif loc == 9:
                 pygame.mixer.music.load("whistle.mp3")
                 pygame.mixer.music.set_volume(0.07)
                 pygame.mixer.music.play(loops=-1, start=0.5)
+                if visited_tommy == False:
+                    moves += 2
+                    p.score += 9
                 lst = tommy_grieves.dialogue()
                 for text in lst:
                     lightGray(text)
                     time.sleep(2)
-                if visited_tommy == True:
-                    moves += 2
-                    p.score += 9
                 pygame.mixer.music.load("kahoot.mp3")
                 pygame.mixer.music.set_volume(0.07)
                 pygame.mixer.music.play(loops=-1, start=0.7)
+
             elif loc == 15:
                 pygame.mixer.music.load("tangled.mp3")
                 pygame.mixer.music.set_volume(0.07)
                 pygame.mixer.music.play(loops=-1, start=0.5)
+                if visited_sadie == False:
+                    moves += 2
+                    p.score += 15
                 lst = sadie_shaymin.dialogue()
                 for text in lst:
                     lightGray(text)
                     time.sleep(2)
-                if visited_sadie == True:
-                    moves += 2
-                    p.score += 15
                 pygame.mixer.music.load("kahoot.mp3")
                 pygame.mixer.music.set_volume(0.07)
                 pygame.mixer.music.play(loops=-1, start=0.7)
+
             elif loc == 16:
                 pygame.mixer.music.load("renai.mp3")
                 pygame.mixer.music.set_volume(0.04)
                 pygame.mixer.music.play(loops=-1, start=0.7)
+                if visited_davis == False:
+                    moves += 2
+                    p.score += 16
                 lst = davis_loo.dialogue()
                 for text in lst:
                     lightGray(text)
                     time.sleep(2)
-                if visited_davis == True:
-                    moves += 2
-                    p.score += 16
                 pygame.mixer.music.load("kahoot.mp3")
                 pygame.mixer.music.set_volume(0.07)
                 pygame.mixer.music.play(loops=-1, start=0.7)
+
             else:
-                pygame.mixer.Sound.play(spelling)
                 lightGray("There is no one to talk to here.")
                 time.sleep(1)
 
