@@ -708,25 +708,6 @@ def white(skk):
     """Defining a white color for text."""
     print("\033[1;97m{}\033[0m\r".format(skk))
 
-bold("This is bold.")
-black("This is black.")
-darkRed("This is dark red.")
-darkGreen("This is dark green.")
-darkYellow("This is dark yellow.")
-darkBlue("This is dark blue.")
-darkMagenta("This is dark magenta.")
-darkCyan("This is dark cyan.")
-lightGray("This is light gray.")
-darkGray("This is dark gray.")
-red("This is red.")
-green("This is green.")
-yellow("This is yellow.")
-blue("This is blue.")
-magenta("This is magenta.")
-cyan("This is cyan.")
-white("This is white.")
-print("\n")
-
 
 if __name__ == "__main__":
     w = World("map.txt", "locations.txt", "items.txt")
@@ -777,7 +758,6 @@ if __name__ == "__main__":
 
 
     while not p.victory and not p.quit and moves > 0:
-        # print('MOVES: ' + str(moves))
         location = w.get_location(p.x, p.y)
         loc = location.pos
         
@@ -1021,9 +1001,6 @@ if __name__ == "__main__":
                                 time.sleep(1)
                                 darkYellow("\nYour final score is: " + str(p.score) + "\n")
                                 time.sleep(1)
-
-                            # print('MOVES: ' + str(moves))
-                            # print('PITY: ' + str(pity))
 
                             if pity >= 90:
                                 chance = random.randint(1, 2)
@@ -1278,9 +1255,6 @@ if __name__ == "__main__":
                                 time.sleep(1)
                                 darkYellow("\nYour final score is: " + str(p.score) + "\n")
                                 time.sleep(1)
-
-                            # print('MOVES: ' + str(moves))
-                            # print('PITY: ' + str(pity))
                             
                             if pity >= 90:
                                 chance = random.randint(1, 2)
@@ -1504,12 +1478,12 @@ if __name__ == "__main__":
 
         # DISPLAY OPTIONS
         time.sleep(1)
-        white('\nMoves: ' + str(moves))
-        time.sleep(1)
         white("\nWhat to do?")
         time.sleep(1)
         darkCyan("- [MENU]")
         darkCyan("- North\n- South\n- West\n- East")
+        time.sleep(1)
+        white('\nMoves: ' + str(moves))
         time.sleep(1)
         choice = input("\033[1;97m\nEnter Action: \033[0m")
 
