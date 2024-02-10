@@ -1633,7 +1633,7 @@ if __name__ == "__main__":
 
 
         # MISSPELLING
-        if choice.lower() not in ['north', 'south', 'east', 'west', '[menu]', 'look', 'inventory', 'score', 'quit', 'grab', 'drop', 'talk', 'quit']:
+        if choice.lower() not in ['north', 'south', 'east', 'west', '[menu]', 'look', 'inventory', 'score', 'quit', 'grab', 'drop', 'talk', 'quit', 'cheat sheet', 'lucky pen', 'tcard', 'water bottle', 'pocket watch', 'handkerchief', 'pocket mirror']:
             pygame.mixer.Sound.play(spelling)
 
 
