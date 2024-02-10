@@ -441,7 +441,7 @@ class NPC(Beings):
                     f'> {YOUR_NAME}: I\'m being serious, Linda. I have a terrible headache and my exam is today!',
                     '> Linda Shinx: Okay, okay, I hear you. Well, first things first, be sure to drink lots of water. Hydrate, or diedrate, y\'know?',
                     f'> {YOUR_NAME}: Drink water... Wait! I didn\'t see my water bottle in my room. Oh my gosh, do you think I lost it?!',
-                    f'> Linda Shinx: Silly {YOUR_NAME}. You left it at Sid Smith!',
+                    f'> Linda Shinx: Silly {YOUR_NAME}. You left it at Sid Smith! Remember, FUNG has the best water!',
                     f'> {YOUR_NAME}: Thanks, bestie, I can always count on you. I better get going then!',
                     f'> Linda Shinx: Adiós, {YOUR_NAME}!',
                     '> You won 2 points!']
@@ -782,8 +782,26 @@ if __name__ == "__main__":
     YOUR_NAME = input("\033[1;97m\nEnter your name: \033[0m")
     time.sleep(1)
     white(
-        f'\nHello, {YOUR_NAME}! Welcome to The Amazing Digital Adventure. Type [MENU] to get a list of commands that you can call at any time. You are able to move in all four cardinal directions too, if the location permits.')
-    time.sleep(1)
+        f'\nHello, {YOUR_NAME}! Welcome to The Amazing Digital Adventure. Type [MENU] to get a list of commands that you can call at any time.')
+    time.sleep(2)
+    white('\nHere is a brief description of what each command does:')
+    time.sleep(2)
+    white('- North/South/East/West: Moves one space in the selected cardinal direction, if the location permits.')
+    time.sleep(2)
+    white('- Grab: Grabs any item present in the location, after you type the name of it, when prompted.')
+    time.sleep(2)
+    white('- Drop: Deposit/drops any item in your inventory.')
+    time.sleep(2)
+    white('- Inventory: Displays the names of all the items in your inventory.')
+    time.sleep(2)
+    white('- Score: Displays your score.')
+    time.sleep(2)
+    white('- Look: Prints the long description of a location.')
+    time.sleep(2)
+    white('- Talk: Displays your converstaion with any NPC present in the location.')
+    time.sleep(2)
+    white('- Quit: Immediately quits the game.')
+    time.sleep(2)
 
     while not p.victory and not p.quit and moves > 0:
         location = w.get_location(p.x, p.y)

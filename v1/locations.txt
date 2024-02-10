@@ -67,7 +67,7 @@ END
 Closed Buildings
 0
 You see some buildings near Trinity College, but they all seem to be closed.
-You walk past Newman Centre, noticing that it is closed. A few more buildings ahead of you, you see, also seem to be closed, like the Massey College building, the Campbell Conference Facility and the Munk School of Global Affairs and Public Policy.
+You walk past Newman Centre, noticing that it is closed. A few more buildings ahead of you, you see, also seem to be closed, like the Massey College building, the Campbell Conference Facility and the Munk School of Global Affairs and Public Policy. Being there reminds of your friend who lives Woodsworth.
 END
 
 Graham Library
@@ -85,7 +85,7 @@ END
 Athletics Centre
 0
 You are in the Athletics Centre.
-You walk into the magnifient Athletics Centre, eyeing the enormous pool and all of the workout rooms. There is a place for every sport here, from karate to contemporary dancing. You reminisce going here a few times to work out with your friends.
+You walk into the magnifient Athletics Centre, eyeing the enormous pool and all of the workout rooms. There is a place for every sport here, from karate to contemporary dancing. You reminisce going here a few times to work out with your friends as you spot something familiar on a stationary bike.
 END
 
 Scenery
