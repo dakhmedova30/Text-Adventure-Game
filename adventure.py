@@ -114,7 +114,7 @@ class SCP(Beings):
 
     def puzzle(self) -> Any:
         """Dialogue that pops up when you visit a room for the first time along with the 
-        amount of moves and/or points you gain/lose and the questions some of them ask.
+        amount of moves and/or points you win/lose and the questions some of them ask.
         """
         if self.name == 'Bumbly and Mia':
             return ['> You hear quite a commotion as you walk into the room.',
@@ -122,14 +122,14 @@ class SCP(Beings):
             '> Their nametags read Bumbly and Mia, respectively.',
             '> As you approach them, Bumbly warmly greets you by running around in circles, while Mia goes to fetch something.',
             '> Upon Mia\'s return, you find her bringing back a pair of brand-new rollerskates!',
-            '> You gain 5 moves and 5 points!']
+            '> You won 5 moves and 5 points!']
             
         if self.name == 'Kyoko, Tomoyo, and Pocoyo':
             return ['> You walk into the room and see a lot of people and cats there.',
             '> As soon as you step in, Kyoko, Tomoyo and Pocoyo jump onto your lap and start meowing for affection.',
-            '> You look up to see a sign: \"CAT THERAPY SESSION UNTIL 2PM\".',
+            '> You look up to see a sign: \"CAT THERAPY SESSION UNTIL 2PM.\"',
             '> You look down to see Kyoko half-asleep. Looks like you can\'t get out now...',
-            '> You lose 3 moves.']
+            '> You lost 3 moves.']
 
         if self.name == 'Chirly':
             return ['> You enter the room and see a sole birdcage.',
@@ -144,7 +144,7 @@ class SCP(Beings):
             f'> {your_name}: Can you at least tell me why?',
             '> Chirly: Squawk! He\'s dead! Case closed! Squawk!',
             '> It seems like Chirly has nothing else to say.',
-            '> You gain 5 moves and 3 points!']
+            '> You won 5 moves and 3 points!']
 
         if self.name == 'Room of Negativity':
             return ['> You open the door and are greeted by a loud, sharp laugh, which seems to be aimed at you.',
@@ -158,7 +158,7 @@ class SCP(Beings):
             '> You look down at your feet feeling a pang in your heart.',
             '> An Ominous Voice: Oh no! You\'re devastated! Do you need a little huggy-wuggy from mommy? Do you need a kissy-missy to make you feel better?',
             '> An Ominous Voice: Anyway, I\'ve had enough of you for a lifetime. Get out of my house!',
-            '> You lose 1 move and 5 points.']
+            '> You lost 1 move and 5 points.']
             
         if self.name == 'Purple Guy':
             return ['> You walk into an ominous room with a broken sign reading \"Freddy Fazbear\'s Pizzeria.\"',
@@ -178,7 +178,7 @@ class SCP(Beings):
             '> However, just before he was able to catch up, you heard a thud.',
             '> Upon turning around, the terrifying sight of a springlocked human amalgamation plastered your mind.',
             '> All you could hear was a faint \"I always come back\" as you waddled away in your new suit.',
-            '> You lose 3 moves and 3 points. Tip: Try to not get stuffed into an animatronic suit next time.']
+            '> You lost 3 moves and 3 points. Tip: Try to not get stuffed into an animatronic suit next time.']
         
         if self.name == 'Connor':
             correct = False
@@ -197,7 +197,7 @@ class SCP(Beings):
                     correct = True
                     lightGray('> Connor: Congrats, you have answered correctly.')
                     time.sleep(2)
-                    lightGray('> You gain 5 moves and 5 points!')
+                    lightGray('> You won 5 moves and 5 points!')
                     return True
                 else:
                     lightGray('> Connor: Your guess was incorrect, please try again.')
@@ -205,12 +205,12 @@ class SCP(Beings):
             if correct == False:
                 lightGray('> Connor: You were unable to answer it correctly.')
                 time.sleep(2)
-                lightGray('> You lose 1 move and 3 points.')
+                lightGray('> You lost 1 move and 3 points.')
                 return False
             
         if self.name == 'Tiffany':
             return ['> The second you step inside the door, you are greeted by a loud, booming voice.',
-            '> The Voice: \"I am known by many names. \'Mountain Slayer\', \'Thunder Lion\', \'The Chocolate Axe\'. But you? You may call me... TIFFANY.\"',
+            '> The Voice: \"I am known by many names. \'Mountain Slayer\', \'Thunder Lion\', \'The Chocolate Axe.\' But you? You may call me... TIFFANY.\"',
             f'> {your_name}: Hi Tiffany. I\'m {your_name}.',
             '> Tiffany is a large, buff man who is sitting on the floor with bags of snacks around him.',
             '> Tiffany: People die when they are killed. Did you know that before? Did you? Because I didn\'t! I just learned that from the voices inside my head.',
@@ -220,7 +220,7 @@ class SCP(Beings):
             f'> {your_name}: No thanks, not right now. I gotta get going.',
             '> Tiffany nods at you and waves.',
             '> Tiffany: I take a potato chip. AND EAT IT!',
-            '> You gain 5 moves!']
+            '> You won 5 moves!']
             
         if self.name == 'Tikki and Plagg':
             global visited_tikki_plagg
@@ -294,7 +294,7 @@ class SCP(Beings):
                     time.sleep(2)
                     lightGray('> Plagg: Whatever you say, Sugarcube.')
                     time.sleep(2)
-                    lightGray('> You gain 3 moves and lose 2 points.')
+                    lightGray('> You won 3 moves and lost 2 points.')
                     visited_tikki_plagg = True
                     return True
                 else:
@@ -302,13 +302,13 @@ class SCP(Beings):
                     lightGray('> Plagg: Unfortunately, you didn\'t get all my questions right, so no prize for you.')
                     time.sleep(2)
                     lightGray('> Plagg: Smell you later!')
-                    lightGray('> You lose 1 move and lose 2 points.')
+                    lightGray('> You lost 1 move and 2 points.')
                     visited_tikki_plagg = True
                     return False
             else:
                 time.sleep(2)
                 lightGray('\n> Plagg: Too bad. Try again next time, buddy. I\'m going to find Adrien...')
-                lightGray('> You lose 1 move and lose 2 points.')
+                lightGray('> You lost 1 move and 2 points.')
                 visited_tikki_plagg = True
                 return False
 
@@ -351,7 +351,7 @@ class SCP(Beings):
             time.sleep(5)
             lightGray('> Phone Guy: Uh, they used to be allowed to walk around during the day too. But then there was The Bite of \'87. Yeah.')
             time.sleep(7)
-            lightGray('> Phone Guy: I-It\'s amazing that they human body can live without the frontal lobe, you know?')
+            lightGray('> Phone Guy: I-It\'s amazing that the human body can live without the frontal lobe, you know?')
             time.sleep(5)
             lightGray('> Phone Guy: Uh, now concerning your safety, the only real risk to you as a player here, if any, is the fact that these characters, uh, if they happen to see you after hours, probably won\'t recognize you as a person.')
             time.sleep(14)
@@ -414,7 +414,7 @@ class NPC(Beings):
             f'> Linda Shinx: Silly {your_name}. You left it at Sid Smith!',
             f'> {your_name}: Thanks, bestie, I can always count on you. I better get going then!',
             f'> Linda Shinx: Adiós, {your_name}!',
-            f'> You gain 2 moves and 5 points!']
+            f'> You won 2 moves and 5 points!']
 
         if self.name == 'Tommy Grieves':
             global visited_tommy
@@ -430,7 +430,7 @@ class NPC(Beings):
             f'> {your_name}: I would, but I don\'t have my TCard.',
             f'> Tommy Grieves: You can borrow my TCard if you want.',
             f'> {your_name}: Thanks! I\'ll return it to you during dinner.',
-            f'> You gain 2 moves and 9 points!']
+            f'> You won 2 moves and 9 points!']
 
         if self.name == 'Sadie Shaymin':
             global visited_sadie
@@ -445,7 +445,7 @@ class NPC(Beings):
             f'> Sadie Shaymin: Did you fur-get? It was a little cold last night, so we went to that fur-nace of a library. I think you started working on your cheat sheet or something?',
             f'> {your_name}: Oh, alright! See you later.',
             f'> Sadie Shaymin: Cat-ch you later!',
-            f'> You gain 2 moves and 16 points!']
+            f'> You won 2 moves and 16 points!']
             
         if self.name == 'Davis Loo':
             global visited_davis
@@ -463,7 +463,7 @@ class NPC(Beings):
             f'> Davis Loo: おお！あなたはここにチートシートをわすれました。(Oh! You forgot your cheat sheet here.)',
             f'> {your_name}: Oh really? Thank you so much, I\'ll be on the look out!',
             f'> Davis Loo: はい、がんばってね！またね！ (Yes, good luck! See you!)',
-            f'> You gain 2 moves and 16 points!']
+            f'> You won 2 moves and 16 points!']
 
         if self.name == 'Marius Maximus Baddius III':
             global visited_marius_maximus_baddius_iii
@@ -512,7 +512,7 @@ class NPC(Beings):
                 time.sleep(2)
                 lightGray('> Marius Maximus Baddius III: Make haste!')
                 time.sleep(2)
-                lightGray('> You gain 15 moves!')
+                lightGray('> You won 15 moves!')
                 marius_moves_gained = True
                 visited_marius_maximus_baddius_iii = True
                 
@@ -601,7 +601,7 @@ class NPC(Beings):
                         found_handkerchief = True
 
                     if found_pocket_watch and found_pocket_mirror and found_handkerchief:
-                        lightGray('> You gain 10 moves and 50 points!')
+                        lightGray('> You won 10 moves and 50 points!')
                         time.sleep(2)
                         lightGray('> Marius Maximus Baddius III: Thank you child, for helping me figure out my past.')
                         marius_end_gained = True
@@ -1003,7 +1003,7 @@ if __name__ == "__main__":
                         lightGray('> Phone Guy: Uh, welcome to The Amazing Digital Gacha Gambling Game.')
 
                         time.sleep(2)
-                        lightGray('> Phone Guy: You can exit anytime by typing \"leave\".')
+                        lightGray('> Phone Guy: You can exit anytime by typing \"leave.\"')
 
                         time.sleep(2)
                         lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
@@ -1260,7 +1260,7 @@ if __name__ == "__main__":
                         lightGray('> Phone Guy: Uh, welcome to The Amazing Digital Gacha Gambling Game.')
 
                         time.sleep(2)
-                        lightGray('> Phone Guy: You can exit anytime by typing \"leave\".')
+                        lightGray('> Phone Guy: You can exit anytime by typing \"leave.\"')
 
                         time.sleep(2)
                         lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
