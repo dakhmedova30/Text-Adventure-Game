@@ -1,0 +1,69 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.75in]{geometry}
+
+\title{CSC111 Winter 2024 Project 1}
+\author{Diana Akhmedova and Akanksha Anand Iyengar}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Enhancements}
+
+
+\begin{enumerate}
+
+\item Creation of the four main NPCs
+	\begin{itemize}
+	\item Basic description of what the enhancement is: We created a class Beings with a subclass NPC. Four of our five NPCs help the player figure out where they may have left their items around campus. These four NPCs are: 
+            \begin{itemize}
+                \item Linda Shinx: Found at Sir Dans, Linda's the first of our NPCs. She tells you that you left your water bottle at Sid Smith yesterday.
+                \item Tommy Grieves: You meet Tommy at Morrison Hall where you ask him about yesterday. He tells you that you both were at the Athletic Centre, but that he doesn't remember if you forgot anything there.
+                \item Sadie Shaymin: You meet Sadie outside the Innis College Residence where she tells you that you both worked at Graham together last night, but she doesn't mention what you may have left.
+                \item Davis Loo: You meet Davis in the Woodsworth Residence building where he tells you that you were at OISE with him last night.
+            \end{itemize}
+	\item Complexity level (choose from low/medium/high): low
+	\item We felt that they were quite easy to add (in comparison) as we just needed to figure out the dialogues, their locations and give the player extra moves and points.
+	\end{itemize}
+\item Marius Maximus Baddius III (the fifth NPC)
+    \begin{itemize}
+    \item Basic description of what the enhancement is: Marius Maximus Baddius III is our fifth NPC, but he is a ghost who sends the player out on a quest to find a few items (which are not named during the dialogue with him) so that he can remember the circumstances of his death. After each item is collected, a small piece of the memory is unlocked. After all three items are found returned to him, he grants the players extra moves and points.
+    \item Complexity level (low/medium/high): High
+    \item Creating Marius meant we had to create numerous if...else loops to accommodate for every possible condition. He has a lot of conditions that need to be tested (such as the dialogues for whatever number of items the player brings to Marius). We also had to come up with unique dialogues and implement Chirly who was the one who gives the players one of the first hints for the murder mystery. We also had to create three new items for the player to grab to reveal Marius's past.
+    \end{itemize}
+\item The Robarts Commons and Robarts Library SCPs
+	\begin{itemize}
+	\item Basic description of what the enhancement is: The SCPs are are another subclass of the parent class beings. They usually just generate dialogue, but some of them (Tikki and Plagg, and Connor) ask for the players to solve some questions. Based on what SCPs they encountered (and whether or not the player answered their riddles correctly), the player either gains or loses some points or moves.
+	\item Complexity level (low/medium/high): Medium
+	\item As some of the locations gave the player free moves and/or points when they visited it, we needed to implement a system so that they did not exploit this loophole. For this, we needed to also add more dialogue (in addition to the ones generated while visiting the room for the first time) that could explain off the reason why the players were not given (or lost) extra moves/points. We also had to create multiple if...else chains for Tikki and Plagg to ensure every scenario was accounted for (like the one where you get all three questions right and finally get to meet Tikki).
+	\end{itemize}
+\item Phone Guy SCP
+	\begin{itemize}
+	\item Basic description of what the enhancement is: He is the last SCP that we created (child class of Beings). His character breaks the fourth wall and either grants the player extra moves and points or takes away points based on a gacha (random pull) system.
+	\item Complexity level (low/medium/high): High
+	\item To create a good gacha system, we had to create a pity timer. There's a soft pity at 75 pulls which increases your chances of hitting a jackpot and a hard pity at 90 pulls which basically guarantees a jackpot. Calculating the probabilities for the pulls was a tedious process and hard to code. We also needed to sync the dialogues with the audio playing, which was a hard and a very tedious process.
+	\end{itemize}
+\item Different text colors
+	\begin{itemize}
+	\item Basic description of what the enhancement is: We made different texts different colors
+	\item Complexity level (low/medium/high): Low
+	\item We feel that it wasn't very hard to define functions for different colors and call them whenever it was necessary.
+	\end{itemize}
+\item Adding background music
+	\begin{itemize}
+	\item Basic description of what the enhancement is: We added background music to every scene and scenario you can encounter in the game.
+	\item Complexity level (low/medium/high): Medium
+	\item Finding the right music for each scenario was a little annoying, but not really that hard, but it was harder to ensure they played at the right instances and at the right volumes. In particular, the phone guy music was the hardest to implement as we synced it with his dialogues to make it feel more natural. It was challenging, overall, as we haven't had much practice with this.
+	\end{itemize}
+\end{enumerate}
+
+
+\section*{Extra Gameplay Files}
+
+If you have any extra \texttt{gameplay\#.txt} files, describe them below.
+
+\end{document}
