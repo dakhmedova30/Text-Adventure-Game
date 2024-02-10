@@ -1219,7 +1219,7 @@ if __name__ == "__main__":
                     time.sleep(2)
                     lightGray('> The phone suddenly starts ringing.')
                     time.sleep(2)
-                    lightGray('> Phone Guy: Hello, hello, hello?')
+                    lightGray('> Phone Guy: Hello? Hello, hello?')
                     time.sleep(2)
                     lightGray(f'> Phone Guy: Oh, it\'s you again, {your_name}.')
                     time.sleep(2)
