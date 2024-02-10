@@ -971,7 +971,7 @@ if __name__ == "__main__":
                     p.score += 3
 
                     time.sleep(2)
-                    lightGray('> The phone suddenly rings again.')
+                    lightGray('\n> The phone suddenly rings again.')
                     time.sleep(2)
                     lightGray('> Phone Guy: Hello? Hello, hello?')
                     time.sleep(2)
