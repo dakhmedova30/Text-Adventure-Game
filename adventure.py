@@ -772,7 +772,7 @@ if __name__ == "__main__":
 
 
     while not p.victory and not p.quit and moves > 0:
-        # print('MOVES: ' + str(moves))
+        print('MOVES: ' + str(moves))
         location = w.get_location(p.x, p.y)
         loc = location.pos
         
