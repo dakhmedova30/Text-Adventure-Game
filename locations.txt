@@ -84,8 +84,8 @@ END
 
 Athletics Centre
 0
+You are in the Athletics Centre.
 You walk into the magnifient Athletics Centre, eyeing the enormous pool and all of the workout rooms. There is a place for every sport here, from karate to contemporary dancing. You reminisce going here a few times to work out with your friends.
-Detail
 END
 
 Scenery

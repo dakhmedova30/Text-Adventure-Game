@@ -119,7 +119,7 @@ class SCP(Beings):
         if self.name == 'Bumbly and Mia':
             return ['> You hear quite a commotion as you walk into the room.',
             '> Two dogs greet you: one is a large and fluffy Samoyed, and the other is a small and soft Keeshond.',
-            '> Their nametags read Bumbly and Mia, respectfully.',
+            '> Their nametags read Bumbly and Mia, respectively.',
             '> As you approach them, Bumbly warmly greets you by running around in circles, while Mia goes to fetch something.',
             '> Upon Mia\'s return, you find her bringing back a pair of brand-new rollerskates!',
             '> You gain 5 moves and 5 points!']
@@ -256,7 +256,7 @@ class SCP(Beings):
             time.sleep(2)
             lightGray('> Plagg: I am Plagg, the one and ONLY kwami known for tilting the Leaning Tower of Pisa,')
             time.sleep(2)
-            lightGray('destroying the entirety of Atlantis, and driving the dinosaurs to extinction.')
+            lightGray('> Plagg: Destroying the entirety of Atlantis, and driving the dinosaurs to extinction.')
             time.sleep(2)
             lightGray('> Plagg: Not a bad resume, right?')
             time.sleep(2)
@@ -301,11 +301,15 @@ class SCP(Beings):
                     time.sleep(2)
                     lightGray('> Plagg: Unfortunately, you didn\'t get all my questions right, so no prize for you.')
                     time.sleep(2)
-                    lightGray('\n> Plagg: Smell you later!')
+                    lightGray('> Plagg: Smell you later!')
+                    lightGray('> You lose 1 move and lose 2 points.')
+                    visited_tikki_plagg = True
                     return False
             else:
                 time.sleep(2)
                 lightGray('\n> Plagg: Too bad. Try again next time, buddy. I\'m going to find Adrien...')
+                lightGray('> You lose 1 move and lose 2 points.')
+                visited_tikki_plagg = True
                 return False
 
         if self.name == 'Phone Guy':
@@ -878,6 +882,9 @@ if __name__ == "__main__":
                         if tikki_plagg.puzzle() == True:
                             moves += 3
                             p.score -= 2
+                        else:
+                            moves -= 1
+                            p.score -= 2
                         pygame.mixer.music.load("kahoot.mp3")
                         pygame.mixer.music.set_volume(0.07)
                         pygame.mixer.music.play(loops=-1, start=0.7)
@@ -981,11 +988,11 @@ if __name__ == "__main__":
                     time.sleep(2)
                     lightGray('> The phone suddenly rings again.')
                     time.sleep(2)
-                    lightGray('> Phone Guy: Hello, hello, hello?')
+                    lightGray('> Phone Guy: Hello? Hello, hello?')
                     time.sleep(2)
                     lightGray(f'> Phone Guy: Oh, it\'s you again, {your_name}.')
                     time.sleep(2)
-                    lightGray('> Phone Guy: Now that you gained a basic sense of this game\'s mechanics, would you like to play a game?')
+                    lightGray('> Phone Guy: Now that you gained a basic sense of this game\'s mechanics, would you like to play a game? (yes/no)')
                     time.sleep(2)
                     response = input('\033[1;97m\nYour Answer: \033[0m')
 
@@ -1207,7 +1214,7 @@ if __name__ == "__main__":
 
                         time.sleep(2)
                         lightGray('> Phone Guy: Do you want to make a single pull or a ten pull? (1 or 10)')
-                        response = input('\033[1;97m\nYour Answer: \033[0m')
+                        answer = input('\033[1;97m\nYour Answer: \033[0m')
 
                         while answer != 'leave':
                             if pity >= 90:
