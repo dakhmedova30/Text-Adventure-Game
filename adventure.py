@@ -612,8 +612,12 @@ class NPC(Beings):
                             lightGray('> Marius Maximus Baddius III: I cannot see anything in your hands. Could you please get my possessions for me?')
                         else:
                             lightGray('> Marius Maximus Baddius III: Hmm... I don\'t seem to recall any of the items that you\'re holding. Maybe my possessions are somewhere else?')
-                else:
+                
+                elif response.lower() == 'no':
                     lightGray('> Marius Maximus Baddius III: Oh... Could you please go and find them for me?')
+                
+                else:
+                    pygame.mixer.Sound.play(spelling)
             
             else:
                 lightGray('> Marius Maximus Baddius III: I can now ascend to a further plane on the next anniversary of my demise.')
@@ -704,24 +708,24 @@ def white(skk):
     """Defining a white color for text."""
     print("\033[1;97m{}\033[0m\r".format(skk))
 
-# bold("This is bold.")
-# black("This is black.")
-# darkRed("This is dark red.")
-# darkGreen("This is dark green.")
-# darkYellow("This is dark yellow.")
-# darkBlue("This is dark blue.")
-# darkMagenta("This is dark magenta.")
-# darkCyan("This is dark cyan.")
-# lightGray("This is light gray.")
-# darkGray("This is dark gray.")
-# red("This is red.")
-# green("This is green.")
-# yellow("This is yellow.")
-# blue("This is blue.")
-# magenta("This is magenta.")
-# cyan("This is cyan.")
-# white("This is white.")
-# print("\n")
+bold("This is bold.")
+black("This is black.")
+darkRed("This is dark red.")
+darkGreen("This is dark green.")
+darkYellow("This is dark yellow.")
+darkBlue("This is dark blue.")
+darkMagenta("This is dark magenta.")
+darkCyan("This is dark cyan.")
+lightGray("This is light gray.")
+darkGray("This is dark gray.")
+red("This is red.")
+green("This is green.")
+yellow("This is yellow.")
+blue("This is blue.")
+magenta("This is magenta.")
+cyan("This is cyan.")
+white("This is white.")
+print("\n")
 
 
 if __name__ == "__main__":
@@ -773,7 +777,7 @@ if __name__ == "__main__":
 
 
     while not p.victory and not p.quit and moves > 0:
-        print('MOVES: ' + str(moves))
+        # print('MOVES: ' + str(moves))
         location = w.get_location(p.x, p.y)
         loc = location.pos
         
@@ -1015,11 +1019,11 @@ if __name__ == "__main__":
                             if moves <= 0:
                                 red("\n\nYou've reached the maximum number of moves. Game over!")
                                 time.sleep(1)
-                                magenta("\nYour final score is: " + str(p.score) + "\n")
+                                darkYellow("\nYour final score is: " + str(p.score) + "\n")
                                 time.sleep(1)
 
-                            print('MOVES: ' + str(moves))
-                            print('PITY: ' + str(pity))
+                            # print('MOVES: ' + str(moves))
+                            # print('PITY: ' + str(pity))
 
                             if pity >= 90:
                                 chance = random.randint(1, 2)
@@ -1272,11 +1276,11 @@ if __name__ == "__main__":
                             if moves <= 0:
                                 red("\n\nYou've reached the maximum number of moves. Game over!")
                                 time.sleep(1)
-                                magenta("\nYour final score is: " + str(p.score) + "\n")
+                                darkYellow("\nYour final score is: " + str(p.score) + "\n")
                                 time.sleep(1)
 
-                            print('MOVES: ' + str(moves))
-                            print('PITY: ' + str(pity))
+                            # print('MOVES: ' + str(moves))
+                            # print('PITY: ' + str(pity))
                             
                             if pity >= 90:
                                 chance = random.randint(1, 2)
@@ -1500,10 +1504,12 @@ if __name__ == "__main__":
 
         # DISPLAY OPTIONS
         time.sleep(1)
+        white('\nMoves: ' + str(moves))
+        time.sleep(1)
         white("\nWhat to do?")
         time.sleep(1)
-        green("- [MENU]")
-        green("- North\n- South\n- West\n- East")
+        darkCyan("- [MENU]")
+        darkCyan("- North\n- South\n- West\n- East")
         time.sleep(1)
         choice = input("\033[1;97m\nEnter Action: \033[0m")
 
@@ -1513,7 +1519,7 @@ if __name__ == "__main__":
             white("\nWhat to do?")
             time.sleep(1)
             for option in menu:
-                green("- " + option.title())
+                darkCyan("- " + option.title())
             choice = input("\033[1;97m\nChoose Action: \033[0m")
         
 
@@ -1542,7 +1548,7 @@ if __name__ == "__main__":
 
         # SCORE
         if choice.lower() == "score":
-            magenta("\nScore: " + str(p.score))
+            darkYellow("\nScore: " + str(p.score))
             time.sleep(1)
 
 
@@ -1756,7 +1762,7 @@ if __name__ == "__main__":
     if p.quit:
         red("\n\nYou have successfully quit the game!")
         time.sleep(1)
-        magenta("\nYour final score is: " + str(p.score) + "\n")
+        darkYellow("\nYour final score is: " + str(p.score) + "\n")
         time.sleep(1)
 
 
@@ -1764,7 +1770,7 @@ if __name__ == "__main__":
     if p.victory:
         red("\n\nCongrats! You won!")
         time.sleep(1)
-        magenta("\nYour final score is: " + str(p.score) + "\n")
+        darkYellow("\nYour final score is: " + str(p.score) + "\n")
         time.sleep(1)
 
 
@@ -1772,5 +1778,5 @@ if __name__ == "__main__":
     if moves <= 0:
         red("\n\nYou've reached the maximum number of moves. Game over!")
         time.sleep(1)
-        magenta("\nYour final score is: " + str(p.score) + "\n")
+        darkYellow("\nYour final score is: " + str(p.score) + "\n")
         time.sleep(1)
