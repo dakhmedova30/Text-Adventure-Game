@@ -920,8 +920,8 @@ if __name__ == "__main__":
                 elif door == '2':
                     if visited_kyoko_tomoyo_pocoyo == False:
                         pygame.mixer.music.load("cat.mp3")
-                        pygame.mixer.music.set_volume(0.04, start=0.5)
-                        pygame.mixer.music.play(loops=-1)
+                        pygame.mixer.music.set_volume(0.04)
+                        pygame.mixer.music.play(loops=-1, start=0.5)
                         lst = kyoko_tomoyo_pocoyo.puzzle()
                         for text in lst:
                             lightGray(text)
