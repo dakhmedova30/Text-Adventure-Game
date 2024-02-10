@@ -229,7 +229,7 @@ class SCP(Beings):
             time.sleep(2)
             lightGray('> A Floating Black Cat: Neverminddd, I can already smell your lack of taste for cheese.')
             time.sleep(2)
-            lightGray('> A Floating Black Cat: Well since Tikki is probably overendulging on Galettes, how about you entertain me?')
+            lightGray('> A Floating Black Cat: Well since Tikki is probably overindulging on Galettes, how about you entertain me?')
             time.sleep(2)
             lightGray('> A Floating Black Cat: I\'ll give you three questions and if you answer all of them right, then you\'ll get some stinky rewards, haha!')
             time.sleep(2)
