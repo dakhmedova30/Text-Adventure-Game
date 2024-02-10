@@ -1672,11 +1672,11 @@ if __name__ == "__main__":
                 if marius_moves_gained == True:
                     moves += 15
                     marius_moves_gained = False
-                if found_pocket_watch == True:
+                if 'Pocket Watch' in p.inventory and found_pocket_watch == True:
                     p.inventory.remove('Pocket Watch')
-                if found_pocket_mirror == True:
+                if 'Pocket Mirror' in p.inventory and found_pocket_mirror == True:
                     p.inventory.remove('Pocket Mirror')
-                if found_handkerchief == True:
+                if 'Handkerchief' in p.inventory and found_handkerchief == True:
                     p.inventory.remove('Handkerchief')
                 if found_items == True and visited_marius_maximus_baddius_iii == True and marius_end_gained == True:
                     moves += 10
