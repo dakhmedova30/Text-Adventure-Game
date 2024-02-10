@@ -64,9 +64,12 @@ found_handkerchief = False
 marius_moves_gained = False
 marius_end_gained = False
 
+spelling = pygame.mixer.Sound('spelling.mp3')
+spelling.set_volume(0.2)
+
 
 class Beings:
-    """Parent class for various enhancement SCPs (everything you meet at the Robarts Library and Commons, as well as Phone Guy) 
+    """Parent class for various enhancement SCPs (everything you meet at the Robarts Library, Commons, and Phone Guy)
     and NPCs (the four characters that help you figure where your items went and Marius, the ghost).
 
     Instance Attributes:
@@ -86,7 +89,6 @@ class Beings:
         self.name = name
         self.curr_pos = curr_pos
         self.points = points
-        self.moves = moves
 
 
 class SCP(Beings):
@@ -747,8 +749,6 @@ if __name__ == "__main__":
     pygame.mixer.music.load("kahoot.mp3")
     pygame.mixer.music.set_volume(0.07)
     pygame.mixer.music.play(loops=-1, start=0.7)
-    spelling = pygame.mixer.Sound('spelling.mp3')
-    spelling.set_volume(0.2)
 
     time.sleep(1)
     your_name = input("\033[1;97m\nEnter your name: \033[0m")
