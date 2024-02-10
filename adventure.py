@@ -1454,7 +1454,6 @@ if __name__ == "__main__":
                     curr_items.append(item_info.name)
 
             if (w.items != [] and all([item.curr_position == -1 for item in w.items])) or curr_items == []:
-                pygame.mixer.Sound.play(spelling)
                 lightGray("There are no items in this area!\n")
                 time.sleep(1)
             else:
@@ -1493,7 +1492,6 @@ if __name__ == "__main__":
                 curr_items.append(item_info)
 
             if all_items == []:
-                pygame.mixer.Sound.play(spelling)
                 lightGray("You have no items to drop!\n")
                 time.sleep(1)
             else:
