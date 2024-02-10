@@ -161,7 +161,7 @@ class SCP(Beings):
             '> You lose 1 move and 5 points.']
             
         if self.name == 'Purple Guy':
-            return ['> You walk into an ominous room with a broken sign reading \"Freddy Fazbear\'s Pizzeria\".',
+            return ['> You walk into an ominous room with a broken sign reading \"Freddy Fazbear\'s Pizzeria.\"',
             '> As you delve in further, you hear the sounds of children laughing...',
             '> However, these laughs quickly become drowned by agonizing cries for help.',
             '> Before you know it, you see a man in a yellow bunny suit walk in, mumbling...',
@@ -212,7 +212,7 @@ class SCP(Beings):
             return ['> The second you step inside the door, you are greeted by a loud, booming voice.',
             '> The Voice: \"I am known by many names. \'Mountain Slayer\', \'Thunder Lion\', \'The Chocolate Axe\'. But you? You may call me... TIFFANY.\"',
             f'> {your_name}: Hi Tiffany. I\'m {your_name}.',
-            '> Tiffany is a large, buff man who sitting on the floor with bags of snacks around him.',
+            '> Tiffany is a large, buff man who is sitting on the floor with bags of snacks around him.',
             '> Tiffany: People die when they are killed. Did you know that before? Did you? Because I didn\'t! I just learned that from the voices inside my head.',
             f'> {your_name}: Um yeah, I knew about that for a while.',
             '> Tiffany: Wow, you\'re so smart! Just like Edwardison! Not me though. Anyway, I\'m hungry. Do you want a snack?',
@@ -875,7 +875,7 @@ if __name__ == "__main__":
                         pygame.mixer.music.load("mlb.mp3")
                         pygame.mixer.music.set_volume(0.07)
                         pygame.mixer.music.play(loops=-1)
-                        if connor.puzzle() == True:
+                        if tikki_plagg.puzzle() == True:
                             moves += 3
                             p.score -= 2
                         pygame.mixer.music.load("kahoot.mp3")
