@@ -171,7 +171,7 @@ class SCP(Beings):
             '> You feel your arms and legs strap into a metallic bodysuit, as your body molds into shape.',
             '> Adrenaline rushes through your veins, fear encapsulating your eyes.',
             '> The man begins maniacally laughing, as his newest creation comes to life.',
-            '> Purple Guy: Let\'s see how many times you can be pulled apart...and put back together again.',
+            '> Purple Guy: Let\'s see how many times you can be pulled apart... and put back together again.',
             '> Despite the man\'s unsettling comments, you try to pull any strength you have left to run away.',
             '> The yellow bunny gawks at you, patronizingly, before beginning his chase.',
             '> Purple Guy: Hide if you want. It did not save the others. It will not save you.',
@@ -1273,7 +1273,7 @@ if __name__ == "__main__":
                                 time.sleep(1)
                                 magenta("\nYour final score is: " + str(p.score) + "\n")
                                 time.sleep(1)
-                                
+
                             print('MOVES: ' + str(moves))
                             print('PITY: ' + str(pity))
                             
