@@ -452,7 +452,7 @@ class NPC(Beings):
         if self.name == 'Davis Loo':
             global visited_davis
             visited_davis = True
-            return [f'{your_name}: Sup, Davis!',
+            return [f'>{your_name}: Sup, Davis!',
             f'> Davis Loo: おはよう！(Good morning!)',
             f'> {your_name}: Practicing Japanese early, I see.',
             f'> Davis Loo: そうですね。(Indeed.)',
